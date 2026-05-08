@@ -1,0 +1,9 @@
+{
+  "name": "2settle App",
+  "description": "spend and send crypto",
+  "short_name": "2settle",
+  "start_url": "/",
+  "lang": "en-US",
+  "theme_color": "#3b82f6",
+  "display": "standalone"
+}

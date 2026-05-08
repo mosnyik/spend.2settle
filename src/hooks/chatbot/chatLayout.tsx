@@ -1,0 +1,64 @@
+import ChatHeader from "@/components/chatbot/ChatHeader";
+import ChatInput from "@/components/chatbot/ChatInput";
+import ChatMessages from "@/components/chatbot/ChatMessages";
+
+import { RefObject, ChangeEvent } from "react";
+import { MessageType } from "stores/chatStore";
+
+export interface ChatLayoutProps {
+  chatInput: string;
+  onChange: (e: ChangeEvent<HTMLTextAreaElement>) => void;
+  onSubmit: (chatInput: string, onError?: (error: Error) => void) => void;
+  chatMessages: MessageType[];
+  groupedMessages: Record<string, MessageType[]>;
+  loading: boolean;
+  dateSeperatorBadge: (dateString: string) => JSX.Element;
+  messagesEndRef: RefObject<HTMLDivElement>;
+  chatboxRef: RefObject<HTMLDivElement>;
+  showDateDropdown: boolean;
+  currentDate: string | null;
+  onClose: () => void;
+  textareaRef: RefObject<HTMLTextAreaElement>; // optional if you want flexibility
+}
+
+const ChatLayout = ({
+  chatInput,
+  onChange,
+  onSubmit,
+  chatMessages,
+  groupedMessages,
+  loading,
+  dateSeperatorBadge,
+  messagesEndRef,
+  chatboxRef,
+  showDateDropdown,
+  currentDate,
+  onClose,
+  textareaRef,
+}: ChatLayoutProps) => {
+  return (
+    <>
+      <ChatHeader
+        onClose={onClose}
+        showDateDropdown={showDateDropdown}
+        currentDate={currentDate}
+      />
+      <ChatMessages
+        chatMessages={chatMessages}
+        groupedMessages={groupedMessages}
+        loading={loading}
+        dateSeperatorBadge={dateSeperatorBadge}
+        messagesEndRef={messagesEndRef}
+        chatboxRef={chatboxRef}
+      />
+      <ChatInput
+        chatInput={chatInput}
+        onChange={onChange}
+        onSubmit={onSubmit}
+        textareaRef={textareaRef}
+      />
+    </>
+  );
+};
+
+export default ChatLayout;

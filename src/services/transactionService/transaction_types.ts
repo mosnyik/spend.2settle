@@ -1,0 +1,25 @@
+export type TransactionType = {
+  crypto: string;
+  network: string;
+  estimation: string | number;
+  Amount: string;
+  charges: string | number;
+  mode_of_payment: string;
+  acct_number: string;
+  bank_name: string;
+  receiver_name: string;
+  receiver_amount: string;
+  crypto_sent: string;
+  wallet_address: string;
+  Date: string | Date;
+  status: "Processing" | "Completed" | "Failed" | string;
+  customer_phoneNumber: string;
+  transac_id: string;
+  settle_walletLink: string;
+  chat_id: string;
+  current_rate: string;
+  merchant_rate: number | string;
+  profit_rate: number | string;
+  name: string;
+  asset_price: string;
+};

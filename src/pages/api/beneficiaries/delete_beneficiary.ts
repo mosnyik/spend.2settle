@@ -1,0 +1,1 @@
+// payer can delete a beneficiary that was associated with them

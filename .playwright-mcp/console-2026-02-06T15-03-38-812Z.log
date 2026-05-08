@@ -1,0 +1,106 @@
+[    3676ms] [WARNING] [Fast Refresh] performing full reload
+
+Fast Refresh will perform a full reload when you edit a file that's imported by modules outside of the React rendering tree.
+You might have a file which exports a React component but also exports a value that is imported by a non-React component file.
+Consider migrating the non-React component export to a separate file and importing it into both files.
+
+It is also possible the parent component of the component you edited is a class component, which disables Fast Refresh.
+Fast Refresh requires at least one parent function component in your React tree. @ webpack-internal:///./node_modules/.pnpm/@sentry+core@9.2.0/node_modules/@sentry/core/build/esm/utils-hoist/instrument/console.js:43
+[   36572ms] [WARNING] Image with src "/simple_logo.png" has legacy prop "objectFit". Did you forget to run the codemod?
+Read more: https://nextjs.org/docs/messages/next-image-upgrade-to-13 @ webpack-internal:///./node_modules/.pnpm/@sentry+core@9.2.0/node_modules/@sentry/core/build/esm/utils-hoist/instrument/console.js:43
+[   47515ms] [WARNING] Image with src "/simple_logo.png" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes @ webpack-internal:///./node_modules/.pnpm/@sentry+core@9.2.0/node_modules/@sentry/core/build/esm/utils-hoist/instrument/console.js:43
+[   66177ms] [ERROR] Warning: validateDOMNesting(...): %s cannot appear as a descendant of <%s>.%s <button> button 
+    at button
+    at SendMoney
+    at button
+    at _c (webpack-internal:///./src/components/ui/button.tsx:41:11)
+    at div
+    at div
+    at div
+    at Body (webpack-internal:///./src/components/dashboard/Body.tsx:62:80)
+    at main
+    at div
+    at Layout (webpack-internal:///./src/components/Layout.tsx:22:11)
+    at Transact
+    at ErrorBoundary (webpack-internal:///./src/components/social/telegram/TelegramError.tsx:104:9)
+    at SharedStateProvider (webpack-internal:///./src/context/SharedStateContext.tsx:26:11)
+    at div
+    at ModalProvider (webpack-internal:///./node_modules/.pnpm/@rainbow-me+rainbowkit@2.2.0_@tanstack+react-query@5.62.0_react@18.3.1__@types+react@18_7855d740eeb5a359876e68505ce5b8a0/node_modules/@rainbow-me/rainbowkit/dist/index.js:6239:26)
+    at ShowBalanceProvider (webpack-internal:///./node_modules/.pnpm/@rainbow-me+rainbowkit@2.2.0_@tanstack+react-query@5.62.0_react@18.3.1__@types+react@18_7855d740eeb5a359876e68505ce5b8a0/node_modules/@rainbow-me/rainbowkit/dist/index.js:1034:32)
+    at TransactionStoreProvider (webpack-internal:///./node_modules/.pnpm/@rainbow-me+rainbowkit@2.2.0_@tanstack+react-query@5.62.0_react@18.3.1__@types+react@18_7855d740eeb5a359876e68505ce5b8a0/node_modules/@rainbow-me/rainbowkit/dist/index.js:1530:3)
+    at ModalSizeProvider (webpack-internal:///./node_modules/.pnpm/@rainbow-me+rainbowkit@2.2.0_@tanstack+react-query@5.62.0_react@18.3.1__@types+react@18_7855d740eeb5a359876e68505ce5b8a0/node_modules/@rainbow-me/rainbowkit/dist/index.js:1727:3)
+    at I18nProvider (webpack-internal:///./node_modules/.pnpm/@rainbow-me+rainbowkit@2.2.0_@tanstack+react-query@5.62.0_react@18.3.1__@types+react@18_7855d740eeb5a359876e68505ce5b8a0/node_modules/@rainbow-me/rainbowkit/dist/index.js:806:23)
+    at WalletButtonProvider (webpack-internal:///./node_modules/.pnpm/@rainbow-me+rainbowkit@2.2.0_@tanstack+react-query@5.62.0_react@18.3.1__@types+react@18_7855d740eeb5a359876e68505ce5b8a0/node_modules/@rainbow-me/rainbowkit/dist/index.js:1701:33)
+    at RainbowKitChainProvider (webpack-internal:///./node_modules/.pnpm/@rainbow-me+rainbowkit@2.2.0_@tanstack+react-query@5.62.0_react@18.3.1__@types+react@18_7855d740eeb5a359876e68505ce5b8a0/node_modules/@rainbow-me/rainbowkit/dist/index.js:996:3)
+    at RainbowKitProvider (webpack-internal:///./node_modules/.pnpm/@rainbow-me+rainbowkit@2.2.0_@tanstack+react-query@5.62.0_react@18.3.1__@types+react@18_7855d740eeb5a359876e68505ce5b8a0/node_modules/@rainbow-me/rainbowkit/dist/index.js:2539:3)
+    at QueryClientProvider (webpack-internal:///./node_modules/.pnpm/@tanstack+react-query@5.62.0_react@18.3.1/node_modules/@tanstack/react-query/build/modern/QueryClientProvider.js:28:3)
+    at Hydrate (webpack-internal:///./node_modules/.pnpm/wagmi@2.13.3_@tanstack+query-core@5.90.14_@tanstack+react-query@5.62.0_react@18.3.1__@t_0aea6eea8a9c1a93f05f9e8148ee8839/node_modules/wagmi/dist/esm/hydrate.js:11:13)
+    at WagmiProvider (webpack-internal:///./node_modules/.pnpm/wagmi@2.13.3_@tanstack+query-core@5.90.14_@tanstack+react-query@5.62.0_react@18.3.1__@t_0aea6eea8a9c1a93f05f9e8148ee8839/node_modules/wagmi/dist/esm/context.js:13:13)
+    at SessionProvider (webpack-internal:///./node_modules/.pnpm/next-auth@4.24.10_next@14.2.18_@babel+core@7.26.0_@opentelemetry+api@1.9.0_babel-plugin_6f3a6483dd912798503c45d6ad8c6e01/node_modules/next-auth/react/index.js:365:24)
+    at MyApp (webpack-internal:///./src/pages/_app.tsx:40:11)
+    at PathnameContextProviderAdapter (webpack-internal:///./node_modules/.pnpm/next@14.2.18_@babel+core@7.26.0_@opentelemetry+api@1.9.0_babel-plugin-macros@3.1.0_reac_65c470f9feee4fed4aa986096bdf0497/node_modules/next/dist/shared/lib/router/adapters.js:81:11)
+    at ErrorBoundary (webpack-internal:///./node_modules/.pnpm/next@14.2.18_@babel+core@7.26.0_@opentelemetry+api@1.9.0_babel-plugin-macros@3.1.0_reac_65c470f9feee4fed4aa986096bdf0497/node_modules/next/dist/client/components/react-dev-overlay/pages/ErrorBoundary.js:41:9)
+    at ReactDevOverlay (webpack-internal:///./node_modules/.pnpm/next@14.2.18_@babel+core@7.26.0_@opentelemetry+api@1.9.0_babel-plugin-macros@3.1.0_reac_65c470f9feee4fed4aa986096bdf0497/node_modules/next/dist/client/components/react-dev-overlay/pages/ReactDevOverlay.js:33:11)
+    at Container (webpack-internal:///./node_modules/.pnpm/next@14.2.18_@babel+core@7.26.0_@opentelemetry+api@1.9.0_babel-plugin-macros@3.1.0_reac_65c470f9feee4fed4aa986096bdf0497/node_modules/next/dist/client/index.js:81:1)
+    at AppContainer (webpack-internal:///./node_modules/.pnpm/next@14.2.18_@babel+core@7.26.0_@opentelemetry+api@1.9.0_babel-plugin-macros@3.1.0_reac_65c470f9feee4fed4aa986096bdf0497/node_modules/next/dist/client/index.js:189:11)
+    at Root (webpack-internal:///./node_modules/.pnpm/next@14.2.18_@babel+core@7.26.0_@opentelemetry+api@1.9.0_babel-plugin-macros@3.1.0_reac_65c470f9feee4fed4aa986096bdf0497/node_modules/next/dist/client/index.js:413:11) @ webpack-internal:///./node_modules/.pnpm/next@14.2.18_@babel+core@7.26.0_@opentelemetry+api@1.9.0_babel-plugin-macros@3.1.0_reac_65c470f9feee4fed4aa986096bdf0497/node_modules/next/dist/client/components/react-dev-overlay/internal/helpers/hydration-error-info.js:62
+[   71458ms] [WARNING] Image with src "https://gbo1qdj0roz2nqut.public.blob.vercel-storage.com/wale-mTGuRn8gew59IpHaWYW1PrlfiZ2NxQ.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio. @ webpack-internal:///./node_modules/.pnpm/@sentry+core@9.2.0/node_modules/@sentry/core/build/esm/utils-hoist/instrument/console.js:43
+[   82875ms] [WARNING] Lit is in dev mode. Not recommended for production! See https://lit.dev/msg/dev-mode for more information. @ webpack-internal:///./node_modules/.pnpm/@sentry+core@9.2.0/node_modules/@sentry/core/build/esm/utils-hoist/instrument/console.js:43
+[  297607ms] [ERROR] Warning: Each child in a list should have a unique "key" prop.%s%s See https://reactjs.org/link/warning-keys for more information.%s 
+
+Check the render method of `ChatMessages`.  
+    at ChatMessageItem (webpack-internal:///./src/components/chatbot/ChatMessageItem.tsx:16:11)
+    at ChatMessages (webpack-internal:///./src/components/chatbot/ChatMessages.tsx:16:11)
+    at ChatLayout (webpack-internal:///./src/hooks/chatbot/chatLayout.tsx:12:11)
+    at div
+    at ErrorBoundary (webpack-internal:///./src/components/social/telegram/TelegramError.tsx:104:9)
+    at ChatBot (webpack-internal:///./src/core/ChatBot.tsx:118:11)
+    at ErrorBoundary (webpack-internal:///./src/components/social/telegram/TelegramError.tsx:104:9)
+    at WithErrorHandlingWrapper (webpack-internal:///./src/components/withErrorHandling.tsx:23:82)
+    at ErrorBoundary (webpack-internal:///./src/components/social/telegram/TelegramError.tsx:104:9)
+    at div
+    at div
+    at Body (webpack-internal:///./src/components/dashboard/Body.tsx:62:80)
+    at main
+    at div
+    at Layout (webpack-internal:///./src/components/Layout.tsx:22:11)
+    at Transact
+    at ErrorBoundary (webpack-internal:///./src/components/social/telegram/TelegramError.tsx:104:9)
+    at SharedStateProvider (webpack-internal:///./src/context/SharedStateContext.tsx:26:11)
+    at div
+    at ModalProvider (webpack-internal:///./node_modules/.pnpm/@rainbow-me+rainbowkit@2.2.0_@tanstack+react-query@5.62.0_react@18.3.1__@types+react@18_7855d740eeb5a359876e68505ce5b8a0/node_modules/@rainbow-me/rainbowkit/dist/index.js:6239:26)
+    at ShowBalanceProvider (webpack-internal:///./node_modules/.pnpm/@rainbow-me+rainbowkit@2.2.0_@tanstack+react-query@5.62.0_react@18.3.1__@types+react@18_7855d740eeb5a359876e68505ce5b8a0/node_modules/@rainbow-me/rainbowkit/dist/index.js:1034:32)
+    at TransactionStoreProvider (webpack-internal:///./node_modules/.pnpm/@rainbow-me+rainbowkit@2.2.0_@tanstack+react-query@5.62.0_react@18.3.1__@types+react@18_7855d740eeb5a359876e68505ce5b8a0/node_modules/@rainbow-me/rainbowkit/dist/index.js:1530:3)
+    at ModalSizeProvider (webpack-internal:///./node_modules/.pnpm/@rainbow-me+rainbowkit@2.2.0_@tanstack+react-query@5.62.0_react@18.3.1__@types+react@18_7855d740eeb5a359876e68505ce5b8a0/node_modules/@rainbow-me/rainbowkit/dist/index.js:1727:3)
+    at I18nProvider (webpack-internal:///./node_modules/.pnpm/@rainbow-me+rainbowkit@2.2.0_@tanstack+react-query@5.62.0_react@18.3.1__@types+react@18_7855d740eeb5a359876e68505ce5b8a0/node_modules/@rainbow-me/rainbowkit/dist/index.js:806:23)
+    at WalletButtonProvider (webpack-internal:///./node_modules/.pnpm/@rainbow-me+rainbowkit@2.2.0_@tanstack+react-query@5.62.0_react@18.3.1__@types+react@18_7855d740eeb5a359876e68505ce5b8a0/node_modules/@rainbow-me/rainbowkit/dist/index.js:1701:33)
+    at RainbowKitChainProvider (webpack-internal:///./node_modules/.pnpm/@rainbow-me+rainbowkit@2.2.0_@tanstack+react-query@5.62.0_react@18.3.1__@types+react@18_7855d740eeb5a359876e68505ce5b8a0/node_modules/@rainbow-me/rainbowkit/dist/index.js:996:3)
+    at RainbowKitProvider (webpack-internal:///./node_modules/.pnpm/@rainbow-me+rainbowkit@2.2.0_@tanstack+react-query@5.62.0_react@18.3.1__@types+react@18_7855d740eeb5a359876e68505ce5b8a0/node_modules/@rainbow-me/rainbowkit/dist/index.js:2539:3)
+    at QueryClientProvider (webpack-internal:///./node_modules/.pnpm/@tanstack+react-query@5.62.0_react@18.3.1/node_modules/@tanstack/react-query/build/modern/QueryClientProvider.js:28:3)
+    at Hydrate (webpack-internal:///./node_modules/.pnpm/wagmi@2.13.3_@tanstack+query-core@5.90.14_@tanstack+react-query@5.62.0_react@18.3.1__@t_0aea6eea8a9c1a93f05f9e8148ee8839/node_modules/wagmi/dist/esm/hydrate.js:11:13)
+    at WagmiProvider (webpack-internal:///./node_modules/.pnpm/wagmi@2.13.3_@tanstack+query-core@5.90.14_@tanstack+react-query@5.62.0_react@18.3.1__@t_0aea6eea8a9c1a93f05f9e8148ee8839/node_modules/wagmi/dist/esm/context.js:13:13)
+    at SessionProvider (webpack-internal:///./node_modules/.pnpm/next-auth@4.24.10_next@14.2.18_@babel+core@7.26.0_@opentelemetry+api@1.9.0_babel-plugin_6f3a6483dd912798503c45d6ad8c6e01/node_modules/next-auth/react/index.js:365:24)
+    at MyApp (webpack-internal:///./src/pages/_app.tsx:40:11)
+    at PathnameContextProviderAdapter (webpack-internal:///./node_modules/.pnpm/next@14.2.18_@babel+core@7.26.0_@opentelemetry+api@1.9.0_babel-plugin-macros@3.1.0_reac_65c470f9feee4fed4aa986096bdf0497/node_modules/next/dist/shared/lib/router/adapters.js:81:11)
+    at ErrorBoundary (webpack-internal:///./node_modules/.pnpm/next@14.2.18_@babel+core@7.26.0_@opentelemetry+api@1.9.0_babel-plugin-macros@3.1.0_reac_65c470f9feee4fed4aa986096bdf0497/node_modules/next/dist/client/components/react-dev-overlay/pages/ErrorBoundary.js:41:9)
+    at ReactDevOverlay (webpack-internal:///./node_modules/.pnpm/next@14.2.18_@babel+core@7.26.0_@opentelemetry+api@1.9.0_babel-plugin-macros@3.1.0_reac_65c470f9feee4fed4aa986096bdf0497/node_modules/next/dist/client/components/react-dev-overlay/pages/ReactDevOverlay.js:33:11)
+    at Container (webpack-internal:///./node_modules/.pnpm/next@14.2.18_@babel+core@7.26.0_@opentelemetry+api@1.9.0_babel-plugin-macros@3.1.0_reac_65c470f9feee4fed4aa986096bdf0497/node_modules/next/dist/client/index.js:81:1)
+    at AppContainer (webpack-internal:///./node_modules/.pnpm/next@14.2.18_@babel+core@7.26.0_@opentelemetry+api@1.9.0_babel-plugin-macros@3.1.0_reac_65c470f9feee4fed4aa986096bdf0497/node_modules/next/dist/client/index.js:189:11)
+    at Root (webpack-internal:///./node_modules/.pnpm/next@14.2.18_@babel+core@7.26.0_@opentelemetry+api@1.9.0_babel-plugin-macros@3.1.0_reac_65c470f9feee4fed4aa986096bdf0497/node_modules/next/dist/client/index.js:413:11) @ webpack-internal:///./node_modules/.pnpm/next@14.2.18_@babel+core@7.26.0_@opentelemetry+api@1.9.0_babel-plugin-macros@3.1.0_reac_65c470f9feee4fed4aa986096bdf0497/node_modules/next/dist/client/components/react-dev-overlay/internal/helpers/hydration-error-info.js:62
+[  301896ms] [WARNING] Image with src "/waaa.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio. @ webpack-internal:///./node_modules/.pnpm/@sentry+core@9.2.0/node_modules/@sentry/core/build/esm/utils-hoist/instrument/console.js:43
+[  427855ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:3000/api/rates/rate:0
+[  428205ms] [ERROR] Error fetching rates: AxiosError @ webpack-internal:///./node_modules/.pnpm/next@14.2.18_@babel+core@7.26.0_@opentelemetry+api@1.9.0_babel-plugin-macros@3.1.0_reac_65c470f9feee4fed4aa986096bdf0497/node_modules/next/dist/client/components/react-dev-overlay/internal/helpers/hydration-error-info.js:62
+[  429475ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:3000/api/rates/rate:0
+[  429666ms] [ERROR] Error fetching rates: AxiosError @ webpack-internal:///./node_modules/.pnpm/next@14.2.18_@babel+core@7.26.0_@opentelemetry+api@1.9.0_babel-plugin-macros@3.1.0_reac_65c470f9feee4fed4aa986096bdf0497/node_modules/next/dist/client/components/react-dev-overlay/internal/helpers/hydration-error-info.js:62
+[  735473ms] [ERROR] Failed to fetch bank data: TypeError: Cannot read properties of undefined (reading 'bank_name')
+    at handleContinueToPay (webpack-internal:///./src/features/chatbot/handlers/chatHandlers/complete.payement.tsx:69:41)
+    at async handleConversation (webpack-internal:///./src/hooks/chatbot/useChatLogic.tsx:88:17) @ webpack-internal:///./node_modules/.pnpm/next@14.2.18_@babel+core@7.26.0_@opentelemetry+api@1.9.0_babel-plugin-macros@3.1.0_reac_65c470f9feee4fed4aa986096bdf0497/node_modules/next/dist/client/components/react-dev-overlay/internal/helpers/hydration-error-info.js:62
+[  852155ms] [ERROR] Failed to fetch bank data: TypeError: Cannot read properties of undefined (reading 'bank_name')
+    at handleContinueToPay (webpack-internal:///./src/features/chatbot/handlers/chatHandlers/complete.payement.tsx:69:41)
+    at async handleConversation (webpack-internal:///./src/hooks/chatbot/useChatLogic.tsx:88:17) @ webpack-internal:///./node_modules/.pnpm/next@14.2.18_@babel+core@7.26.0_@opentelemetry+api@1.9.0_babel-plugin-macros@3.1.0_reac_65c470f9feee4fed4aa986096bdf0497/node_modules/next/dist/client/components/react-dev-overlay/internal/helpers/hydration-error-info.js:62
+[ 1418589ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:3000/api/transfer/save:0
+[ 1418747ms] [ERROR] Error storing transferData data: AxiosError @ webpack-internal:///./node_modules/.pnpm/next@14.2.18_@babel+core@7.26.0_@opentelemetry+api@1.9.0_babel-plugin-macros@3.1.0_reac_65c470f9feee4fed4aa986096bdf0497/node_modules/next/dist/client/components/react-dev-overlay/internal/helpers/hydration-error-info.js:62
+[ 1418773ms] [ERROR] Error creating transfer: Error: Failed to store transferData data
+    at createTransfer (webpack-internal:///./src/services/transactionService/transferService/transfer.service.ts:14:15)
+    at async processTransaction (webpack-internal:///./src/core/process_transaction/process_transction_helpers.tsx:196:13)
+    at async handleConfirm (webpack-internal:///./src/hooks/chatbot/confirmButtonHook.tsx:56:13) @ webpack-internal:///./node_modules/.pnpm/next@14.2.18_@babel+core@7.26.0_@opentelemetry+api@1.9.0_babel-plugin-macros@3.1.0_reac_65c470f9feee4fed4aa986096bdf0497/node_modules/next/dist/client/components/react-dev-overlay/internal/helpers/hydration-error-info.js:62

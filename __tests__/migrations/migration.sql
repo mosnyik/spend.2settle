@@ -1,0 +1,1949 @@
+-- -- phpMyAdmin SQL Dump
+-- -- version 5.2.2
+-- -- https://www.phpmyadmin.net/
+-- --
+-- -- Host: localhost:3306
+-- -- Generation Time: Nov 26, 2025 at 08:08 AM
+-- -- Server version: 8.0.44
+-- -- PHP Version: 8.4.14
+
+-- SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+-- START TRANSACTION;
+-- SET time_zone = "+00:00";
+
+
+-- /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+-- /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+-- /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+-- /*!40101 SET NAMES utf8mb4 */;
+
+-- --
+-- -- Database: `settle_db`
+-- --
+
+-- -- --------------------------------------------------------
+
+-- --
+-- -- Table structure for table `banks`
+-- --
+
+-- CREATE TABLE `banks` (
+--   `id` int NOT NULL,
+--   `name` varchar(50) DEFAULT NULL,
+--   `code` varchar(50) DEFAULT NULL
+-- ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- --
+-- -- Dumping data for table `banks`
+-- --
+
+-- INSERT INTO `banks` (`id`, `name`, `code`) VALUES
+-- (1, '9 payment service Bank', '120001'),
+-- (2, 'AB MICROFINANCE BANK', '090270'),
+-- (3, 'ABBEY MORTGAGE BANK', '070010'),
+-- (4, 'ABOVE ONLY MICROFINANCE BANK', '090260'),
+-- (5, 'ABU MICROFINANCE BANK', '090197'),
+-- (6, 'ACCESS BANK', '000014'),
+-- (7, 'ACCESSMONEY', '100013'),
+-- (8, 'ACCION MFB', '090134'),
+-- (9, 'ADDOSSER MFBB', '090160'),
+-- (10, 'ADEYEMI COLLEGE STAFF MICROFINANCE BANK', '090268'),
+-- (11, 'ADVANS LA FAYETTE MFB', '090155'),
+-- (12, 'AG MORTGAGE BANK PLC', '100028'),
+-- (13, 'AGOSASA MICROFINANCE BANK', '090371'),
+-- (14, 'AL-BARKAH MFB', '090133'),
+-- (15, 'ALEKUN MICROFINANCE BANK', '090259'),
+-- (16, 'ALERT MFB', '090297'),
+-- (17, 'ALHAYAT MFB', '090277'),
+-- (18, 'ALLWORKERS MFB', '090131'),
+-- (19, 'ALPHAKAPITAL MFB', '090169'),
+-- (20, 'AMJU MFB', '090180'),
+-- (21, 'AMML MFB', '090116'),
+-- (22, 'APEKS MICROFINANCE BANK', '090143'),
+-- (23, 'APPLE  MICROFINANCE BANK', '090376'),
+-- (24, 'ARISE MFB', '090282'),
+-- (25, 'ASOSAVINGS', '090001'),
+-- (26, 'ASSETS Microfinance Bank', '090473'),
+-- (27, 'ASTRAPOLARIS MFB', '090172'),
+-- (28, 'ATBU  Microfinance Bank', '090451'),
+-- (29, 'AUCHI MICROFINANCE BANK', '090264'),
+-- (30, 'Abucoop  Microfinance Bank', '090424'),
+-- (31, 'Ada MFB', '090483'),
+-- (32, 'Afekhafe MFB', '090292'),
+-- (33, 'Afemai Microfinance Bank', '090518'),
+-- (34, 'Alvana Microfinance Bank', '090489'),
+-- (35, 'Amac Microfinance Bank', '090394'),
+-- (36, 'Ampersand Microfinance bank', '090529'),
+-- (37, 'Anchorage MFB', '090476'),
+-- (38, 'Aniocha MFB', '090469'),
+-- (39, 'Arca Payments', '110011'),
+-- (40, 'Assets Matrix MFB', '090287'),
+-- (41, 'Avuenegbe MFB', '090478'),
+-- (42, 'BAINES CREDIT MFB', '090188'),
+-- (43, 'BALOGUN GAMBARI MFB', '090326'),
+-- (44, 'BAYERO MICROFINANCE BANK', '090316'),
+-- (45, 'BC KASH MFB', '090127'),
+-- (46, 'BETA-ACCESS YELLO', '100052'),
+-- (47, 'BIPC MICROFINANCE BANK', '090336'),
+-- (48, 'BOCTRUST MICROFINANCE BANK', '090117'),
+-- (49, 'BOI MF Bank', '090444'),
+-- (50, 'BOSAK MFB', '090176'),
+-- (51, 'BOWEN MFB', '090148'),
+-- (52, 'BRENT MORTGAGE BANK', '070015'),
+-- (53, 'BRETHREN MICROFINANCE BANK', '090293'),
+-- (54, 'BRIGHTWAY MFB', '090308'),
+-- (55, 'BUBAYERO Microfinance Bank', '090512'),
+-- (56, 'Balogun Fulani  Microfinance Bank', '090181'),
+-- (57, 'Banex Microfinance Bank', '090425'),
+-- (58, 'Benysta Microfinance Bank', '090413'),
+-- (59, 'Bluewhales  Microfinance Bank', '090431'),
+-- (60, 'Boji Boji Microfinance Bank', '090494'),
+-- (61, 'Bonghe Microfinance Bank', '090319'),
+-- (62, 'Borgu MFB', '090395'),
+-- (63, 'Borno Renaissance Microfinance bank', '090508'),
+-- (64, 'Boromu Microfinance bank', '090501'),
+-- (65, 'Borstal Microfinance Bank', '090454'),
+-- (66, 'Bridgeway Microfinance Bank', '090393'),
+-- (67, 'Business Support Microfinance Bank', '090406'),
+-- (68, 'CAPITALMETRIQ SWIFT MICROFINANCE BANK', '090509'),
+-- (69, 'CARBON', '100026'),
+-- (70, 'CARETAKER Microfinance Bank', '090472'),
+-- (71, 'CASHCONNECT   MICROFINANCE BANK', '090360'),
+-- (72, 'CELLULANT', '100005'),
+-- (73, 'CEMCS MFB', '090154'),
+-- (74, 'CHIKUM MICROFINANCE BANK', '090141'),
+-- (75, 'CIT MICROFINANCE BANK', '090144'),
+-- (76, 'CITI BANK', '000009'),
+-- (77, 'COASTLINE MICROFINANCE BANK', '090374'),
+-- (78, 'CONSUMER  MFB', '090130'),
+-- (79, 'CONTEC GLOBAL', '100032'),
+-- (80, 'COOP Mortgage Bank', '070021'),
+-- (81, 'CORONATION', '060001'),
+-- (82, 'COVENANT MFB', '070006'),
+-- (83, 'CREDIT AFRIQUE MFB', '090159'),
+-- (84, 'CROWDFORCE', '110017'),
+-- (85, 'Calabar Microfinance Bank', '090415'),
+-- (86, 'Capricorn Digital', '110023'),
+-- (87, 'Capstone MF Bank', '090445'),
+-- (88, 'Catland Microfinance Bank', '090498'),
+-- (89, 'Chanelle Bank', '090397'),
+-- (90, 'Changan RTS Microfinance Bank', '090470'),
+-- (91, 'Chase Microfinance bank', '090523'),
+-- (92, 'Cherish Microfinance Bank', '090440'),
+-- (93, 'Chibueze Microfinance Bank', '090416'),
+-- (94, 'Chukwunenye  Microfinance Bank', '090490'),
+-- (95, 'Cintrust MFB', '090480'),
+-- (96, 'Citizen Trust Microfinance Bank Ltd', '090343'),
+-- (97, 'Cloverleaf  MFB', '090511'),
+-- (98, 'CoalCamp Microfinance Bank', '090254'),
+-- (99, 'Corestep MICROFINANCE BANK', '090365'),
+-- (100, 'Crescent Microfinance bank', '090526'),
+-- (101, 'CrossRiver  Microfinance Bank', '090429'),
+-- (102, 'Crutech  Microfinance Bank', '090414'),
+-- (103, 'DAYLIGHT MICROFINANCE BANK', '090167'),
+-- (104, 'DIAMOND BANK', '000005'),
+-- (105, 'Davodani  Microfinance Bank', '090391'),
+-- (106, 'Delta Trust Mortgage bank', '070023'),
+-- (107, 'E-BARCS MFB', '090156'),
+-- (108, 'EAGLE FLIGHT MFB', '090294'),
+-- (109, 'EBSU MICROFINANCE Bank', '090427'),
+-- (110, 'ECOBANK BANK', '000010'),
+-- (111, 'ECOBANK XPRESS ACCOUNT', '100008'),
+-- (112, 'EDFIN MFB', '090310'),
+-- (113, 'EK-Reliable Microfinance Bank', '090389'),
+-- (114, 'EKONDO MFB', '090097'),
+-- (115, 'EMERALDS MFB', '090273'),
+-- (116, 'EMPIRETRUST MICROFINANCE BANK', '090114'),
+-- (117, 'ESAN MFB', '090189'),
+-- (118, 'ESO-E MICROFINANCE BANK', '090166'),
+-- (119, 'ETRANZACT', '100006'),
+-- (120, 'EVANGEL MFB', '090304'),
+-- (121, 'EVERGREEN MICROFINANCE BANK', '090332'),
+-- (122, 'EYOWO MICROFINANCE BANK', '090328'),
+-- (123, 'FAIRMONEY', '090551'),
+-- (124, 'FAME Microfinance Bank', '090330'),
+-- (125, 'FAST Microfinance Bank', '090179'),
+-- (126, 'FBNQUEST MERCHANT BANK', '060002'),
+-- (127, 'FCMB', '000003'),
+-- (128, 'FCMB EASY ACCOUNT', '100031'),
+-- (129, 'FCMB MFB', '090409'),
+-- (130, 'FCT MFB', '090290'),
+-- (131, 'FEDERAL UNIVERSITY DUTSE  MICROFINANCE BANK', '090318'),
+-- (132, 'FEDERALPOLY NASARAWAMFB', '090298'),
+-- (133, 'FETS', '100001'),
+-- (134, 'FFS MICROFINANCE BANK', '090153'),
+-- (135, 'FIDELITY BANK', '000007'),
+-- (136, 'FIDELITY MOBILE', '100019'),
+-- (137, 'FIDFUND MFB', '090126'),
+-- (138, 'FIMS MFB', '090507'),
+-- (139, 'FINATRUST MICROFINANCE BANK', '090111'),
+-- (140, 'FINEX MFB', '090281'),
+-- (141, 'FIRST BANK OF NIGERIA', '000016'),
+-- (142, 'FIRST GENERATION MORTGAGE BANK', '070014'),
+-- (143, 'FIRST MULTIPLE MFB', '090163'),
+-- (144, 'FIRST OPTION MFB', '090285'),
+-- (145, 'FIRST ROYAL MICROFINANCE BANK', '090164'),
+-- (146, 'FIRSTMONIE WALLET', '100014'),
+-- (147, 'FIRSTTRUST MORGAGES LIMITED', '090107'),
+-- (148, 'FORTISMOBILE', '100016'),
+-- (149, 'FSDH', '400001'),
+-- (150, 'FULL RANGE MFB', '090145'),
+-- (151, 'FUTO MFB', '090158'),
+-- (152, 'Federal Polytechnic Nekede Microfinance Bank', '090398'),
+-- (153, 'Fedeth MFB', '090482'),
+-- (154, 'Finca Microfinance Bank', '090400'),
+-- (155, 'Firmus MICROFINANCE BANK', '090366'),
+-- (156, 'First Heritage MFB', '090479'),
+-- (157, 'Foresight Microfinance bank', '090521'),
+-- (158, 'Fortress Microfinance Bank', '090486'),
+-- (159, 'Futminna Microfinance Bank', '090438'),
+-- (160, 'GASHUA MICROFINANCE BANK', '090168'),
+-- (161, 'GATEWAY MORTGAGE BANK', '070009'),
+-- (162, 'GLOBUS BANK', '000027'),
+-- (163, 'GLORY MFB ', '090278'),
+-- (164, 'GMB Microfinance Bank', '090408'),
+-- (165, 'GOMONEY', '100022'),
+-- (166, 'GOWANS MFB', '090122'),
+-- (167, 'GREENBANK MFB', '090178'),
+-- (168, 'GREENVILLE MICROFINANCE BANK', '090269'),
+-- (169, 'GROOMING MICROFINANCE BANK', '090195'),
+-- (170, 'GTBANK PLC', '000013'),
+-- (171, 'GTI  Microfinance Bank', '090385'),
+-- (172, 'Garki MFB', '090484'),
+-- (173, 'GiGinya Microfinance Bank', '090411'),
+-- (174, 'Giant Stride MFB', '090475'),
+-- (175, 'Girei MFB', '090186'),
+-- (176, 'Giwa Microfinance Bank', '090441'),
+-- (177, 'Good Neighbours Microfinance Bank', '090467'),
+-- (178, 'Goodnews Microfinance Bank', '090495'),
+-- (179, 'Grant Microfinance Bank', '090335'),
+-- (180, 'Greenwich Merchant Bank', '060004'),
+-- (181, 'Gwong Microfinance bank', '090500'),
+-- (182, 'HACKMAN MICROFINANCE BANK', '090147'),
+-- (183, 'HAGGAI MORTGAGE BANK', '070017'),
+-- (184, 'HALA MFB', '090291'),
+-- (185, 'HASAL MFB', '090121'),
+-- (186, 'HERITAGE', '000020'),
+-- (187, 'Headway MFB', '090363'),
+-- (188, 'Highland Microfinance Bank', '090418'),
+-- (189, 'HomeBase Mortgage', '070024'),
+-- (190, 'HopePSB', '120002'),
+-- (191, 'IBETO  Microfinance Bank', '090439'),
+-- (192, 'IBILE MICROFINANCE BANK', '090118'),
+-- (193, 'IC GLOBALMicrofinance bank', '090520'),
+-- (194, 'IKENNE MFB', '090324'),
+-- (195, 'IKIRE MFB', '090279'),
+-- (196, 'ILASAN MICROFINANCE BANK', '090370'),
+-- (197, 'IMO MICROFINANCE BANK', '090258'),
+-- (198, 'IMPERIAL HOMES MORTGAGE BANK', '100024'),
+-- (199, 'INFINITY MFB', '090157'),
+-- (200, 'INFINITY TRUST  MORTGAGE BANK', '070016'),
+-- (201, 'INTELLIFIN', '100027'),
+-- (202, 'IRL MICROFINANCE BANK', '090149'),
+-- (203, 'ISALEOYO MICROFINANCE BANK', '090377'),
+-- (204, 'Ibom fadama Microfinance Bank', '090519'),
+-- (205, 'Illorin Microfinance Bank', '090350'),
+-- (206, 'Ilora Microfinance Bank', '090430'),
+-- (207, 'Imowo Microfinance Bank', '090417'),
+-- (208, 'Insight Microfinance Bank', '090434'),
+-- (209, 'Interland MFB', '090386'),
+-- (210, 'Iperu Microfinance Bank', '090493'),
+-- (211, 'Ishie  Microfinance Bank', '090428'),
+-- (212, 'Isuofia MFB', '090353'),
+-- (213, 'Izon Microfinance Bank', '090421'),
+-- (214, 'JAIZ BANK', '000006'),
+-- (215, 'JUBILEELIFE', '090003'),
+-- (216, 'Jessefield Microfinance Bank', '090352'),
+-- (217, 'KADPOLY MICROFINANCE BANK', '090320'),
+-- (218, 'KCMB MFB', '090191'),
+-- (219, 'KEGOW(CHAMSMOBILE)', '100036'),
+-- (220, 'KEYSTONE BANK', '000002'),
+-- (221, 'KONGAPAY', '100025'),
+-- (222, 'KONTAGORA MFB', '090299'),
+-- (223, 'KREDI MONEY MICROFINANCE BANK', '090380'),
+-- (224, 'KUDA MICROFINANCE BANK', '090267'),
+-- (225, 'Kingdom College  Microfinance Bank', '090487'),
+-- (226, 'Koraypay', '110022'),
+-- (227, 'Kwasu MF Bank', '090450'),
+-- (228, 'LAPO MFB', '090177'),
+-- (229, 'LAVENDER MICROFINANCE BANK', '090271'),
+-- (230, 'LBIC MORTGAGE BANK', '070012'),
+-- (231, 'LEGEND MICROFINANCE BANK', '090372'),
+-- (232, 'LETSHEGO MICROFINANCE BANK', '090420'),
+-- (233, 'LIVINGTRUST MORTGAGE BANK PLC', '070007'),
+-- (234, 'LOVONUS MICROFINANCE BANK', '090265'),
+-- (235, 'Landgold  Microfinance Bank', '090422'),
+-- (236, 'Light Microfinance Bank', '090477'),
+-- (237, 'Links  Microfinance Bank', '090435'),
+-- (238, 'Lotus Bank', '000029'),
+-- (239, 'M36', '100035'),
+-- (240, 'MAINLAND MICROFINANCE BANK', '090323'),
+-- (241, 'MAINSTREET MFB', '090171'),
+-- (242, 'MALACHY MFB', '090174'),
+-- (243, 'MANNY MICROFINANCE BANK', '090383'),
+-- (244, 'MAYFAIR  MFB', '090321'),
+-- (245, 'MAYFRESH MORTGAGE BANK', '070019'),
+-- (246, 'MEGAPRAISE MICROFINANCE BANK', '090280'),
+-- (247, 'MERIDIAN MFB', '090275'),
+-- (248, 'MICROCRED MICROFINANCE BANK', '090136'),
+-- (249, 'MICROVIS MICROFINANCE BANK', '090113'),
+-- (250, 'MOLUSI MICROFINANCE BANK', '090362'),
+-- (251, 'MONEYTRUST MFB', '090129'),
+-- (252, 'MONIEPOINT MICROFINANCE BANK', '090405'),
+-- (253, 'MUTUAL BENEFITS MFB', '090190'),
+-- (254, 'MUTUAL TRUST MICROFINANCE BANK', '090151'),
+-- (255, 'Maintrust MFB', '090465'),
+-- (256, 'Maritime Microfinance Bank', '090410'),
+-- (257, 'Mautech  Microfinance Bank', '090423'),
+-- (258, 'Memphis Microfinance Bank', '090432'),
+-- (259, 'Microsystems Investment and Development Limit', '110018'),
+-- (260, 'Midland MFB', '090192'),
+-- (261, 'MoMo PSB', '120003'),
+-- (262, 'Monarch Microfinance Bank', '090462'),
+-- (263, 'Money Master PSB', '120005'),
+-- (264, 'Moyofade MF Bank', '090448'),
+-- (265, 'Mozfin Microfinance Bank', '090392'),
+-- (266, 'NARGATA MFB', '090152'),
+-- (267, 'NAVY MICROFINANCE BANK', '090263'),
+-- (268, 'NDIORAH MFB', '090128'),
+-- (269, 'NEPTUNE MICROFINANCE BANK', '090329'),
+-- (270, 'NEW GOLDEN PASTURES MICROFINANCE BANK', '090378'),
+-- (271, 'NEWDAWN MICROFINANCE BANK', '090205'),
+-- (272, 'NIBSSUSSD PAYMENTS', '110019'),
+-- (273, 'NIRSAL NATIONAL MICROFINANCE BANK', '090194'),
+-- (274, 'NNEW WOMEN MFB', '090283'),
+-- (275, 'NOVA MB', '060003'),
+-- (276, 'NPF MICROFINANCE BANK', '070001'),
+-- (277, 'NUTURE MFB', '090364'),
+-- (278, 'Nasarawa Microfinance bank', '090349'),
+-- (279, 'NetApps Technology Limited', '110025'),
+-- (280, 'Nice Microfinance Bank', '090459'),
+-- (281, 'Nigeria PrisonsMicrofinance bank', '090505'),
+-- (282, 'Nomba financial services Limited', '110028'),
+-- (283, 'Nsuk  Microfinance Bank', '090491'),
+-- (284, 'Numo Microfinance bank', '090516'),
+-- (285, 'Nwannegadi MFB', '090399'),
+-- (286, 'OCHE MFB', '090333'),
+-- (287, 'OHAFIA MFB', '090119'),
+-- (288, 'OKPOGA MFB', '090161'),
+-- (289, 'OLABISI ONABANJO UNIVERSITY MICROFINANCE BANK', '090272'),
+-- (290, 'OLOFIN OWENA Microfinance Bank', '090468'),
+-- (291, 'OLUCHUKWU Microfinance Bank', '090471'),
+-- (292, 'OLUYOLE MICROFINANCE BANK', '090460'),
+-- (293, 'OMIYE MFB', '090295'),
+-- (294, 'OPAY', '100004'),
+-- (295, 'Oakland Microfinance Bank', '090437'),
+-- (296, 'Ojokoro Mfb', '090527'),
+-- (297, 'Olowolagba Microfinance Bank', '090404'),
+-- (298, 'Oraukwu  Microfinance Bank', '090492'),
+-- (299, 'Oscotech MFB', '090396'),
+-- (300, 'Ospoly Microfinance Bank', '090456'),
+-- (301, 'PAGA', '100002'),
+-- (302, 'PAGE FINANCIALS', '070008'),
+-- (303, 'PALMPAY', '100033'),
+-- (304, 'PARKWAY-READYCASH', '100003'),
+-- (305, 'PARRALEX', '090004'),
+-- (306, 'PATRICK GOLD', '090317'),
+-- (307, 'PECAN TRUST MICROFINANCE BANK', '090137'),
+-- (308, 'PENNYWISE MICROFINANCE BANK', '090196'),
+-- (309, 'PERSONAL TRUST MICROFINANCE BANK', '090135'),
+-- (310, 'PETRA MICROFINANCE BANK', '090165'),
+-- (311, 'PILLAR MFB', '090289'),
+-- (312, 'PLATINUM MORTGAGE BANK', '070013'),
+-- (313, 'POLARIS BANK', '000008'),
+-- (314, 'POLYUWANNA MFB', '090296'),
+-- (315, 'PRESTIGE MICROFINANCE BANK', '090274'),
+-- (316, 'PROVIDUS BANK ', '000023'),
+-- (317, 'PURPLEMONEY MFB', '090303'),
+-- (318, 'Palmcoast Microfinance bank', '090497'),
+-- (319, 'Parallex Bank', '000030'),
+-- (320, 'Parkway MF Bank', '090390'),
+-- (321, 'Peace Microfinance Bank', '090402'),
+-- (322, 'Preeminent Microfinance Bank', '090412'),
+-- (323, 'Premium Trust bank', '000031'),
+-- (324, 'Prisco  Microfinance Bank', '090481'),
+-- (325, 'Pristine Divitis Microfinance Bank', '090499'),
+-- (326, 'Projects Microfinance bank', '090503'),
+-- (327, 'QUICKFUND MICROFINANCE BANK', '090261'),
+-- (328, 'RAHAMA MFB', '090170'),
+-- (329, 'RAND MERCHANT BANK', '000024'),
+-- (330, 'REFUGE MORTGAGE BANK', '070011'),
+-- (331, 'REGENT MFB', '090125'),
+-- (332, 'RELIANCE MFB', '090173'),
+-- (333, 'RENMONEY MICROFINANCE BANK', '090198'),
+-- (334, 'REPHIDIM MICROFINANCE BANK', '090322'),
+-- (335, 'RICHWAY MFB', '090132'),
+-- (336, 'RIGO Microfinance Bank', '090433'),
+-- (337, 'RIMA Microfinance Bank', '090443'),
+-- (338, 'ROYAL EXCHANGE MICROFINANCE BANK', '090138'),
+-- (339, 'Radalpha Microfinance bank', '090496'),
+-- (340, 'Rehoboth Microfinance Bank', '090463'),
+-- (341, 'Resident Fintech Limited', '110024'),
+-- (342, 'Rima Growth pathway Microfinance Bank ', '090515'),
+-- (343, 'SAFETRUST', '090006'),
+-- (344, 'SAGAMU MICROFINANCE BANK', '090140'),
+-- (345, 'SEAP Microfinance Bank', '090513'),
+-- (346, 'SEED CAPITAL MICROFINANCE BANK', '090112'),
+-- (347, 'SEEDVEST MICROFINANCE BANK', '090369'),
+-- (348, 'SLS  MF Bank', '090449'),
+-- (349, 'SPARKLE MICROFINANCE BANK', '090325'),
+-- (350, 'SPAY business', '110026'),
+-- (351, 'STANBIC IBTC @EASE WALLET', '100007'),
+-- (352, 'STANBICIBTC BANK', '000012'),
+-- (353, 'STANDARDCHARTERED', '000021'),
+-- (354, 'STANFORD MFB', '090162'),
+-- (355, 'STB Mortgage Bank', '070022'),
+-- (356, 'STELLAS MICROFINANCE BANK', '090262'),
+-- (357, 'STERLING BANK', '000001'),
+-- (358, 'SULSAP MFB', '090305'),
+-- (359, 'SUNTRUST BANK', '000022'),
+-- (360, 'SafeHaven Microfinance Bank', '090286'),
+-- (361, 'Safegate Microfinance Bank', '090485'),
+-- (362, 'Shalom Microfinance Bank', '090502'),
+-- (363, 'Shepherd Trust Microfinance Bank', '090401'),
+-- (364, 'SmartCash Payment Service bank', '120004'),
+-- (365, 'Solid Allianze MFB', '090506'),
+-- (366, 'Solidrock Microfinance bank', '090524'),
+-- (367, 'Spectrum Microfinance Bank', '090436'),
+-- (368, 'Standard MFB', '090182'),
+-- (369, 'Stockcorp  Microfinance Bank', '090340'),
+-- (370, 'Sunbeam Microfinance Bank', '090302'),
+-- (371, 'Support MF Bank', '090446'),
+-- (372, 'TAGPAY', '100023'),
+-- (373, 'TAJ BANK', '000026'),
+-- (374, 'TCF', '090115'),
+-- (375, 'TEASYMOBILE', '100010'),
+-- (376, 'TF MICROFINANCE BANK', '090373'),
+-- (377, 'TITAN TRUST BANK', '000025'),
+-- (378, 'TITAN-PAYSTACK MICROFINANCE BANK', '100039'),
+-- (379, 'TRIDENT MICROFINANCE BANK', '090146'),
+-- (380, 'TRUST MFB', '090327'),
+-- (381, 'TRUSTBANC J6 MICROFINANCE BANK LIMITED', '090123'),
+-- (382, 'TRUSTBOND', '090005'),
+-- (383, 'TRUSTFUND MICROFINANCE BANK', '090276'),
+-- (384, 'TajWallet', '080002'),
+-- (385, 'Tangerine Money MFB', '090426'),
+-- (386, 'Triple A Microfinance bank', '090525'),
+-- (387, 'U AND C MFB', '090315'),
+-- (388, 'UNAAB MFB', '090331'),
+-- (389, 'UNIBEN MICROFINANCE BANK', '090266'),
+-- (390, 'UNICAL MFB', '090193'),
+-- (391, 'UNIIBADAN Microfinance Bank', '090461'),
+-- (392, 'UNION BANK', '000018'),
+-- (393, 'UNITED BANK FOR AFRICA', '000004'),
+-- (394, 'UNITY BANK', '000011'),
+-- (395, 'UNN MFB', '090251'),
+-- (396, 'Uhuru Microfinance bank', '090517'),
+-- (397, 'Umuchinemere Procredit Microfinance Bank', '090514'),
+-- (398, 'Umunnachi Microfinance Bank', '090510'),
+-- (399, 'UniUyo Microfinance Bank', '090338'),
+-- (400, 'Unilag  Microfinance Bank', '090452'),
+-- (401, 'Unimaid Microfinance Bank', '090464'),
+-- (402, 'Uzondu MF Bank', '090453'),
+-- (403, 'VFD MFB', '090110'),
+-- (404, 'VIRTUE MFB', '090150'),
+-- (405, 'VISA MICROFINANCE BANK', '090139'),
+-- (406, 'VTNetwork', '100012'),
+-- (407, 'Vas2nets Limited', '110015'),
+-- (408, 'Verdant Microfinance Bank', '090474'),
+-- (409, 'WEMA BANK', '000017'),
+-- (410, 'WETLAND MFB', '090120'),
+-- (411, 'WinView Bank', '090419'),
+-- (412, 'XSLNCE MICROFINANCE BANK', '090124'),
+-- (413, 'YCT Microfinance Bank', '090466'),
+-- (414, 'YES MFB', '090142'),
+-- (415, 'Yello Digital financial services', '110027'),
+-- (416, 'Yobe MFB', '090252'),
+-- (417, 'ZENITH BANK PLC', '000015'),
+-- (418, 'ZWallet', '100034'),
+-- (419, 'Zikora Microfinance bank', '090504'),
+-- (420, 'unilorin Microfinance Bank', '090341'),
+-- (421, '9 payment service Bank', '120001'),
+-- (422, 'AB MICROFINANCE BANK', '090270'),
+-- (423, 'ABBEY MORTGAGE BANK', '070010'),
+-- (424, 'ABOVE ONLY MICROFINANCE BANK', '090260'),
+-- (425, 'ABU MICROFINANCE BANK', '090197'),
+-- (426, 'ACCESS BANK', '000014'),
+-- (427, 'ACCESSMONEY', '100013'),
+-- (428, 'ACCION MFB', '090134'),
+-- (429, 'ADDOSSER MFBB', '090160'),
+-- (430, 'ADEYEMI COLLEGE STAFF MICROFINANCE BANK', '090268'),
+-- (431, 'ADVANS LA FAYETTE MFB', '090155'),
+-- (432, 'AG MORTGAGE BANK PLC', '100028'),
+-- (433, 'AGOSASA MICROFINANCE BANK', '090371'),
+-- (434, 'AL-BARKAH MFB', '090133'),
+-- (435, 'ALEKUN MICROFINANCE BANK', '090259'),
+-- (436, 'ALERT MFB', '090297'),
+-- (437, 'ALHAYAT MFB', '090277'),
+-- (438, 'ALLWORKERS MFB', '090131'),
+-- (439, 'ALPHAKAPITAL MFB', '090169'),
+-- (440, 'AMJU MFB', '090180'),
+-- (441, 'AMML MFB', '090116'),
+-- (442, 'APEKS MICROFINANCE BANK', '090143'),
+-- (443, 'APPLE  MICROFINANCE BANK', '090376'),
+-- (444, 'ARISE MFB', '090282'),
+-- (445, 'ASOSAVINGS', '090001'),
+-- (446, 'ASSETS Microfinance Bank', '090473'),
+-- (447, 'ASTRAPOLARIS MFB', '090172'),
+-- (448, 'ATBU  Microfinance Bank', '090451'),
+-- (449, 'AUCHI MICROFINANCE BANK', '090264'),
+-- (450, 'Abucoop  Microfinance Bank', '090424'),
+-- (451, 'Ada MFB', '090483'),
+-- (452, 'Afekhafe MFB', '090292'),
+-- (453, 'Afemai Microfinance Bank', '090518'),
+-- (454, 'Alvana Microfinance Bank', '090489'),
+-- (455, 'Amac Microfinance Bank', '090394'),
+-- (456, 'Ampersand Microfinance bank', '090529'),
+-- (457, 'Anchorage MFB', '090476'),
+-- (458, 'Aniocha MFB', '090469'),
+-- (459, 'Arca Payments', '110011'),
+-- (460, 'Assets Matrix MFB', '090287'),
+-- (461, 'Avuenegbe MFB', '090478'),
+-- (462, 'BAINES CREDIT MFB', '090188'),
+-- (463, 'BALOGUN GAMBARI MFB', '090326'),
+-- (464, 'BAYERO MICROFINANCE BANK', '090316'),
+-- (465, 'BC KASH MFB', '090127'),
+-- (466, 'BETA-ACCESS YELLO', '100052'),
+-- (467, 'BIPC MICROFINANCE BANK', '090336'),
+-- (468, 'BOCTRUST MICROFINANCE BANK', '090117'),
+-- (469, 'BOI MF Bank', '090444'),
+-- (470, 'BOSAK MFB', '090176'),
+-- (471, 'BOWEN MFB', '090148'),
+-- (472, 'BRENT MORTGAGE BANK', '070015'),
+-- (473, 'BRETHREN MICROFINANCE BANK', '090293'),
+-- (474, 'BRIGHTWAY MFB', '090308'),
+-- (475, 'BUBAYERO Microfinance Bank', '090512'),
+-- (476, 'Balogun Fulani  Microfinance Bank', '090181'),
+-- (477, 'Banex Microfinance Bank', '090425'),
+-- (478, 'Benysta Microfinance Bank', '090413'),
+-- (479, 'Bluewhales  Microfinance Bank', '090431'),
+-- (480, 'Boji Boji Microfinance Bank', '090494'),
+-- (481, 'Bonghe Microfinance Bank', '090319'),
+-- (482, 'Borgu MFB', '090395'),
+-- (483, 'Borno Renaissance Microfinance bank', '090508'),
+-- (484, 'Boromu Microfinance bank', '090501'),
+-- (485, 'Borstal Microfinance Bank', '090454'),
+-- (486, 'Bridgeway Microfinance Bank', '090393'),
+-- (487, 'Business Support Microfinance Bank', '090406'),
+-- (488, 'CAPITALMETRIQ SWIFT MICROFINANCE BANK', '090509'),
+-- (489, 'CARBON', '100026'),
+-- (490, 'CARETAKER Microfinance Bank', '090472'),
+-- (491, 'CASHCONNECT   MICROFINANCE BANK', '090360'),
+-- (492, 'CELLULANT', '100005'),
+-- (493, 'CEMCS MFB', '090154'),
+-- (494, 'CHIKUM MICROFINANCE BANK', '090141'),
+-- (495, 'CIT MICROFINANCE BANK', '090144'),
+-- (496, 'CITI BANK', '000009'),
+-- (497, 'COASTLINE MICROFINANCE BANK', '090374'),
+-- (498, 'CONSUMER  MFB', '090130'),
+-- (499, 'CONTEC GLOBAL', '100032'),
+-- (500, 'COOP Mortgage Bank', '070021'),
+-- (501, 'CORONATION', '060001'),
+-- (502, 'COVENANT MFB', '070006'),
+-- (503, 'CREDIT AFRIQUE MFB', '090159'),
+-- (504, 'CROWDFORCE', '110017'),
+-- (505, 'Calabar Microfinance Bank', '090415'),
+-- (506, 'Capricorn Digital', '110023'),
+-- (507, 'Capstone MF Bank', '090445'),
+-- (508, 'Catland Microfinance Bank', '090498'),
+-- (509, 'Chanelle Bank', '090397'),
+-- (510, 'Changan RTS Microfinance Bank', '090470'),
+-- (511, 'Chase Microfinance bank', '090523'),
+-- (512, 'Cherish Microfinance Bank', '090440'),
+-- (513, 'Chibueze Microfinance Bank', '090416'),
+-- (514, 'Chukwunenye  Microfinance Bank', '090490'),
+-- (515, 'Cintrust MFB', '090480'),
+-- (516, 'Citizen Trust Microfinance Bank Ltd', '090343'),
+-- (517, 'Cloverleaf  MFB', '090511'),
+-- (518, 'CoalCamp Microfinance Bank', '090254'),
+-- (519, 'Corestep MICROFINANCE BANK', '090365'),
+-- (520, 'Crescent Microfinance bank', '090526'),
+-- (521, 'CrossRiver  Microfinance Bank', '090429'),
+-- (522, 'Crutech  Microfinance Bank', '090414'),
+-- (523, 'DAYLIGHT MICROFINANCE BANK', '090167'),
+-- (524, 'DIAMOND BANK', '000005'),
+-- (525, 'Davodani  Microfinance Bank', '090391'),
+-- (526, 'Delta Trust Mortgage bank', '070023'),
+-- (527, 'E-BARCS MFB', '090156'),
+-- (528, 'EAGLE FLIGHT MFB', '090294'),
+-- (529, 'EBSU MICROFINANCE Bank', '090427'),
+-- (530, 'ECOBANK BANK', '000010'),
+-- (531, 'ECOBANK XPRESS ACCOUNT', '100008'),
+-- (532, 'EDFIN MFB', '090310'),
+-- (533, 'EK-Reliable Microfinance Bank', '090389'),
+-- (534, 'EKONDO MFB', '090097'),
+-- (535, 'EMERALDS MFB', '090273'),
+-- (536, 'EMPIRETRUST MICROFINANCE BANK', '090114'),
+-- (537, 'ESAN MFB', '090189'),
+-- (538, 'ESO-E MICROFINANCE BANK', '090166'),
+-- (539, 'ETRANZACT', '100006'),
+-- (540, 'EVANGEL MFB', '090304'),
+-- (541, 'EVERGREEN MICROFINANCE BANK', '090332'),
+-- (542, 'EYOWO MICROFINANCE BANK', '090328'),
+-- (543, 'FAIRMONEY', '090551'),
+-- (544, 'FAME Microfinance Bank', '090330'),
+-- (545, 'FAST Microfinance Bank', '090179'),
+-- (546, 'FBNQUEST MERCHANT BANK', '060002'),
+-- (547, 'FCMB', '000003'),
+-- (548, 'FCMB EASY ACCOUNT', '100031'),
+-- (549, 'FCMB MFB', '090409'),
+-- (550, 'FCT MFB', '090290'),
+-- (551, 'FEDERAL UNIVERSITY DUTSE  MICROFINANCE BANK', '090318'),
+-- (552, 'FEDERALPOLY NASARAWAMFB', '090298'),
+-- (553, 'FETS', '100001'),
+-- (554, 'FFS MICROFINANCE BANK', '090153'),
+-- (555, 'FIDELITY BANK', '000007'),
+-- (556, 'FIDELITY MOBILE', '100019'),
+-- (557, 'FIDFUND MFB', '090126'),
+-- (558, 'FIMS MFB', '090507'),
+-- (559, 'FINATRUST MICROFINANCE BANK', '090111'),
+-- (560, 'FINEX MFB', '090281'),
+-- (561, 'FIRST BANK OF NIGERIA', '000016'),
+-- (562, 'FIRST GENERATION MORTGAGE BANK', '070014'),
+-- (563, 'FIRST MULTIPLE MFB', '090163'),
+-- (564, 'FIRST OPTION MFB', '090285'),
+-- (565, 'FIRST ROYAL MICROFINANCE BANK', '090164'),
+-- (566, 'FIRSTMONIE WALLET', '100014'),
+-- (567, 'FIRSTTRUST MORGAGES LIMITED', '090107'),
+-- (568, 'FORTISMOBILE', '100016'),
+-- (569, 'FSDH', '400001'),
+-- (570, 'FULL RANGE MFB', '090145'),
+-- (571, 'FUTO MFB', '090158'),
+-- (572, 'Federal Polytechnic Nekede Microfinance Bank', '090398'),
+-- (573, 'Fedeth MFB', '090482'),
+-- (574, 'Finca Microfinance Bank', '090400'),
+-- (575, 'Firmus MICROFINANCE BANK', '090366'),
+-- (576, 'First Heritage MFB', '090479'),
+-- (577, 'Foresight Microfinance bank', '090521'),
+-- (578, 'Fortress Microfinance Bank', '090486'),
+-- (579, 'Futminna Microfinance Bank', '090438'),
+-- (580, 'GASHUA MICROFINANCE BANK', '090168'),
+-- (581, 'GATEWAY MORTGAGE BANK', '070009'),
+-- (582, 'GLOBUS BANK', '000027'),
+-- (583, 'GLORY MFB ', '090278'),
+-- (584, 'GMB Microfinance Bank', '090408'),
+-- (585, 'GOMONEY', '100022'),
+-- (586, 'GOWANS MFB', '090122'),
+-- (587, 'GREENBANK MFB', '090178'),
+-- (588, 'GREENVILLE MICROFINANCE BANK', '090269'),
+-- (589, 'GROOMING MICROFINANCE BANK', '090195'),
+-- (590, 'GTBANK PLC', '000013'),
+-- (591, 'GTI  Microfinance Bank', '090385'),
+-- (592, 'Garki MFB', '090484'),
+-- (593, 'GiGinya Microfinance Bank', '090411'),
+-- (594, 'Giant Stride MFB', '090475'),
+-- (595, 'Girei MFB', '090186'),
+-- (596, 'Giwa Microfinance Bank', '090441'),
+-- (597, 'Good Neighbours Microfinance Bank', '090467'),
+-- (598, 'Goodnews Microfinance Bank', '090495'),
+-- (599, 'Grant Microfinance Bank', '090335'),
+-- (600, 'Greenwich Merchant Bank', '060004'),
+-- (601, 'Gwong Microfinance bank', '090500'),
+-- (602, 'HACKMAN MICROFINANCE BANK', '090147'),
+-- (603, 'HAGGAI MORTGAGE BANK', '070017'),
+-- (604, 'HALA MFB', '090291'),
+-- (605, 'HASAL MFB', '090121'),
+-- (606, 'HERITAGE', '000020'),
+-- (607, 'Headway MFB', '090363'),
+-- (608, 'Highland Microfinance Bank', '090418'),
+-- (609, 'HomeBase Mortgage', '070024'),
+-- (610, 'HopePSB', '120002'),
+-- (611, 'IBETO  Microfinance Bank', '090439'),
+-- (612, 'IBILE MICROFINANCE BANK', '090118'),
+-- (613, 'IC GLOBALMicrofinance bank', '090520'),
+-- (614, 'IKENNE MFB', '090324'),
+-- (615, 'IKIRE MFB', '090279'),
+-- (616, 'ILASAN MICROFINANCE BANK', '090370'),
+-- (617, 'IMO MICROFINANCE BANK', '090258'),
+-- (618, 'IMPERIAL HOMES MORTGAGE BANK', '100024'),
+-- (619, 'INFINITY MFB', '090157'),
+-- (620, 'INFINITY TRUST  MORTGAGE BANK', '070016'),
+-- (621, 'INTELLIFIN', '100027'),
+-- (622, 'IRL MICROFINANCE BANK', '090149'),
+-- (623, 'ISALEOYO MICROFINANCE BANK', '090377'),
+-- (624, 'Ibom fadama Microfinance Bank', '090519'),
+-- (625, 'Illorin Microfinance Bank', '090350'),
+-- (626, 'Ilora Microfinance Bank', '090430'),
+-- (627, 'Imowo Microfinance Bank', '090417'),
+-- (628, 'Insight Microfinance Bank', '090434'),
+-- (629, 'Interland MFB', '090386'),
+-- (630, 'Iperu Microfinance Bank', '090493'),
+-- (631, 'Ishie  Microfinance Bank', '090428'),
+-- (632, 'Isuofia MFB', '090353'),
+-- (633, 'Izon Microfinance Bank', '090421'),
+-- (634, 'JAIZ BANK', '000006'),
+-- (635, 'JUBILEELIFE', '090003'),
+-- (636, 'Jessefield Microfinance Bank', '090352'),
+-- (637, 'KADPOLY MICROFINANCE BANK', '090320'),
+-- (638, 'KCMB MFB', '090191'),
+-- (639, 'KEGOW(CHAMSMOBILE)', '100036'),
+-- (640, 'KEYSTONE BANK', '000002'),
+-- (641, 'KONGAPAY', '100025'),
+-- (642, 'KONTAGORA MFB', '090299'),
+-- (643, 'KREDI MONEY MICROFINANCE BANK', '090380'),
+-- (644, 'KUDA MICROFINANCE BANK', '090267'),
+-- (645, 'Kingdom College  Microfinance Bank', '090487'),
+-- (646, 'Koraypay', '110022'),
+-- (647, 'Kwasu MF Bank', '090450'),
+-- (648, 'LAPO MFB', '090177'),
+-- (649, 'LAVENDER MICROFINANCE BANK', '090271'),
+-- (650, 'LBIC MORTGAGE BANK', '070012'),
+-- (651, 'LEGEND MICROFINANCE BANK', '090372'),
+-- (652, 'LETSHEGO MICROFINANCE BANK', '090420'),
+-- (653, 'LIVINGTRUST MORTGAGE BANK PLC', '070007'),
+-- (654, 'LOVONUS MICROFINANCE BANK', '090265'),
+-- (655, 'Landgold  Microfinance Bank', '090422'),
+-- (656, 'Light Microfinance Bank', '090477'),
+-- (657, 'Links  Microfinance Bank', '090435'),
+-- (658, 'Lotus Bank', '000029'),
+-- (659, 'M36', '100035'),
+-- (660, 'MAINLAND MICROFINANCE BANK', '090323'),
+-- (661, 'MAINSTREET MFB', '090171'),
+-- (662, 'MALACHY MFB', '090174'),
+-- (663, 'MANNY MICROFINANCE BANK', '090383'),
+-- (664, 'MAYFAIR  MFB', '090321'),
+-- (665, 'MAYFRESH MORTGAGE BANK', '070019'),
+-- (666, 'MEGAPRAISE MICROFINANCE BANK', '090280'),
+-- (667, 'MERIDIAN MFB', '090275'),
+-- (668, 'MICROCRED MICROFINANCE BANK', '090136'),
+-- (669, 'MICROVIS MICROFINANCE BANK', '090113'),
+-- (670, 'MOLUSI MICROFINANCE BANK', '090362'),
+-- (671, 'MONEYTRUST MFB', '090129'),
+-- (672, 'MONIEPOINT MICROFINANCE BANK', '090405'),
+-- (673, 'MUTUAL BENEFITS MFB', '090190'),
+-- (674, 'MUTUAL TRUST MICROFINANCE BANK', '090151'),
+-- (675, 'Maintrust MFB', '090465'),
+-- (676, 'Maritime Microfinance Bank', '090410'),
+-- (677, 'Mautech  Microfinance Bank', '090423'),
+-- (678, 'Memphis Microfinance Bank', '090432'),
+-- (679, 'Microsystems Investment and Development Limit', '110018'),
+-- (680, 'Midland MFB', '090192'),
+-- (681, 'MoMo PSB', '120003'),
+-- (682, 'Monarch Microfinance Bank', '090462'),
+-- (683, 'Money Master PSB', '120005'),
+-- (684, 'Moyofade MF Bank', '090448'),
+-- (685, 'Mozfin Microfinance Bank', '090392'),
+-- (686, 'NARGATA MFB', '090152'),
+-- (687, 'NAVY MICROFINANCE BANK', '090263'),
+-- (688, 'NDIORAH MFB', '090128'),
+-- (689, 'NEPTUNE MICROFINANCE BANK', '090329'),
+-- (690, 'NEW GOLDEN PASTURES MICROFINANCE BANK', '090378'),
+-- (691, 'NEWDAWN MICROFINANCE BANK', '090205'),
+-- (692, 'NIBSSUSSD PAYMENTS', '110019'),
+-- (693, 'NIRSAL NATIONAL MICROFINANCE BANK', '090194'),
+-- (694, 'NNEW WOMEN MFB', '090283'),
+-- (695, 'NOVA MB', '060003'),
+-- (696, 'NPF MICROFINANCE BANK', '070001'),
+-- (697, 'NUTURE MFB', '090364'),
+-- (698, 'Nasarawa Microfinance bank', '090349'),
+-- (699, 'NetApps Technology Limited', '110025'),
+-- (700, 'Nice Microfinance Bank', '090459'),
+-- (701, 'Nigeria PrisonsMicrofinance bank', '090505'),
+-- (702, 'Nomba financial services Limited', '110028'),
+-- (703, 'Nsuk  Microfinance Bank', '090491'),
+-- (704, 'Numo Microfinance bank', '090516'),
+-- (705, 'Nwannegadi MFB', '090399'),
+-- (706, 'OCHE MFB', '090333'),
+-- (707, 'OHAFIA MFB', '090119'),
+-- (708, 'OKPOGA MFB', '090161'),
+-- (709, 'OLABISI ONABANJO UNIVERSITY MICROFINANCE BANK', '090272'),
+-- (710, 'OLOFIN OWENA Microfinance Bank', '090468'),
+-- (711, 'OLUCHUKWU Microfinance Bank', '090471'),
+-- (712, 'OLUYOLE MICROFINANCE BANK', '090460'),
+-- (713, 'OMIYE MFB', '090295'),
+-- (714, 'OPAY', '100004'),
+-- (715, 'Oakland Microfinance Bank', '090437'),
+-- (716, 'Ojokoro Mfb', '090527'),
+-- (717, 'Olowolagba Microfinance Bank', '090404'),
+-- (718, 'Oraukwu  Microfinance Bank', '090492'),
+-- (719, 'Oscotech MFB', '090396'),
+-- (720, 'Ospoly Microfinance Bank', '090456'),
+-- (721, 'PAGA', '100002'),
+-- (722, 'PAGE FINANCIALS', '070008'),
+-- (723, 'PALMPAY', '100033'),
+-- (724, 'PARKWAY-READYCASH', '100003'),
+-- (725, 'PARRALEX', '090004'),
+-- (726, 'PATRICK GOLD', '090317'),
+-- (727, 'PECAN TRUST MICROFINANCE BANK', '090137'),
+-- (728, 'PENNYWISE MICROFINANCE BANK', '090196'),
+-- (729, 'PERSONAL TRUST MICROFINANCE BANK', '090135'),
+-- (730, 'PETRA MICROFINANCE BANK', '090165'),
+-- (731, 'PILLAR MFB', '090289'),
+-- (732, 'PLATINUM MORTGAGE BANK', '070013'),
+-- (733, 'POLARIS BANK', '000008'),
+-- (734, 'POLYUWANNA MFB', '090296'),
+-- (735, 'PRESTIGE MICROFINANCE BANK', '090274'),
+-- (736, 'PROVIDUS BANK ', '000023'),
+-- (737, 'PURPLEMONEY MFB', '090303'),
+-- (738, 'Palmcoast Microfinance bank', '090497'),
+-- (739, 'Parallex Bank', '000030'),
+-- (740, 'Parkway MF Bank', '090390'),
+-- (741, 'Peace Microfinance Bank', '090402'),
+-- (742, 'Preeminent Microfinance Bank', '090412'),
+-- (743, 'Premium Trust bank', '000031'),
+-- (744, 'Prisco  Microfinance Bank', '090481'),
+-- (745, 'Pristine Divitis Microfinance Bank', '090499'),
+-- (746, 'Projects Microfinance bank', '090503'),
+-- (747, 'QUICKFUND MICROFINANCE BANK', '090261'),
+-- (748, 'RAHAMA MFB', '090170'),
+-- (749, 'RAND MERCHANT BANK', '000024'),
+-- (750, 'REFUGE MORTGAGE BANK', '070011'),
+-- (751, 'REGENT MFB', '090125'),
+-- (752, 'RELIANCE MFB', '090173'),
+-- (753, 'RENMONEY MICROFINANCE BANK', '090198'),
+-- (754, 'REPHIDIM MICROFINANCE BANK', '090322'),
+-- (755, 'RICHWAY MFB', '090132'),
+-- (756, 'RIGO Microfinance Bank', '090433'),
+-- (757, 'RIMA Microfinance Bank', '090443'),
+-- (758, 'ROYAL EXCHANGE MICROFINANCE BANK', '090138'),
+-- (759, 'Radalpha Microfinance bank', '090496'),
+-- (760, 'Rehoboth Microfinance Bank', '090463'),
+-- (761, 'Resident Fintech Limited', '110024'),
+-- (762, 'Rima Growth pathway Microfinance Bank ', '090515'),
+-- (763, 'SAFETRUST', '090006'),
+-- (764, 'SAGAMU MICROFINANCE BANK', '090140'),
+-- (765, 'SEAP Microfinance Bank', '090513'),
+-- (766, 'SEED CAPITAL MICROFINANCE BANK', '090112'),
+-- (767, 'SEEDVEST MICROFINANCE BANK', '090369'),
+-- (768, 'SLS  MF Bank', '090449'),
+-- (769, 'SPARKLE MICROFINANCE BANK', '090325'),
+-- (770, 'SPAY business', '110026'),
+-- (771, 'STANBIC IBTC @EASE WALLET', '100007'),
+-- (772, 'STANBICIBTC BANK', '000012'),
+-- (773, 'STANDARDCHARTERED', '000021'),
+-- (774, 'STANFORD MFB', '090162'),
+-- (775, 'STB Mortgage Bank', '070022'),
+-- (776, 'STELLAS MICROFINANCE BANK', '090262'),
+-- (777, 'STERLING BANK', '000001'),
+-- (778, 'SULSAP MFB', '090305'),
+-- (779, 'SUNTRUST BANK', '000022'),
+-- (780, 'SafeHaven Microfinance Bank', '090286'),
+-- (781, 'Safegate Microfinance Bank', '090485'),
+-- (782, 'Shalom Microfinance Bank', '090502'),
+-- (783, 'Shepherd Trust Microfinance Bank', '090401'),
+-- (784, 'SmartCash Payment Service bank', '120004'),
+-- (785, 'Solid Allianze MFB', '090506'),
+-- (786, 'Solidrock Microfinance bank', '090524'),
+-- (787, 'Spectrum Microfinance Bank', '090436'),
+-- (788, 'Standard MFB', '090182'),
+-- (789, 'Stockcorp  Microfinance Bank', '090340'),
+-- (790, 'Sunbeam Microfinance Bank', '090302'),
+-- (791, 'Support MF Bank', '090446'),
+-- (792, 'TAGPAY', '100023'),
+-- (793, 'TAJ BANK', '000026'),
+-- (794, 'TCF', '090115'),
+-- (795, 'TEASYMOBILE', '100010'),
+-- (796, 'TF MICROFINANCE BANK', '090373'),
+-- (797, 'TITAN TRUST BANK', '000025'),
+-- (798, 'TITAN-PAYSTACK MICROFINANCE BANK', '100039'),
+-- (799, 'TRIDENT MICROFINANCE BANK', '090146'),
+-- (800, 'TRUST MFB', '090327'),
+-- (801, 'TRUSTBANC J6 MICROFINANCE BANK LIMITED', '090123'),
+-- (802, 'TRUSTBOND', '090005'),
+-- (803, 'TRUSTFUND MICROFINANCE BANK', '090276'),
+-- (804, 'TajWallet', '080002'),
+-- (805, 'Tangerine Money MFB', '090426'),
+-- (806, 'Triple A Microfinance bank', '090525'),
+-- (807, 'U AND C MFB', '090315'),
+-- (808, 'UNAAB MFB', '090331'),
+-- (809, 'UNIBEN MICROFINANCE BANK', '090266'),
+-- (810, 'UNICAL MFB', '090193'),
+-- (811, 'UNIIBADAN Microfinance Bank', '090461'),
+-- (812, 'UNION BANK', '000018'),
+-- (813, 'UNITED BANK FOR AFRICA', '000004'),
+-- (814, 'UNITY BANK', '000011'),
+-- (815, 'UNN MFB', '090251'),
+-- (816, 'Uhuru Microfinance bank', '090517'),
+-- (817, 'Umuchinemere Procredit Microfinance Bank', '090514'),
+-- (818, 'Umunnachi Microfinance Bank', '090510'),
+-- (819, 'UniUyo Microfinance Bank', '090338'),
+-- (820, 'Unilag  Microfinance Bank', '090452'),
+-- (821, 'Unimaid Microfinance Bank', '090464'),
+-- (822, 'Uzondu MF Bank', '090453'),
+-- (823, 'VFD MFB', '090110'),
+-- (824, 'VIRTUE MFB', '090150'),
+-- (825, 'VISA MICROFINANCE BANK', '090139'),
+-- (826, 'VTNetwork', '100012'),
+-- (827, 'Vas2nets Limited', '110015'),
+-- (828, 'Verdant Microfinance Bank', '090474'),
+-- (829, 'WEMA BANK', '000017'),
+-- (830, 'WETLAND MFB', '090120'),
+-- (831, 'WinView Bank', '090419'),
+-- (832, 'XSLNCE MICROFINANCE BANK', '090124'),
+-- (833, 'YCT Microfinance Bank', '090466'),
+-- (834, 'YES MFB', '090142'),
+-- (835, 'Yello Digital financial services', '110027'),
+-- (836, 'Yobe MFB', '090252'),
+-- (837, 'ZENITH BANK PLC', '000015'),
+-- (838, 'ZWallet', '100034'),
+-- (839, 'Zikora Microfinance bank', '090504'),
+-- (840, 'unilorin Microfinance Bank', '090341');
+
+
+-- -- --------------------------------------------------------
+
+-- --
+-- -- Table structure for table `merchants`
+-- --
+
+-- CREATE TABLE `merchants` (
+--   `id` int NOT NULL,
+--   `name` varchar(50) DEFAULT NULL
+-- ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- --
+-- -- Dumping data for table `merchants`
+-- --
+
+-- INSERT INTO `merchants` (`id`, `name`) VALUES
+-- (1, 'settle_lp');
+
+-- --
+-- -- Table structure for table `receivers`
+-- --
+
+-- CREATE TABLE `receivers` (
+--   `id` int NOT NULL,
+--   `bank_name` varchar(50) DEFAULT NULL,
+--   `bank_account` varchar(50) DEFAULT NULL,
+--   `account_name` varchar(50) DEFAULT NULL,
+--   `phone` varchar(50) DEFAULT NULL,
+--   `is_vendor` tinyint(1) DEFAULT NULL
+-- ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+
+-- -- --------------------------------------------------------
+
+-- --
+-- -- Table structure for table `supports`
+-- --
+
+-- CREATE TABLE `supports` (
+--   `id` int NOT NULL,
+--   `name` varchar(50) DEFAULT NULL,
+--   `chat_id` varchar(50) DEFAULT NULL,
+--   `phone` varchar(50) DEFAULT NULL,
+--   `pin_hash` varchar(255) DEFAULT NULL,
+--   `email` varchar(50) DEFAULT NULL,
+--   `support_id` varchar(50) DEFAULT NULL,
+--   `role` varchar(50) DEFAULT NULL
+-- ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- --
+-- -- Dumping data for table `supports`
+-- --
+
+-- INSERT INTO `supports` (`id`, `name`, `chat_id`, `phone`, `pin_hash`, `email`, `support_id`, `role`) VALUES
+-- (1, 'Eniola', '6488594110', '+2349018122574', NULL, NULL, 'SUPPORT822123', NULL),
+-- (2, 'Rachel', '760212740', '+2348111761073', NULL, NULL, 'SUPPORT523556', NULL),
+-- (3, 'Sirflex', '489070175', '+2348067426882', NULL, 'Iyanflex@gmail.com', 'SUPPORT261547', NULL),
+-- (4, 'Sirfitech', '1389082905', '+2349038880228', NULL, 'sirfitechltd@gmail.com', 'SUPPORT302071', NULL),
+-- (5, 'ola', '1833036677', '+2347035194443', NULL, NULL, 'SUPPORT302064', NULL);
+
+
+-- --
+-- -- Dumping data for table `receivers`
+-- --
+
+-- INSERT INTO `receivers` (`id`, `bank_name`, `bank_account`, `account_name`, `phone`, `is_vendor`) VALUES
+-- (1, 'OPAY', '8063862295', 'MOSES IORWUESES NYIKWAGH', '+2348063862295', 0),
+-- (2, 'ACCESS BANK', '1513995445', 'JOHN EKOJAH OKOH', '+2349084850306', 0),
+-- (3, 'OPAY', '8186514182', 'Ezra Paul Iliya', '+2349062053701', 0),
+-- (4, 'OPAY', '9038325867', 'SHAMSUDEEN  KAMARDEEN', '+2349012643798', 0),
+-- (5, 'GTBANK PLC', '0616498250', 'SOLOMON VICTOR ALUUMBUGU', '+2348054195465', 0),
+-- (6, 'UNITY BANK', '0059251101', 'AGWU COMFORT OBIYE', '+2349038492976', 0),
+-- (7, 'GTBANK PLC', '0542691312', 'OTU   MARIAM OYIN', '+2349026476892', 0),
+-- (8, 'GTBANK PLC', '0262253713', 'ATTEH OLAOLU ISAAC', '+2348174616558', 0),
+-- (9, 'OPAY', '9079154354', 'Abdulquadri Olasunkanmi Oke', '+2349079154354', 0),
+-- (10, 'OPAY', '9068990713', 'BOLUWATIFE OLUWATOBI OLADEJO', '+2347063690598', 0),
+-- (11, 'OPAY', '9137544440', 'ZUWAIRA  IBRAHIM', '+2349067388509', 0),
+-- (12, 'OPAY', '8164007075', 'ISREAL OLUWATIMILEYIN OLAJIDE', '+2348164007075', 0),
+-- (13, 'OPAY', '7046538473', 'FAROUK AJOBI MUSTAPHA', '+2347046538473', 0),
+-- (14, 'OPAY', '9072999089', 'SAMSON BIDEMI ADU', '+2349072999089', 0),
+-- (15, 'OPAY', '7037134400', 'Collins Owogoga Sunday', '+2347037134400', 0),
+-- (16, 'ACCESS BANK', '0103748259', 'ALICE UGOWMA  ODEY', '+2348103079331', 0),
+-- (17, 'OPAY', '9037240930', 'DAVID OLAYINKA KOLAWOLE', '+2349037240930', 0),
+-- (18, 'GTBANK PLC', '0640683143', 'ODU SARAH KIJIE', '+2348111339692', 0),
+-- (19, 'GTBANK PLC', '0177367583', 'NYIKWAGH IORWUESE MOSES', '+2348063862295', 0),
+-- (20, 'GTBANK PLC', '0169552625', 'ADEWALE IYANU KAYODE', '+2348067426882', 0),
+-- (21, 'STANDARDCHARTERED', '0001332919', 'ANTHONY OLUWASEUN FEYITIMI', '+2348068946896', 0),
+-- (22, 'OPAY', '8145953391', 'RACHEAL ABISOLA  OYENIYI', '+2348145953391', 0),
+-- (23, 'ZENITH BANK PLC', '2553313594', 'Faith-Eniola   Oloyede', '+2347033573784', 0),
+-- (24, 'OPAY', '7035194443', 'OLAWALE SAHEED SANUSI', '+2347035194443', 0),
+-- (25, 'GTBANK PLC', '0421082468', 'NKWONTA GIFT NGOZI ', '+2347084069206', 0),
+-- (26, 'ACCESS BANK', '0101233148', 'DAVID OSAGIE IGHO', '+2348162604825', 0),
+-- (27, 'OPAY', '8062512100', 'David  Adedigba', '+2348062512100', 0),
+-- (28, 'OPAY', '8162712666', 'JUSTINA FEYISAYO OLUGBENGA', '+2348162712666', 0),
+-- (29, 'FIRST BANK OF NIGERIA', '3188231433', 'IBRAHIM ZUWAIRA', '+2349137544440', 0),
+-- (30, 'MONIEPOINT MICROFINANCE BANK', '8088889900', 'IYANU ADEWALE', '+2348067426882', 0),
+-- (31, 'MONIEPOINT MICROFINANCE BANK', '8063862295', 'MOSES IORWUESES NYIKWAGH', '+2348063862295', 0),
+-- (32, 'OPAY', '8174616558', 'OLAOLU ISAAC ATTEH', '+2348174616558', 0),
+-- (33, 'OPAY', '9026476892', 'MARIAM OYIN OTU', '+2349026476892', 0),
+-- (34, 'OPAY', '8162800970', 'JOSEPH AYOMIDE BABATUNDE', '+2349071792792', 0),
+-- (35, 'UNITED BANK FOR AFRICA', '2137542042', 'FRIDAY AKULI AJIAH', '+2348106621017', 0),
+-- (36, 'GTBANK PLC', '0237660636', 'AKINOLA RONKE OLUWABUNMI', '+2347035659490', 0),
+-- (37, 'GTBANK PLC', '0117147237', 'ABRAHAM KENNEDY CHUKWUEMEKA', '+2347061229000', 0),
+-- (38, 'PALMPAY', '7046538473', 'FAROUK AJOBI MUSTAPHA', '+2347046538473', 0),
+-- (39, 'PALMPAY', '9037240930', 'DAVID  OLAYINKA  KOLAWOLE', '+2349037240930', 0),
+-- (40, 'OPAY', '8126487048', 'DAMILOLA OLAYEMI KOLAWOLE', '+2347063239988', 0),
+-- (41, 'ACCESS BANK', '1539077190', 'JEMIMA  AKINYEMI', '+2348142604522', 0),
+-- (42, 'OPAY', '8131118395', 'PELUMI GBENGA OREDOLA', '+2348131118395', 0),
+-- (43, 'OPAY', '8111513504', 'AYOBAMI SAHEED QUADRI', '+2348111513504', 0),
+-- (44, 'OPAY', '9068599594', 'NANAAISHA  KAMARDEEN', '+2349068599594', 0),
+-- (45, 'KUDA MICROFINANCE BANK', '2023287992', 'ALONGE, ENIOLA JOHN', '+2349018453351', 0),
+-- (46, 'OPAY', '8130110121', 'HAFSAT  AMINU', '+2348130110121', 0),
+-- (47, 'OPAY', '7033289459', 'MUBARAK OLUBUNMI BELLO', '+2347033289459', 0),
+-- (48, 'OPAY', '8085463234', 'ADENIKE SELEMA ABDULRASAQ', '+2348135945386', 0),
+-- (49, 'OPAY', '9037097441', 'ZIADAH YETUNDE IBRAHIM-KING', '+2349037097441', 0),
+-- (50, 'PALMPAY', '8063508021', 'OYEDOLA JUMOKE OYEDEPO', '+2348063508021', 0),
+-- (51, 'MONIEPOINT MICROFINANCE BANK', '8102848135', 'OLASUBOMI OKUNLOLA', '+2348102848135', 0),
+-- (52, 'ZENITH BANK PLC', '2275565608', 'JOSEPH IYANUOLUWA OLUGBENGA', '+2348162712666', 0),
+-- (53, 'OPAY', '9092890405', 'ALICE UGOWMA ODEY', '+2349092890405', 0),
+-- (54, 'KUDA MICROFINANCE BANK', '1101737215', 'AMARACHI SILVIA UZOWULU', NULL, 0),
+-- (55, 'UNITED BANK FOR AFRICA', '2068261186', 'OMALE RAYMOND ABUCHE', NULL, 0),
+-- (56, 'Fidelity', '6321503858', 'Omotosho Tope', NULL, 0);
+
+-- -- --------------------------------------------------------
+
+-- --
+-- -- Table structure for table `payers`
+-- --
+
+-- CREATE TABLE `payers` (
+--   `id` int NOT NULL,
+--   `chat_id` varchar(50) DEFAULT NULL,
+--   `phone` varchar(50) DEFAULT NULL,
+--   `wallet` varchar(50) DEFAULT NULL
+-- ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- --
+-- -- Dumping data for table `payers`
+-- --
+
+-- INSERT INTO `payers` (`id`, `chat_id`, `phone`, `wallet`) VALUES
+-- (1, '1833036677', '+2347035194443', NULL),
+-- (2, '6314553646', '+2348063862295', NULL),
+-- (3, '4996618668', '+2348067426882', NULL),
+-- (4, '5242774244', '+2349018122574', NULL),
+-- (5, '1727676541', '+2348162604825', NULL),
+-- (6, '1109468530', '+2347032286568', NULL),
+-- (7, '6970071497', '+2348100395085', NULL),
+-- (8, NULL, '+2348084390796', NULL),
+-- (9, '7382452944', '+2348142604522', NULL);
+
+
+-- -- --------------------------------------------------------
+
+-- --
+-- -- Table structure for table `reporters`
+-- --
+
+-- CREATE TABLE `reporters` (
+--   `id` int NOT NULL,
+--   `wallet` varchar(50) DEFAULT NULL,
+--   `phone` varchar(50) DEFAULT NULL,
+--   `date` datetime DEFAULT NULL
+-- ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- -- --------------------------------------------------------
+
+-- --
+-- -- Table structure for table `beneficiaries`
+-- --
+
+-- CREATE TABLE `beneficiaries` (
+--   `id` int NOT NULL,
+--   `payer_id` int DEFAULT NULL,
+--   `receiver_id` int DEFAULT NULL
+-- ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- -- --------------------------------------------------------
+
+-- --
+-- -- Table structure for table `complaints`
+-- --
+
+-- CREATE TABLE `complaints` (
+--   `id` int NOT NULL,
+--   `complian` text,
+--   `transaction_id` varchar(50) DEFAULT NULL,
+--   `confirmed_by` varchar(50) DEFAULT NULL,
+--   `complain_id` int DEFAULT NULL,
+--   `confirmer_chat_id` varchar(50) DEFAULT NULL
+-- ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- -- --------------------------------------------------------
+
+-- --
+-- -- Table structure for table `gifts`
+-- --
+
+-- CREATE TABLE `gifts` (
+--   `id` int NOT NULL,
+--   `gift_id` varchar(50) DEFAULT NULL,
+--   `status` varchar(50) DEFAULT NULL,
+--   `crypto` varchar(50) DEFAULT NULL,
+--   `network` varchar(50) DEFAULT NULL,
+--   `estimate_asset` varchar(50) DEFAULT NULL,
+--   `estimate_amount` decimal(13,8) DEFAULT NULL,
+--   `amount_payable` decimal(11,2) DEFAULT NULL,
+--   `charges` decimal(13,8) DEFAULT NULL,
+--   `crypto_amount` decimal(13,8) DEFAULT NULL,
+--   `date` datetime DEFAULT NULL,
+--   `receiver_id` int DEFAULT NULL,
+--   `gift_status` varchar(50) DEFAULT NULL,
+--   `payer_id` int DEFAULT NULL,
+--   `current_rate` decimal(7,2) DEFAULT NULL,
+--   `merchant_rate` decimal(7,2) DEFAULT NULL,
+--   `profit_rate` decimal(7,2) DEFAULT NULL
+-- ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- --
+-- -- Dumping data for table `gifts`
+-- --
+
+-- INSERT INTO `gifts` (`id`, `gift_id`, `status`, `crypto`, `network`, `estimate_asset`, `estimate_amount`, `amount_payable`, `charges`, `crypto_amount`, `date`, `receiver_id`, `gift_status`, `payer_id`, `current_rate`, `merchant_rate`, `profit_rate`) VALUES
+-- (1, '964623', 'Successful', 'USDT', 'BEP20', 'Dollar', 60.00000000, 10.00, 0.32000000, 60.00000000, '2024-08-13 09:42:00', 1, 'Claimed', 1, 1552.48, 1580.00, 15.00),
+-- (2, '682185', 'Successful', 'USDT', 'BEP20', 'Dollar', 10.00000000, 15055.40, 0.32207000, 10.00000000, '2024-08-13 13:13:00', 2, 'Claimed', 1, 1555.54, 1580.00, 15.00),
+-- (3, '104666', 'Successful', 'USDT', 'BEP20', 'Dollar', 8.00000000, 11944.32, 0.32207000, 8.00000000, '2024-08-13 13:13:00', 3, 'Claimed', 1, 1555.54, 1580.00, 15.00),
+-- (4, '948484', 'Successful', 'USDT', 'BEP20', 'Dollar', 10.00000000, 15055.40, 0.32207000, 10.00000000, '2024-08-13 13:13:00', 4, 'Claimed', 1, 1555.54, 1580.00, 15.00),
+-- (5, '826635', 'Successful', 'USDT', 'BEP20', 'Dollar', 10.00000000, 15055.40, 0.32207000, 10.00000000, '2024-08-13 13:13:00', 5, 'Claimed', 1, 1555.54, 1580.00, 15.00),
+-- (6, '133478', 'Successful', 'USDT', 'BEP20', 'Dollar', 8.00000000, 11944.32, 0.32207000, 8.00000000, '2024-08-13 13:13:00', 6, 'Claimed', 1, 1555.54, 1580.00, 15.00),
+-- (7, '915091', 'Successful', 'USDT', 'BEP20', 'Dollar', 6.00000000, 8833.24, 0.32207000, 6.00000000, '2024-08-13 13:13:00', 7, 'Claimed', 1, 1555.54, 1580.00, 15.00),
+-- (8, '541665', 'Successful', 'USDT', 'BEP20', 'Dollar', 8.00000000, 11944.32, 0.32207000, 8.00000000, '2024-08-13 13:13:00', 8, 'Claimed', 1, 1555.54, 1580.00, 15.00),
+-- (9, '799313', 'Successful', 'USDT', 'BEP20', 'Dollar', 8.00000000, 11944.32, 0.32207000, 8.00000000, '2024-08-13 13:13:00', 9, 'Claimed', 1, 1555.54, 1580.00, 15.00),
+-- (10, '761158', 'Successful', 'USDT', 'BEP20', 'Dollar', 8.00000000, 11944.32, 0.32207000, 8.00000000, '2024-08-13 13:13:00', 10, 'Claimed', 1, 1555.54, 1580.00, 15.00),
+-- (11, '187929', 'Successful', 'USDT', 'BEP20', 'Dollar', 8.00000000, 11944.32, 0.32207000, 8.00000000, '2024-08-13 13:13:00', 11, 'Claimed', 1, 1555.54, 1580.00, 15.00),
+-- (12, '138552', 'Successful', 'USDT', 'BEP20', 'Dollar', 6.00000000, 8833.24, 0.32207000, 6.00000000, '2024-08-13 13:13:00', NULL, 'Not claimed', 1, 1555.54, 1580.00, 15.00),
+-- (13, '186948', 'Successful', 'USDT', 'BEP20', 'Dollar', 4.00000000, 5722.16, 0.32207000, 4.00000000, '2024-08-13 13:13:00', 12, 'Claimed', 1, 1555.54, 1580.00, 15.00),
+-- (14, '412058', 'Successful', 'USDT', 'BEP20', 'Dollar', 4.00000000, 5722.16, 0.32207000, 4.00000000, '2024-08-13 13:13:00', 13, 'Claimed', 1, 1555.54, 1580.00, 15.00),
+-- (15, '384540', 'Successful', 'USDT', 'BEP20', 'Dollar', 4.00000000, 5722.16, 0.32207000, 4.00000000, '2024-08-13 13:13:00', NULL, 'Not claimed', 1, 1555.54, 1580.00, 15.00),
+-- (16, '505065', 'Successful', 'USDT', 'BEP20', 'Dollar', 4.00000000, 5722.16, 0.32207000, 4.00000000, '2024-08-13 13:13:00', 14, 'Claimed', 1, 1555.54, 1580.00, 15.00),
+-- (17, '230734', 'Successful', 'USDT', 'BEP20', 'Dollar', 4.00000000, 5722.16, 0.32207000, 4.00000000, '2024-08-13 13:13:00', 15, 'Claimed', 1, 1555.54, 1580.00, 15.00),
+-- (18, '657713', 'Successful', 'USDT', 'BEP20', 'Dollar', 4.00000000, 5722.16, 0.32207000, 4.00000000, '2024-08-13 13:13:00', 16, 'Claimed', 1, 1555.54, 1580.00, 15.00),
+-- (19, '688516', 'Successful', 'USDT', 'BEP20', 'Dollar', 4.00000000, 5722.16, 0.32207000, 4.00000000, '2024-08-13 13:13:00', NULL, 'Not claimed', 1, 1555.54, 1580.00, 15.00),
+-- (20, '417269', 'Successful', 'USDT', 'BEP20', 'Dollar', 6.00000000, 8833.24, 0.32207000, 6.00000000, '2024-08-13 13:13:00', 17, 'Claimed', 1, 1555.54, 1580.00, 15.00),
+-- (21, '794498', 'Successful', 'USDT', 'BEP20', 'Dollar', 4.00000000, 5722.16, 0.32207000, 4.00000000, '2024-08-13 13:13:00', 18, 'Claimed', 1, 1555.54, 1580.00, 15.00),
+-- (22, '784903', 'Successful', 'USDT', 'BEP20', 'Dollar', 10.00000000, 100.32, 0.32207000, 10.00000000, '2024-08-13 13:42:00', 1, 'Claimed', 1, 1555.54, 1580.00, 15.00),
+-- (23, '727199', 'Successful', 'USDT', 'BEP20', 'Dollar', 10.00000000, 100.54, 0.32207000, 10.00000000, '2024-08-13 16:34:00', 19, 'Claimed', 1, 1555.54, 1580.00, 15.00),
+-- (24, '314649', 'Successful', 'USDT', 'BEP20', 'Dollar', 0.65000000, 1000.78, 0.32207000, 0.65000000, '2024-08-14 09:32:00', NULL, 'Not claimed', 1, 1555.54, 1580.00, 15.00),
+-- (25, '677754', 'Successful', 'USDT', 'BEP20', 'Dollar', 0.65000000, 1000.78, 0.32207000, 0.65000000, '2024-08-14 09:32:00', 20, 'Claimed', 1, 1555.54, 1580.00, 15.00),
+-- (26, '351495', 'Successful', 'USDT', 'BEP20', 'Dollar', 0.65000000, 1000.78, 0.32207000, 0.65000000, '2024-08-14 09:32:00', 21, 'Claimed', 1, 1555.54, 1580.00, 15.00),
+-- (27, '477070', 'Successful', 'USDT', 'BEP20', 'Dollar', 0.32000000, 500.11, 0.32207000, 0.32000000, '2024-08-14 09:51:00', NULL, 'Not claimed', 1, 1555.54, 1580.00, 15.00),
+-- (28, '661164', 'Successful', 'USDT', 'BEP20', 'Dollar', 0.32000000, 500.11, 0.32207000, 0.32000000, '2024-08-14 09:51:00', NULL, 'Not claimed', 1, 1555.54, 1580.00, 15.00),
+-- (29, '712323', 'Successful', 'USDT', 'BEP20', 'Dollar', 0.32000000, 500.11, 0.32207000, 0.32000000, '2024-08-14 09:51:00', NULL, 'Not claimed', 1, 1555.54, 1580.00, 15.00),
+-- (30, '831683', 'Successful', 'USDT', 'BEP20', 'Dollar', 0.32000000, 500.11, 0.32207000, 0.32000000, '2024-08-14 09:51:00', 1, 'Claimed', 1, 1555.54, 1580.00, 15.00),
+-- (31, '543877', 'Successful', 'USDT', 'BEP20', 'Dollar', 3.75000000, 5775.00, 0.32207000, 3.75000000, '2024-08-14 09:55:00', 22, 'Claimed', 1, 1555.54, 1580.00, 15.00),
+-- (32, '763372', 'Successful', 'USDT', 'BEP20', 'Dollar', 3.75000000, 5775.00, 0.32207000, 3.75000000, '2024-08-14 09:55:00', 23, 'Claimed', 1, 1555.54, 1580.00, 15.00),
+-- (33, '677719', 'Successful', 'USDT', 'BEP20', 'Dollar', 3.75000000, 5775.00, 0.32207000, 3.75000000, '2024-08-14 09:55:00', 24, 'Claimed', 1, 1555.54, 1580.00, 15.00),
+-- (34, '915901', 'Successful', 'USDT', 'BEP20', 'Dollar', 3.75000000, 5775.00, 0.32207000, 3.75000000, '2024-08-14 09:55:00', 25, 'Claimed', 1, 1555.54, 1580.00, 15.00),
+-- (35, '892160', 'Successful', 'USDT', 'BEP20', 'Dollar', 3.75000000, 5775.00, 0.32207000, 3.75000000, '2024-08-14 09:55:00', 26, 'Claimed', 1, 1555.54, 1580.00, 15.00),
+-- (36, '894637', 'Successful', 'USDT', 'BEP20', 'Dollar', 3.75000000, 5775.00, 0.32207000, 3.75000000, '2024-08-14 09:55:00', 19, 'Claimed', 1, 1555.54, 1580.00, 15.00),
+-- (37, '855047', 'Successful', 'USDT', 'BEP20', 'Dollar', 3.75000000, 5775.00, 0.32207000, 3.75000000, '2024-08-14 09:55:00', 20, 'Claimed', 1, 1555.54, 1580.00, 15.00),
+-- (38, '437313', 'Successful', 'BTC', 'BTC', 'Naira', 0.00792141, 750000.00, 0.00792141, 0.00792141, '2024-08-14 14:14:00', 1, 'Claimed', 2, 1552.48, 1580.00, 15.00),
+-- (39, '372708', 'Successful', 'BTC', 'BTC', 'Dollar', 0.00335648, 310496.00, 0.00335648, 0.00335648, '2024-08-15 16:46:00', NULL, 'Not claimed', 2, 1552.48, 1580.00, 15.00),
+-- (40, '644050', 'Successful', 'USDT', 'BEP20', 'Dollar', 2.33000000, 3500.00, 0.32207000, 2.33000000, '2024-08-29 16:43:00', NULL, 'Not claimed', 1, 1555.54, 1580.00, 15.00),
+-- (41, '668583', 'Successful', 'USDT', 'BEP20', 'Naira', 38.08160126, 60000.00, 38.08000000, 38.08160126, '2024-09-04 09:44:00', NULL, 'Not claimed', 1, 1575.56, 1580.00, 15.00),
+-- (42, '319389', 'Successful', 'USDT', 'BEP20', 'Naira', 60000.00000000, 60000.00, 0.31735000, 38.39900000, '2024-09-04 16:03:00', 24, 'Claimed', 1, 1575.56, 1580.00, 15.00),
+-- (43, '196907', 'Successful', 'USDT', 'BEP20', 'Dollar', 5.00000000, 7700.00, 0.32207000, 5.00000000, '2024-09-12 09:15:00', NULL, 'Not claimed', 1, 1555.54, 1580.00, 15.00),
+-- (44, '328967', 'Successful', 'USDT', 'BEP20', 'Dollar', 3.33000000, 5220.00, 0.32207000, 3.33000000, '2024-09-12 09:21:00', 27, 'Claimed', 1, 1566.43, 1580.00, 15.00),
+-- (45, '342963', 'Successful', 'USDT', 'BEP20', 'Dollar', 3.33000000, 5220.00, 0.32207000, 3.33000000, '2024-09-12 09:21:00', 28, 'Claimed', 1, 1566.43, 1580.00, 15.00),
+-- (46, '637374', 'Successful', 'USDT', 'BEP20', 'Dollar', 3.33000000, 5220.00, 0.32207000, 3.33000000, '2024-09-12 09:21:00', 29, 'Claimed', 1, 1566.43, 1580.00, 15.00),
+-- (47, '578527', 'Successful', 'USDT', 'BEP20', 'Dollar', 0.31000000, 500.00, 0.32207000, 0.31000000, '2024-09-12 10:33:00', 23, 'Claimed', 1, 1566.43, 1580.00, 15.00),
+-- (48, '334335', 'Successful', 'USDT', 'BEP20', 'Dollar', 0.31000000, 500.00, 0.32207000, 0.31000000, '2024-09-12 10:33:00', 26, 'Claimed', 1, 1566.43, 1580.00, 15.00),
+-- (49, '852383', 'Successful', 'USDT', 'BEP20', 'Dollar', 0.31000000, 500.00, 0.32207000, 0.31000000, '2024-09-12 10:33:00', NULL, 'Not claimed', 1, 1566.43, 1580.00, 15.00),
+-- (50, '485314', 'Successful', 'USDT', 'BEP20', 'Dollar', 0.31000000, 500.00, 0.32207000, 0.31000000, '2024-09-12 10:33:00', NULL, 'Not claimed', 1, 1566.43, 1580.00, 15.00),
+-- (51, '490484', 'Successful', 'USDT', 'BEP20', 'Dollar', 0.62000000, 1000.00, 0.32207000, 0.62000000, '2024-09-12 10:34:00', 30, 'Claimed', 1, 1566.43, 1580.00, 15.00),
+-- (52, '760424', 'Successful', 'USDT', 'BEP20', 'Dollar', 0.62000000, 1000.00, 0.32207000, 0.62000000, '2024-09-12 10:34:00', NULL, 'Not claimed', 1, 1566.43, 1580.00, 15.00),
+-- (53, '916921', 'Successful', 'USDT', 'BEP20', 'Dollar', 0.62000000, 1000.00, 0.32207000, 0.62000000, '2024-09-12 10:34:00', NULL, 'Not claimed', 1, 1566.43, 1580.00, 15.00),
+-- (54, '705863', 'Successful', 'USDT', 'BEP20', 'Dollar', 0.62000000, 1000.00, 0.32207000, 0.62000000, '2024-09-12 10:34:00', NULL, 'Not claimed', 1, 1566.43, 1580.00, 15.00),
+-- (55, '991150', 'Successful', 'USDT', 'BEP20', 'Dollar', 0.62000000, 1000.00, 0.32207000, 0.62000000, '2024-09-12 10:34:00', NULL, 'Not claimed', 1, 1566.43, 1580.00, 15.00),
+-- (56, '622804', 'Successful', 'USDT', 'BEP20', 'Dollar', 0.02000000, 100.00, 0.32207000, 0.02000000, '2024-09-12 15:18:00', 1, 'Claimed', 1, 1566.43, 1580.00, 15.00),
+-- (57, '527116', 'Successful', 'USDT', 'BEP20', 'Dollar', 0.02000000, 100.00, 0.32207000, 0.02000000, '2024-09-12 15:18:00', 19, 'Claimed', 1, 1566.43, 1580.00, 15.00),
+-- (58, '835951', 'Successful', 'USDT', 'BEP20', 'Dollar', 0.02000000, 100.00, 0.32207000, 0.02000000, '2024-09-12 15:18:00', 31, 'Claimed', 1, 1566.43, 1580.00, 15.00),
+-- (59, '359991', 'Successful', 'USDT', 'BEP20', 'Dollar', 0.02000000, 100.00, 0.32207000, 0.02000000, '2024-09-13 09:58:00', 24, 'Claimed', 1, 1566.43, 1580.00, 15.00),
+-- (60, '785384', 'Successful', 'USDT', 'BEP20', 'Dollar', 16.00000000, 25000.00, 0.32207000, 16.00000000, '2024-09-17 09:54:00', NULL, 'Not claimed', 1, 1566.43, 1580.00, 15.00),
+-- (61, '422805', 'Successful', 'USDT', 'ERC20', 'Dollar', 80.00000000, 129055.20, 80.00000000, 80.00000000, '2024-10-24 15:09:00', NULL, 'Not claimed', 2, 1613.19, 1580.00, 15.00),
+-- (62, '997351', 'Successful', 'USDT', 'ERC20', 'Dollar', 30.00000000, 48680.52, 30.00000000, 30.00000000, '2024-10-25 09:44:00', 1, 'Cancel', 2, 1622.68, 1580.00, 15.00),
+-- (63, '395619', 'Successful', 'USDT', 'ERC20', 'Dollar', 60.00000000, 97361.04, 60.00000000, 60.00000000, '2024-10-25 11:52:00', 24, 'Claimed', 1, 1622.68, 1580.00, 15.00),
+-- (64, '671283', 'Successful', 'TRX', 'TRC20', 'TRX', 5000.00000000, 1348803.46, 5000.00000000, 5000.00000000, '2024-10-25 15:24:00', 1, 'Claimed', 2, 1622.68, 1580.00, 15.00),
+-- (65, '660224', 'Successful', 'USDT', 'BEP20', 'Naira', 11.72168042, 20000.00, 11.72000000, 11.72168042, '2024-11-21 11:19:00', NULL, 'Cancel', 2, 1706.24, 1735.00, 15.00),
+-- (66, '126475', 'Successful', 'USDT', 'TRC20', 'Naira', 14.62828361, 25000.00, 14.63000000, 14.62828361, '2024-11-22 10:29:00', NULL, 'Not claimed', 3, 1709.02, 1737.80, 15.00),
+-- (67, '321063', 'Successful', 'USDT', 'BEP20', 'Naira', 13.11644849, 599.00, 13.12000000, 13.11644849, '2025-02-07 12:06:00', NULL, 'Cancel', 1, 1524.80, 1557.10, 20.00),
+-- (68, '777281', 'Successful', 'BTC', 'BTC', 'Naira', 0.00013473, 5000.00, 0.00013473, 0.00013473, '2025-02-07 13:08:00', 3, 'Claimed', 4, 1517.33, 1549.57, 20.00),
+-- (69, '487182', 'Successful', 'BTC', 'BTC', 'Naira', 0.00013473, 5000.00, 0.00013473, 0.00013473, '2025-02-07 13:09:00', 32, 'Claimed', 4, 1517.33, 1549.57, 20.00),
+-- (70, '813185', 'Successful', 'BTC', 'BTC', 'Naira', 0.00013473, 5000.00, 0.00013473, 0.00013473, '2025-02-07 13:10:00', 33, 'Claimed', 4, 1517.33, 1549.57, 20.00),
+-- (71, '958268', 'Successful', 'BTC', 'BTC', 'Naira', 0.00013473, 5000.00, 0.00013473, 0.00013473, '2025-02-07 13:11:00', 10, 'Claimed', 4, 1517.33, 1549.57, 20.00),
+-- (72, '936017', 'Successful', 'BTC', 'BTC', 'Naira', 0.00013473, 5000.00, 0.00013473, 0.00013473, '2025-02-07 13:12:00', 34, 'Claimed', 4, 1517.33, 1549.57, 20.00),
+-- (73, '461317', 'Successful', 'BTC', 'BTC', 'Naira', 0.00013473, 5000.00, 0.00013473, 0.00013473, '2025-02-07 13:13:00', 16, 'Claimed', 4, 1517.33, 1549.57, 20.00),
+-- (74, '166561', 'Successful', 'BTC', 'BTC', 'Naira', 0.00013473, 2500.00, 0.00013473, 0.00013473, '2025-02-07 13:18:00', 1, 'Claimed', 4, 1517.33, 1549.57, 20.00),
+-- (75, '840339', 'Successful', 'BTC', 'BTC', 'Naira', 0.00013473, 2500.00, 0.00013473, 0.00013473, '2025-02-07 13:19:00', 35, 'Claimed', 4, 1517.33, 1549.57, 20.00),
+-- (76, '995794', 'Successful', 'BTC', 'BTC', 'Naira', 0.00013473, 2500.00, 0.00013473, 0.00013473, '2025-02-07 13:20:00', 9, 'Claimed', 4, 1517.33, 1549.57, 20.00),
+-- (77, '930109', 'Successful', 'BTC', 'BTC', 'Naira', 0.00013473, 2500.00, 0.00013473, 0.00013473, '2025-02-07 13:21:00', 36, 'Claimed', 4, 1517.33, 1549.57, 20.00),
+-- (78, '582176', 'Successful', 'BTC', 'BTC', 'Naira', 0.00013473, 2500.00, 0.00013473, 0.00013473, '2025-02-07 13:21:00', 37, 'Claimed', 4, 1517.33, 1549.57, 20.00),
+-- (79, '525782', 'Successful', 'BTC', 'BTC', 'Naira', 0.00013473, 2500.00, 0.00013473, 0.00013473, '2025-02-07 13:22:00', 38, 'Claimed', 4, 1517.33, 1549.57, 20.00),
+-- (80, '210475', 'Successful', 'BTC', 'BTC', 'Naira', 0.00013473, 2500.00, 0.00013473, 0.00013473, '2025-02-07 13:23:00', 29, 'Claimed', 4, 1517.33, 1549.57, 20.00),
+-- (81, '455408', 'Successful', 'BTC', 'BTC', 'Naira', 0.00013473, 2500.00, 0.00013473, 0.00013473, '2025-02-07 13:23:00', 14, 'Claimed', 4, 1517.33, 1549.57, 20.00),
+-- (82, '924320', 'Successful', 'BTC', 'BTC', 'Naira', 0.00013473, 2500.00, 0.00013473, 0.00013473, '2025-02-07 13:24:00', 23, 'Claimed', 4, 1517.33, 1549.57, 20.00),
+-- (83, '391460', 'Successful', 'BTC', 'BTC', 'Naira', 0.00013580, 2500.00, 0.00013580, 0.00013580, '2025-02-08 13:33:00', 14, 'Claimed', 4, 1533.61, 1565.98, 20.00),
+-- (84, '300015', 'Successful', 'BTC', 'BTC', 'Naira', 0.00013580, 2500.00, 0.00013580, 0.00013580, '2025-02-08 13:33:00', 4, 'Claimed', 4, 1533.61, 1565.98, 20.00),
+-- (85, '527370', 'Successful', 'BTC', 'BTC', 'Naira', 0.00013580, 10000.00, 0.00013580, 0.00013580, '2025-02-08 13:33:00', NULL, 'Not Claimed', 4, 1533.61, 1565.98, 20.00),
+-- (86, '153805', 'Successful', 'BTC', 'BTC', 'Naira', 0.00013580, 5000.00, 0.00013580, 0.00013580, '2025-02-08 13:33:00', 15, 'Claimed', 4, 1533.61, 1565.98, 20.00),
+-- (87, '781692', 'Successful', 'BTC', 'BTC', 'Naira', 0.00013580, 5000.00, 0.00013580, 0.00013580, '2025-02-08 13:34:00', 16, 'Claimed', 4, 1533.61, 1565.98, 20.00),
+-- (88, '149333', 'Successful', 'BTC', 'BTC', 'Naira', 0.00013580, 5000.00, 0.00013580, 0.00013580, '2025-02-08 13:34:00', 34, 'Claimed', 4, 1533.61, 1565.98, 20.00),
+-- (89, '998650', 'Successful', 'BTC', 'BTC', 'Naira', 0.00013580, 5000.00, 0.00013580, 0.00013580, '2025-02-08 13:34:00', 33, 'Claimed', 4, 1533.61, 1565.98, 20.00),
+-- (90, '587324', 'Successful', 'BTC', 'BTC', 'Naira', 0.00013580, 5000.00, 0.00013580, 0.00013580, '2025-02-08 13:34:00', 17, 'Claimed', 4, 1533.61, 1565.98, 20.00),
+-- (91, '239426', 'Successful', 'USDT', 'BEP20', 'Dollar', 591.00000000, 904617.70, 591.00000000, 591.00000000, '2025-02-12 15:41:00', 1, 'Claimed', 2, 1530.66, 1563.00, 20.00),
+-- (92, '838768', 'Successful', 'USDT', 'BEP20', 'Dollar', 60.00000000, 90828.72, 60.00000000, 60.00000000, '2025-02-14 16:20:00', NULL, 'Not Claimed', 1, 1513.81, 1546.02, 20.00),
+-- (93, '810105', 'Successful', 'ETH', 'ERC20', 'Dollar', 0.49284515, 1394094.22, 0.49284515, 0.49284515, '2025-05-05 15:11:00', NULL, 'Cancel', 2, 1566.40, 1599.03, 20.00),
+-- (94, '541922', 'Successful', 'USDT', 'BEP20', 'Dollar', 3.26000000, 5000.00, 0.32207000, 3.26000000, '2025-06-30 16:37:00', 39, 'Claimed', 1, 1566.43, 1580.00, 15.00),
+-- (95, '169917', 'Successful', 'USDT', 'BEP20', 'Dollar', 3.26000000, 5000.00, 0.32207000, 3.26000000, '2025-06-30 16:37:00', 16, 'Claimed', 1, 1566.43, 1580.00, 15.00),
+-- (96, '830011', 'Successful', 'USDT', 'BEP20', 'Dollar', 3.26000000, 5000.00, 0.32207000, 3.26000000, '2025-06-30 16:37:00', 29, 'Claimed', 1, 1566.43, 1580.00, 15.00),
+-- (97, '359132', 'Successful', 'USDT', 'BEP20', 'Dollar', 3.26000000, 5000.00, 0.32207000, 3.26000000, '2025-06-30 16:37:00', 4, 'Claimed', 1, 1566.43, 1580.00, 15.00),
+-- (98, '959322', 'Successful', 'USDT', 'BEP20', 'Dollar', 3.26000000, 5000.00, 0.32207000, 3.26000000, '2025-06-30 16:37:00', 3, 'Claimed', 1, 1566.43, 1580.00, 15.00),
+-- (99, '115993', 'Successful', 'USDT', 'BEP20', 'Dollar', 3.26000000, 5000.00, 0.32207000, 3.26000000, '2025-06-30 16:37:00', 40, 'Claimed', 1, 1566.43, 1580.00, 15.00),
+-- (100, '836039', 'Successful', 'USDT', 'BEP20', 'Dollar', 3.26000000, 5000.00, 0.32207000, 3.26000000, '2025-06-30 16:37:00', 27, 'Claimed', 1, 1566.43, 1580.00, 15.00),
+-- (101, '347756', 'Successful', 'USDT', 'BEP20', 'Dollar', 3.26000000, 5000.00, 0.32207000, 3.26000000, '2025-06-30 16:37:00', 29, 'Claimed', 1, 1566.43, 1580.00, 15.00),
+-- (102, '167703', 'Successful', 'USDT', 'BEP20', 'Dollar', 3.26000000, 5000.00, 0.32207000, 3.26000000, '2025-06-30 16:37:00', 27, 'Claimed', 1, 1566.43, 1580.00, 15.00),
+-- (103, '173970', 'Successful', 'USDT', 'BEP20', 'Dollar', 3.26000000, 5000.00, 0.32207000, 3.26000000, '2025-06-30 16:37:00', 41, 'Claimed', 1, 1566.43, 1580.00, 15.00),
+-- (104, '665252', 'Successful', 'USDT', 'BEP20', 'Dollar', 1.96000000, 3000.00, 0.32207000, 1.96000000, '2025-06-30 16:41:00', 17, 'Claimed', 1, 1566.43, 1580.00, 15.00),
+-- (105, '413986', 'Successful', 'USDT', 'BEP20', 'Dollar', 1.96000000, 3000.00, 0.32207000, 1.96000000, '2025-06-30 16:41:00', 16, 'Claimed', 1, 1566.43, 1580.00, 15.00),
+-- (106, '965595', 'Successful', 'USDT', 'BEP20', 'Dollar', 1.96000000, 3000.00, 0.32207000, 1.96000000, '2025-06-30 16:41:00', NULL, 'Not claimed', 1, 1566.43, 1580.00, 15.00),
+-- (107, '677453', 'Successful', 'USDT', 'BEP20', 'Dollar', 1.96000000, 3000.00, 0.32207000, 1.96000000, '2025-06-30 16:41:00', NULL, 'Not claimed', 1, 1566.43, 1580.00, 15.00),
+-- (108, '873869', 'Successful', 'USDT', 'BEP20', 'Dollar', 1.96000000, 3000.00, 0.32207000, 1.96000000, '2025-06-30 16:41:00', NULL, 'Not claimed', 1, 1566.43, 1580.00, 15.00),
+-- (109, '959005', 'Successful', 'USDT', 'BEP20', 'Dollar', 1.96000000, 3000.00, 0.32207000, 1.96000000, '2025-06-30 16:41:00', NULL, 'Not claimed', 1, 1566.43, 1580.00, 15.00),
+-- (110, '330396', 'Successful', 'USDT', 'BEP20', 'Dollar', 1.96000000, 3000.00, 0.32207000, 1.96000000, '2025-06-30 16:41:00', NULL, 'Not claimed', 1, 1566.43, 1580.00, 15.00),
+-- (111, '785022', 'Successful', 'USDT', 'BEP20', 'Dollar', 1.96000000, 3000.00, 0.32207000, 1.96000000, '2025-06-30 16:41:00', NULL, 'Not claimed', 1, 1566.43, 1580.00, 15.00),
+-- (112, '968541', 'Successful', 'USDT', 'BEP20', 'Dollar', 1.96000000, 3000.00, 0.32207000, 1.96000000, '2025-06-30 16:41:00', NULL, 'Not claimed', 1, 1566.43, 1580.00, 15.00),
+-- (113, '904446', 'Successful', 'USDT', 'BEP20', 'Dollar', 1.96000000, 3000.00, 0.32207000, 1.96000000, '2025-06-30 16:41:00', NULL, 'Not claimed', 1, 1566.43, 1580.00, 15.00),
+-- (114, '341088', 'Successful', 'USDT', 'BEP20', 'Dollar', 1.63000000, 2500.00, 0.32207000, 1.63000000, '2025-06-30 16:48:00', 29, 'Claimed', 1, 1566.43, 1580.00, 15.00),
+-- (115, '926933', 'Successful', 'USDT', 'BEP20', 'Dollar', 1.63000000, 2500.00, 0.32207000, 1.63000000, '2025-06-30 16:48:00', 42, 'Claimed', 1, 1566.43, 1580.00, 15.00),
+-- (116, '231241', 'Successful', 'USDT', 'BEP20', 'Dollar', 1.63000000, 2500.00, 0.32207000, 1.63000000, '2025-06-30 16:48:00', 41, 'Claimed', 1, 1566.43, 1580.00, 15.00),
+-- (117, '269574', 'Successful', 'USDT', 'BEP20', 'Dollar', 1.63000000, 2500.00, 0.32207000, 1.63000000, '2025-06-30 16:48:00', 17, 'Claimed', 1, 1566.43, 1580.00, 15.00),
+-- (118, '987551', 'Successful', 'USDT', 'BEP20', 'Dollar', 1.63000000, 2500.00, 0.32207000, 1.63000000, '2025-06-30 16:48:00', 43, 'Claimed', 1, 1566.43, 1580.00, 15.00),
+-- (119, '310374', 'Successful', 'USDT', 'BEP20', 'Dollar', 1.63000000, 2500.00, 0.32207000, 1.63000000, '2025-06-30 16:48:00', NULL, 'Not claimed', 1, 1566.43, 1580.00, 15.00),
+-- (120, '173942', 'Successful', 'USDT', 'BEP20', 'Dollar', 1.63000000, 2500.00, 0.32207000, 1.63000000, '2025-06-30 16:48:00', NULL, 'Not claimed', 1, 1566.43, 1580.00, 15.00),
+-- (121, '222906', 'Successful', 'USDT', 'BEP20', 'Dollar', 1.63000000, 2500.00, 0.32207000, 1.63000000, '2025-06-30 16:48:00', NULL, 'Not claimed', 1, 1566.43, 1580.00, 15.00),
+-- (122, '627357', 'Successful', 'USDT', 'BEP20', 'Dollar', 1.63000000, 2500.00, 0.32207000, 1.63000000, '2025-06-30 16:48:00', NULL, 'Not claimed', 1, 1566.43, 1580.00, 15.00),
+-- (123, '288930', 'Successful', 'USDT', 'BEP20', 'Dollar', 1.63000000, 2500.00, 0.32207000, 1.63000000, '2025-06-30 16:48:00', 24, 'Claimed', 1, 1566.43, 1580.00, 15.00),
+-- (124, '828330', 'Successful', 'USDT', 'BEP20', 'Dollar', 6.64000000, 10000.00, 0.32207000, 6.64000000, '2025-07-14 10:50:00', 16, 'Claimed', 1, 1566.43, 1580.00, 15.00),
+-- (125, '895946', 'Successful', 'USDT', 'BEP20', 'Dollar', 6.64000000, 10000.00, 0.32207000, 6.64000000, '2025-07-14 10:50:00', 4, 'Claimed', 1, 1566.43, 1580.00, 15.00),
+-- (126, '108704', 'Successful', 'USDT', 'BEP20', 'Dollar', 6.64000000, 10000.00, 0.32207000, 6.64000000, '2025-07-14 10:50:00', 33, 'Claimed', 1, 1566.43, 1580.00, 15.00),
+-- (127, '723409', 'Successful', 'USDT', 'BEP20', 'Dollar', 6.64000000, 10000.00, 0.32207000, 6.64000000, '2025-07-14 10:50:00', 15, 'Claimed', 1, 1566.43, 1580.00, 15.00),
+-- (128, '178104', 'Successful', 'USDT', 'BEP20', 'Dollar', 6.64000000, 10000.00, 0.32207000, 6.64000000, '2025-07-14 10:50:00', 42, 'Claimed', 1, 1566.43, 1580.00, 15.00),
+-- (129, '603160', 'Successful', 'USDT', 'BEP20', 'Dollar', 6.64000000, 10000.00, 0.32207000, 6.64000000, '2025-07-14 10:50:00', 44, 'Claimed', 1, 1566.43, 1580.00, 15.00),
+-- (130, '344932', 'Successful', 'USDT', 'BEP20', 'Dollar', 6.64000000, 10000.00, 0.32207000, 6.64000000, '2025-07-14 10:50:00', 45, 'Claimed', 1, 1566.43, 1580.00, 15.00),
+-- (131, '769064', 'Successful', 'USDT', 'BEP20', 'Dollar', 6.64000000, 10000.00, 0.32207000, 6.64000000, '2025-07-14 10:50:00', 46, 'Claimed', 1, 1566.43, 1580.00, 15.00),
+-- (132, '937660', 'Successful', 'USDT', 'BEP20', 'Dollar', 6.64000000, 10000.00, 0.32207000, 6.64000000, '2025-07-14 10:50:00', 47, 'Claimed', 1, 1566.43, 1580.00, 15.00),
+-- (133, '386126', 'Successful', 'USDT', 'BEP20', 'Dollar', 6.64000000, 10000.00, 0.32207000, 6.64000000, '2025-07-14 10:50:00', 48, 'Claimed', 1, 1566.43, 1580.00, 15.00),
+-- (134, '224493', 'Successful', 'USDT', 'BEP20', 'Dollar', 6.64000000, 10000.00, 0.32207000, 6.64000000, '2025-07-14 11:58:00', 3, 'Claimed', 1, 1566.43, 1580.00, 15.00),
+-- (135, '152278', 'Successful', 'USDT', 'BEP20', 'Dollar', 6.64000000, 10000.00, 0.32207000, 6.64000000, '2025-07-14 11:58:00', 17, 'Claimed', 1, 1566.43, 1580.00, 15.00),
+-- (136, '288692', 'Successful', 'USDT', 'BEP20', 'Dollar', 6.64000000, 10000.00, 0.32207000, 6.64000000, '2025-07-14 11:58:00', NULL, 'Not claimed', 1, 1566.43, 1580.00, 15.00),
+-- (137, '469792', 'Successful', 'USDT', 'BEP20', 'Dollar', 6.64000000, 10000.00, 0.32207000, 6.64000000, '2025-07-14 11:58:00', 49, 'Claimed', 1, 1566.43, 1580.00, 15.00),
+-- (138, '722754', 'Successful', 'USDT', 'BEP20', 'Dollar', 6.64000000, 10000.00, 0.32207000, 6.64000000, '2025-07-14 11:58:00', 28, 'Claimed', 1, 1566.43, 1580.00, 15.00),
+-- (139, '497404', 'Successful', 'USDT', 'BEP20', 'Dollar', 6.64000000, 10000.00, 0.32207000, 6.64000000, '2025-07-14 11:58:00', 50, 'Claimed', 1, 1566.43, 1580.00, 15.00),
+-- (140, '572806', 'Successful', 'USDT', 'BEP20', 'Dollar', 6.64000000, 10000.00, 0.32207000, 6.64000000, '2025-07-14 13:35:00', NULL, 'Not claimed', 1, 1566.43, 1580.00, 15.00),
+-- (141, '695037', 'Successful', 'USDT', 'BEP20', 'Dollar', 6.64000000, 10000.00, 0.32207000, 6.64000000, '2025-07-14 13:36:00', NULL, 'Not claimed', 1, 1566.43, 1580.00, 15.00),
+-- (142, '970481', 'Successful', 'USDT', 'BEP20', 'Dollar', 6.64000000, 10000.00, 0.32207000, 6.64000000, '2025-07-14 13:36:00', NULL, 'Not claimed', 1, 1566.43, 1580.00, 15.00),
+-- (143, '867202', 'Successful', 'USDT', 'BEP20', 'Dollar', 6.64000000, 10000.00, 0.32207000, 6.64000000, '2025-07-14 13:36:00', NULL, 'Not claimed', 1, 1566.43, 1580.00, 15.00),
+-- (144, '785285', 'Successful', 'USDT', 'BEP20', 'Dollar', 6.64000000, 10000.00, 0.32207000, 6.64000000, '2025-07-14 13:36:00', NULL, 'Not claimed', 1, 1566.43, 1580.00, 15.00),
+-- (145, '946749', 'Successful', 'USDT', 'BEP20', 'Dollar', 6.64000000, 10000.00, 0.32207000, 6.64000000, '2025-07-14 13:36:00', NULL, 'Not claimed', 1, 1566.43, 1580.00, 15.00),
+-- (146, '553946', 'Successful', 'USDT', 'BEP20', 'Dollar', 6.64000000, 10000.00, 0.32207000, 6.64000000, '2025-07-14 13:36:00', NULL, 'Not claimed', 1, 1566.43, 1580.00, 15.00),
+-- (147, '534671', 'Successful', 'USDT', 'BEP20', 'Dollar', 6.64000000, 10000.00, 0.32207000, 6.64000000, '2025-07-14 13:36:00', NULL, 'Not claimed', 1, 1566.43, 1580.00, 15.00),
+-- (148, '911344', 'Successful', 'USDT', 'BEP20', 'Dollar', 6.64000000, 10000.00, 0.32207000, 6.64000000, '2025-07-14 13:36:00', NULL, 'Not claimed', 1, 1566.43, 1580.00, 15.00),
+-- (149, '847300', 'Successful', 'USDT', 'BEP20', 'Dollar', 6.64000000, 10000.00, 0.32207000, 6.64000000, '2025-07-14 13:36:00', NULL, 'Not claimed', 1, 1566.43, 1580.00, 15.00),
+-- (150, '663929', 'Successful', 'USDT', 'BEP20', 'Dollar', 6.64000000, 10000.00, 0.32207000, 6.64000000, '2025-07-14 13:36:00', 51, 'Claimed', 1, 1566.43, 1580.00, 15.00),
+-- (151, '479640', 'Successful', 'USDT', 'BEP20', 'Dollar', 3.33000000, 5000.00, 0.32207000, 3.33000000, '2025-08-11 11:53:00', 28, 'Claimed', 1, 1566.43, 1580.00, 15.00),
+-- (152, '203289', 'Successful', 'USDT', 'BEP20', 'Dollar', 3.33000000, 5000.00, 0.32207000, 3.33000000, '2025-08-11 11:53:00', 29, 'Claimed', 1, 1566.43, 1580.00, 15.00),
+-- (153, '109970', 'Successful', 'USDT', 'BEP20', 'Dollar', 3.33000000, 5000.00, 0.32207000, 3.33000000, '2025-08-11 11:53:00', 52, 'Claimed', 1, 1566.43, 1580.00, 15.00),
+-- (154, '294832', 'Successful', 'USDT', 'BEP20', 'Dollar', 3.33000000, 5000.00, 0.32207000, 3.33000000, '2025-08-11 11:53:00', 29, 'Claimed', 1, 1566.43, 1580.00, 15.00),
+-- (155, '748810', 'Successful', 'USDT', 'BEP20', 'Dollar', 3.33000000, 5000.00, 0.32207000, 3.33000000, '2025-08-11 11:53:00', 3, 'Claimed', 1, 1566.43, 1580.00, 15.00),
+-- (156, '904728', 'Successful', 'USDT', 'BEP20', 'Dollar', 3.33000000, 5000.00, 0.32207000, 3.33000000, '2025-08-11 11:53:00', 29, 'Claimed', 1, 1566.43, 1580.00, 15.00),
+-- (157, '705350', 'Successful', 'USDT', 'BEP20', 'Dollar', 3.33000000, 5000.00, 0.32207000, 3.33000000, '2025-08-11 11:53:00', 17, 'Claimed', 1, 1566.43, 1580.00, 15.00),
+-- (158, '856450', 'Successful', 'USDT', 'BEP20', 'Dollar', 3.33000000, 5000.00, 0.32207000, 3.33000000, '2025-08-11 11:53:00', 52, 'Claimed', 1, 1566.43, 1580.00, 15.00),
+-- (159, '668304', 'Successful', 'USDT', 'BEP20', 'Dollar', 3.33000000, 5000.00, 0.32207000, 3.33000000, '2025-08-11 11:53:00', 27, 'Claimed', 1, 1566.43, 1580.00, 15.00),
+-- (160, '181335', 'Successful', 'USDT', 'BEP20', 'Dollar', 3.33000000, 5000.00, 0.32207000, 3.33000000, '2025-08-11 11:53:00', NULL, 'Not claimed', 1, 1566.43, 1580.00, 15.00),
+-- (161, '163731', 'Successful', 'USDT', 'BEP20', 'Dollar', 3.33000000, 5000.00, 0.32207000, 3.33000000, '2025-08-11 11:53:00', 52, 'Claimed', 1, 1566.43, 1580.00, 15.00),
+-- (162, '367938', 'Successful', 'USDT', 'BEP20', 'Dollar', 3.33000000, 5000.00, 0.32207000, 3.33000000, '2025-08-11 11:53:00', 53, 'Claimed', 1, 1566.43, 1580.00, 15.00),
+-- (163, '438904', 'Successful', 'USDT', 'BEP20', 'Dollar', 3.33000000, 5000.00, 0.32207000, 3.33000000, '2025-08-11 11:53:00', NULL, 'Not claimed', 1, 1566.43, 1580.00, 15.00),
+-- (164, '853158', 'Successful', 'USDT', 'BEP20', 'Dollar', 3.33000000, 5000.00, 0.32207000, 3.33000000, '2025-08-11 11:53:00', 29, 'Claimed', 1, 1566.43, 1580.00, 15.00),
+-- (165, '932835', 'Successful', 'USDT', 'BEP20', 'Dollar', 3.33000000, 5000.00, 0.32207000, 3.33000000, '2025-08-11 11:53:00', 46, 'Claimed', 1, 1566.43, 1580.00, 15.00),
+-- (166, '935763', 'Successful', 'USDT', 'BEP20', 'Dollar', 3.33000000, 5000.00, 0.32207000, 3.33000000, '2025-08-11 11:53:00', 27, 'Claimed', 1, 1566.43, 1580.00, 15.00),
+-- (167, '473481', 'Successful', 'USDT', 'BEP20', 'Dollar', 3.33000000, 5000.00, 0.32207000, 3.33000000, '2025-08-11 11:53:00', 53, 'Claimed', 1, 1566.43, 1580.00, 15.00),
+-- (168, '230897', 'Successful', 'USDT', 'BEP20', 'Dollar', 3.33000000, 5000.00, 0.32207000, 3.33000000, '2025-08-11 11:53:00', 29, 'Claimed', 1, 1566.43, 1580.00, 15.00),
+-- (169, '238940', 'Successful', 'USDT', 'BEP20', 'Dollar', 3.33000000, 5000.00, 0.32207000, 3.33000000, '2025-08-11 11:53:00', 52, 'Claimed', 1, 1566.43, 1580.00, 15.00),
+-- (170, '111268', 'Successful', 'USDT', 'BEP20', 'Dollar', 3.33000000, 5000.00, 0.32207000, 3.33000000, '2025-08-11 11:53:00', NULL, 'Not claimed', 1, 1566.43, 1580.00, 15.00),
+-- (171, '258684', 'Successful', 'USDT', 'BEP20', 'Dollar', 3.33000000, 5000.00, 0.32207000, 3.33000000, '2025-08-11 11:53:00', NULL, 'Not claimed', 1, 1566.43, 1580.00, 15.00),
+-- (172, '592182', 'Successful', 'USDT', 'BEP20', 'Dollar', 3.33000000, 5000.00, 0.32207000, 3.33000000, '2025-08-11 11:53:00', NULL, 'Not claimed', 1, 1566.43, 1580.00, 15.00),
+-- (173, '245660', 'Successful', 'USDT', 'BEP20', 'Dollar', 3.33000000, 5000.00, 0.32207000, 3.33000000, '2025-08-11 11:53:00', NULL, 'Not claimed', 1, 1566.43, 1580.00, 15.00),
+-- (174, '600460', 'Successful', 'USDT', 'BEP20', 'Dollar', 3.33000000, 5000.00, 0.32207000, 3.33000000, '2025-08-11 11:53:00', NULL, 'Not claimed', 1, 1566.43, 1580.00, 15.00),
+-- (175, '933494', 'Successful', 'USDT', 'BEP20', 'Dollar', 3.33000000, 5000.00, 0.32207000, 3.33000000, '2025-08-11 11:53:00', NULL, 'Not claimed', 1, 1566.43, 1580.00, 15.00),
+-- (176, '443067', 'Successful', 'USDT', 'BEP20', 'Dollar', 3.33000000, 5000.00, 0.32207000, 3.33000000, '2025-08-11 11:53:00', 45, 'Claimed', 1, 1566.43, 1580.00, 15.00),
+-- (177, '177482', 'Successful', 'USDT', 'BEP20', 'Dollar', 3.33000000, 5000.00, 0.32207000, 3.33000000, '2025-08-11 11:53:00', 47, 'Claimed', 1, 1566.43, 1580.00, 15.00),
+-- (178, '573813', 'Successful', 'USDT', 'BEP20', 'Dollar', 3.33000000, 5000.00, 0.32207000, 3.33000000, '2025-08-11 11:53:00', 4, 'Claimed', 1, 1566.43, 1580.00, 15.00),
+-- (179, '460682', 'Successful', 'USDT', 'BEP20', 'Dollar', 3.33000000, 5000.00, 0.32207000, 3.33000000, '2025-08-11 11:53:00', 53, 'Claimed', 1, 1566.43, 1580.00, 15.00),
+-- (180, '573849', 'Successful', 'USDT', 'BEP20', 'Dollar', 3.33000000, 5000.00, 0.32207000, 3.33000000, '2025-08-11 11:53:00', 47, 'Claimed', 1, 1566.43, 1580.00, 15.00);
+
+
+-- -- --------------------------------------------------------
+
+-- --
+-- -- Table structure for table `notifications`
+-- --
+
+-- CREATE TABLE `notifications` (
+--   `id` int NOT NULL,
+--   `summary_id` int DEFAULT NULL,
+--   `endpoint` text,
+--   `auth` text,
+--   `p256dh` text,
+--   `expirationTime` datetime DEFAULT NULL,
+--   `status` varchar(50) DEFAULT NULL,
+--   `sent_at` datetime DEFAULT NULL
+-- ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- -- --------------------------------------------------------
+
+-- --
+-- -- Table structure for table `rates`
+-- --
+
+-- CREATE TABLE `rates` (
+--   `id` int NOT NULL,
+--   `current_rate` decimal(10,2) NOT NULL,
+--   `merchant_rate` decimal(10,2) NOT NULL,
+--   `profit_rate` decimal(10,2) NOT NULL,
+--   `update_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+-- ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- --
+-- -- Dumping data for table `rates`
+-- --
+
+-- INSERT INTO `rates` (`id`, `current_rate`, `merchant_rate`, `profit_rate`, `update_at`) VALUES
+-- (1, 1448.55, 1468.55, 20.00, '2025-11-26 13:01:39');
+
+-- -- --------------------------------------------------------
+-- --
+-- -- Table structure for table `referrals`
+-- --
+
+-- CREATE TABLE `referrals` (
+--   `id` int NOT NULL,
+--   `name` varchar(50) DEFAULT NULL,
+--   `ref_code` varchar(50) DEFAULT NULL,
+--   `responsibility` varchar(50) DEFAULT NULL,
+--   `category` varchar(50) DEFAULT NULL,
+--   `commission` varchar(50) DEFAULT NULL,
+--   `phone` varchar(50) DEFAULT NULL,
+--   `claims` varchar(50) DEFAULT NULL
+-- ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- -- --------------------------------------------------------
+
+-- --
+-- -- Table structure for table `reported`
+-- --
+
+-- CREATE TABLE `reported` (
+--   `id` int NOT NULL,
+--   `wallet` varchar(50) DEFAULT NULL,
+--   `count` int DEFAULT NULL,
+--   `reporter_id` int DEFAULT NULL
+-- ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- -- --------------------------------------------------------
+
+-- --
+-- -- Table structure for table `requests`
+-- --
+
+-- CREATE TABLE `requests` (
+--   `id` int NOT NULL,
+--   `request_id` varchar(50) DEFAULT NULL,
+--   `request_status` varchar(50) DEFAULT NULL,
+--   `crypto` varchar(50) DEFAULT NULL,
+--   `network` varchar(50) DEFAULT NULL,
+--   `estimate_asset` varchar(50) DEFAULT NULL,
+--   `estimate_amount` decimal(13,8) DEFAULT NULL,
+--   `amount_payable` decimal(11,2) DEFAULT NULL,
+--   `charges` decimal(13,8) DEFAULT NULL,
+--   `crypto_amount` decimal(13,8) DEFAULT NULL,
+--   `date` datetime DEFAULT NULL,
+--   `receiver_id` int DEFAULT NULL,
+--   `payer_id` int DEFAULT NULL
+-- ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- -- --------------------------------------------------------
+
+-- --
+-- -- Table structure for table `summaries`
+-- --
+
+-- CREATE TABLE `summaries` (
+--   `id` int NOT NULL,
+--   `transaction_type` varchar(50) DEFAULT NULL,
+--   `total_dollar` decimal(10,2) DEFAULT NULL,
+--   `settle_date` datetime DEFAULT NULL,
+--   `transaction_id` varchar(50) DEFAULT NULL,
+--   `total_naira` decimal(11,2) DEFAULT NULL,
+--   `effort` decimal(10,2) DEFAULT NULL,
+--   `merchant_id` int DEFAULT NULL
+-- ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- --
+-- -- Dumping data for table `summaries`
+-- --
+
+-- INSERT INTO `summaries` (`id`, `transaction_type`, `total_dollar`, `settle_date`, `transaction_id`, `total_naira`, `effort`, `merchant_id`) VALUES
+-- (1, 'gift', 0.01, NULL, '1', 10.00, NULL, NULL),
+-- (2, 'gift', 9.68, NULL, '2', 15055.40, NULL, NULL),
+-- (3, 'gift', 7.68, NULL, '3', 11944.32, NULL, NULL),
+-- (4, 'gift', 9.68, NULL, '4', 15055.40, NULL, NULL),
+-- (5, 'gift', 9.68, NULL, '5', 15055.40, NULL, NULL),
+-- (6, 'gift', 7.68, NULL, '6', 11944.32, NULL, NULL),
+-- (7, 'gift', 5.68, NULL, '7', 8833.24, NULL, NULL),
+-- (8, 'gift', 7.68, NULL, '8', 11944.32, NULL, NULL),
+-- (9, 'gift', 7.68, NULL, '9', 11944.32, NULL, NULL),
+-- (10, 'gift', 7.68, NULL, '10', 11944.32, NULL, NULL),
+-- (11, 'gift', 7.68, NULL, '11', 11944.32, NULL, NULL),
+-- (12, 'gift', 5.68, NULL, '12', 8833.24, NULL, NULL),
+-- (13, 'gift', 3.68, NULL, '13', 5722.16, NULL, NULL),
+-- (14, 'gift', 3.68, NULL, '14', 5722.16, NULL, NULL),
+-- (15, 'gift', 3.68, NULL, '15', 5722.16, NULL, NULL),
+-- (16, 'gift', 3.68, NULL, '16', 5722.16, NULL, NULL),
+-- (17, 'gift', 3.68, NULL, '17', 5722.16, NULL, NULL),
+-- (18, 'gift', 3.68, NULL, '18', 5722.16, NULL, NULL),
+-- (19, 'gift', 3.68, NULL, '19', 5722.16, NULL, NULL),
+-- (20, 'gift', 5.68, NULL, '20', 8833.24, NULL, NULL),
+-- (21, 'gift', 3.68, NULL, '21', 5722.16, NULL, NULL),
+-- (22, 'gift', 0.06, NULL, '22', 100.32, NULL, NULL),
+-- (23, 'gift', 0.06, NULL, '23', 100.54, NULL, NULL),
+-- (24, 'gift', 0.64, NULL, '24', 1000.78, NULL, NULL),
+-- (25, 'gift', 0.64, NULL, '25', 1000.78, NULL, NULL),
+-- (26, 'gift', 0.64, NULL, '26', 1000.78, NULL, NULL),
+-- (27, 'gift', 0.32, NULL, '27', 500.11, NULL, NULL),
+-- (28, 'gift', 0.32, NULL, '28', 500.11, NULL, NULL),
+-- (29, 'gift', 0.32, NULL, '29', 500.11, NULL, NULL),
+-- (30, 'gift', 0.32, NULL, '30', 500.11, NULL, NULL),
+-- (31, 'gift', 3.71, NULL, '31', 5775.00, NULL, NULL),
+-- (32, 'gift', 3.71, NULL, '32', 5775.00, NULL, NULL),
+-- (33, 'gift', 3.71, NULL, '33', 5775.00, NULL, NULL),
+-- (34, 'gift', 3.71, NULL, '34', 5775.00, NULL, NULL),
+-- (35, 'gift', 3.71, NULL, '35', 5775.00, NULL, NULL),
+-- (36, 'gift', 3.71, NULL, '36', 5775.00, NULL, NULL),
+-- (37, 'gift', 3.71, NULL, '37', 5775.00, NULL, NULL),
+-- (38, 'gift', 483.10, NULL, '38', 750000.00, NULL, NULL),
+-- (39, 'gift', 200.00, NULL, '39', 310496.00, NULL, NULL),
+-- (40, 'gift', 2.25, NULL, '40', 3500.00, NULL, NULL),
+-- (41, 'gift', 38.08, NULL, '41', 60000.00, NULL, NULL),
+-- (42, 'gift', 38.08, NULL, '42', 60000.00, NULL, NULL),
+-- (43, 'gift', 4.95, NULL, '43', 7700.00, NULL, NULL),
+-- (44, 'gift', 3.33, NULL, '44', 5220.00, NULL, NULL),
+-- (45, 'gift', 3.33, NULL, '45', 5220.00, NULL, NULL),
+-- (46, 'gift', 3.33, NULL, '46', 5220.00, NULL, NULL),
+-- (47, 'gift', 0.32, NULL, '47', 500.00, NULL, NULL),
+-- (48, 'gift', 0.32, NULL, '48', 500.00, NULL, NULL),
+-- (49, 'gift', 0.32, NULL, '49', 500.00, NULL, NULL),
+-- (50, 'gift', 0.32, NULL, '50', 500.00, NULL, NULL),
+-- (51, 'gift', 0.64, NULL, '51', 1000.00, NULL, NULL),
+-- (52, 'gift', 0.64, NULL, '52', 1000.00, NULL, NULL),
+-- (53, 'gift', 0.64, NULL, '53', 1000.00, NULL, NULL),
+-- (54, 'gift', 0.64, NULL, '54', 1000.00, NULL, NULL),
+-- (55, 'gift', 0.64, NULL, '55', 1000.00, NULL, NULL),
+-- (56, 'gift', 0.06, NULL, '56', 100.00, NULL, NULL),
+-- (57, 'gift', 0.06, NULL, '57', 100.00, NULL, NULL),
+-- (58, 'gift', 0.06, NULL, '58', 100.00, NULL, NULL),
+-- (59, 'gift', 0.06, NULL, '59', 100.00, NULL, NULL),
+-- (60, 'gift', 15.96, NULL, '60', 25000.00, NULL, NULL),
+-- (61, 'gift', 80.00, NULL, '61', 129055.20, NULL, NULL),
+-- (62, 'gift', 30.00, NULL, '62', 48680.52, NULL, NULL),
+-- (63, 'gift', 60.00, NULL, '63', 97361.04, NULL, NULL),
+-- (64, 'gift', 831.22, NULL, '64', 1348803.46, NULL, NULL),
+-- (65, 'gift', 11.72, NULL, '65', 20000.00, NULL, NULL),
+-- (66, 'gift', 14.63, NULL, '66', 25000.00, NULL, NULL),
+-- (67, 'gift', 0.39, NULL, '67', 599.00, NULL, NULL),
+-- (68, 'gift', 3.30, NULL, '68', 5000.00, NULL, NULL),
+-- (69, 'gift', 3.30, NULL, '69', 5000.00, NULL, NULL),
+-- (70, 'gift', 3.30, NULL, '70', 5000.00, NULL, NULL),
+-- (71, 'gift', 3.30, NULL, '71', 5000.00, NULL, NULL),
+-- (72, 'gift', 3.30, NULL, '72', 5000.00, NULL, NULL),
+-- (73, 'gift', 3.30, NULL, '73', 5000.00, NULL, NULL),
+-- (74, 'gift', 1.65, NULL, '74', 2500.00, NULL, NULL),
+-- (75, 'gift', 1.65, NULL, '75', 2500.00, NULL, NULL),
+-- (76, 'gift', 1.65, NULL, '76', 2500.00, NULL, NULL),
+-- (77, 'gift', 1.65, NULL, '77', 2500.00, NULL, NULL),
+-- (78, 'gift', 1.65, NULL, '78', 2500.00, NULL, NULL),
+-- (79, 'gift', 1.65, NULL, '79', 2500.00, NULL, NULL),
+-- (80, 'gift', 1.65, NULL, '80', 2500.00, NULL, NULL),
+-- (81, 'gift', 1.65, NULL, '81', 2500.00, NULL, NULL),
+-- (82, 'gift', 1.65, NULL, '82', 2500.00, NULL, NULL),
+-- (83, 'gift', 1.63, NULL, '83', 2500.00, NULL, NULL),
+-- (84, 'gift', 1.63, NULL, '84', 2500.00, NULL, NULL),
+-- (85, 'gift', 6.52, NULL, '85', 10000.00, NULL, NULL),
+-- (86, 'gift', 3.26, NULL, '86', 5000.00, NULL, NULL),
+-- (87, 'gift', 3.26, NULL, '87', 5000.00, NULL, NULL),
+-- (88, 'gift', 3.26, NULL, '88', 5000.00, NULL, NULL),
+-- (89, 'gift', 3.26, NULL, '89', 5000.00, NULL, NULL),
+-- (90, 'gift', 3.26, NULL, '90', 5000.00, NULL, NULL),
+-- (91, 'gift', 591.00, NULL, '91', 904617.70, NULL, NULL),
+-- (92, 'gift', 60.00, NULL, '92', 90828.72, NULL, NULL),
+-- (93, 'gift', 890.00, NULL, '93', 1394094.22, NULL, NULL),
+-- (94, 'gift', 3.19, NULL, '94', 5000.00, NULL, NULL),
+-- (95, 'gift', 3.19, NULL, '95', 5000.00, NULL, NULL),
+-- (96, 'gift', 3.19, NULL, '96', 5000.00, NULL, NULL),
+-- (97, 'gift', 3.19, NULL, '97', 5000.00, NULL, NULL),
+-- (98, 'gift', 3.19, NULL, '98', 5000.00, NULL, NULL),
+-- (99, 'gift', 3.19, NULL, '99', 5000.00, NULL, NULL),
+-- (100, 'gift', 3.19, NULL, '100', 5000.00, NULL, NULL),
+-- (101, 'gift', 3.19, NULL, '101', 5000.00, NULL, NULL),
+-- (102, 'gift', 3.19, NULL, '102', 5000.00, NULL, NULL),
+-- (103, 'gift', 3.19, NULL, '103', 5000.00, NULL, NULL),
+-- (104, 'gift', 1.92, NULL, '104', 3000.00, NULL, NULL),
+-- (105, 'gift', 1.92, NULL, '105', 3000.00, NULL, NULL),
+-- (106, 'gift', 1.92, NULL, '106', 3000.00, NULL, NULL),
+-- (107, 'gift', 1.92, NULL, '107', 3000.00, NULL, NULL),
+-- (108, 'gift', 1.92, NULL, '108', 3000.00, NULL, NULL),
+-- (109, 'gift', 1.92, NULL, '109', 3000.00, NULL, NULL),
+-- (110, 'gift', 1.92, NULL, '110', 3000.00, NULL, NULL),
+-- (111, 'gift', 1.92, NULL, '111', 3000.00, NULL, NULL),
+-- (112, 'gift', 1.92, NULL, '112', 3000.00, NULL, NULL),
+-- (113, 'gift', 1.92, NULL, '113', 3000.00, NULL, NULL),
+-- (114, 'gift', 1.60, NULL, '114', 2500.00, NULL, NULL),
+-- (115, 'gift', 1.60, NULL, '115', 2500.00, NULL, NULL),
+-- (116, 'gift', 1.60, NULL, '116', 2500.00, NULL, NULL),
+-- (117, 'gift', 1.60, NULL, '117', 2500.00, NULL, NULL),
+-- (118, 'gift', 1.60, NULL, '118', 2500.00, NULL, NULL),
+-- (119, 'gift', 1.60, NULL, '119', 2500.00, NULL, NULL),
+-- (120, 'gift', 1.60, NULL, '120', 2500.00, NULL, NULL),
+-- (121, 'gift', 1.60, NULL, '121', 2500.00, NULL, NULL),
+-- (122, 'gift', 1.60, NULL, '122', 2500.00, NULL, NULL),
+-- (123, 'gift', 1.60, NULL, '123', 2500.00, NULL, NULL),
+-- (124, 'gift', 6.38, NULL, '124', 10000.00, NULL, NULL),
+-- (125, 'gift', 6.38, NULL, '125', 10000.00, NULL, NULL),
+-- (126, 'gift', 6.38, NULL, '126', 10000.00, NULL, NULL),
+-- (127, 'gift', 6.38, NULL, '127', 10000.00, NULL, NULL),
+-- (128, 'gift', 6.38, NULL, '128', 10000.00, NULL, NULL),
+-- (129, 'gift', 6.38, NULL, '129', 10000.00, NULL, NULL),
+-- (130, 'gift', 6.38, NULL, '130', 10000.00, NULL, NULL),
+-- (131, 'gift', 6.38, NULL, '131', 10000.00, NULL, NULL),
+-- (132, 'gift', 6.38, NULL, '132', 10000.00, NULL, NULL),
+-- (133, 'gift', 6.38, NULL, '133', 10000.00, NULL, NULL),
+-- (134, 'gift', 6.38, NULL, '134', 10000.00, NULL, NULL),
+-- (135, 'gift', 6.38, NULL, '135', 10000.00, NULL, NULL),
+-- (136, 'gift', 6.38, NULL, '136', 10000.00, NULL, NULL),
+-- (137, 'gift', 6.38, NULL, '137', 10000.00, NULL, NULL),
+-- (138, 'gift', 6.38, NULL, '138', 10000.00, NULL, NULL),
+-- (139, 'gift', 6.38, NULL, '139', 10000.00, NULL, NULL),
+-- (140, 'gift', 6.38, NULL, '140', 10000.00, NULL, NULL),
+-- (141, 'gift', 6.38, NULL, '141', 10000.00, NULL, NULL),
+-- (142, 'gift', 6.38, NULL, '142', 10000.00, NULL, NULL),
+-- (143, 'gift', 6.38, NULL, '143', 10000.00, NULL, NULL),
+-- (144, 'gift', 6.38, NULL, '144', 10000.00, NULL, NULL),
+-- (145, 'gift', 6.38, NULL, '145', 10000.00, NULL, NULL),
+-- (146, 'gift', 6.38, NULL, '146', 10000.00, NULL, NULL),
+-- (147, 'gift', 6.38, NULL, '147', 10000.00, NULL, NULL),
+-- (148, 'gift', 6.38, NULL, '148', 10000.00, NULL, NULL),
+-- (149, 'gift', 6.38, NULL, '149', 10000.00, NULL, NULL),
+-- (150, 'gift', 6.38, NULL, '150', 10000.00, NULL, NULL),
+-- (151, 'gift', 3.19, NULL, '151', 5000.00, NULL, NULL),
+-- (152, 'gift', 3.19, NULL, '152', 5000.00, NULL, NULL),
+-- (153, 'gift', 3.19, NULL, '153', 5000.00, NULL, NULL),
+-- (154, 'gift', 3.19, NULL, '154', 5000.00, NULL, NULL),
+-- (155, 'gift', 3.19, NULL, '155', 5000.00, NULL, NULL),
+-- (156, 'gift', 3.19, NULL, '156', 5000.00, NULL, NULL),
+-- (157, 'gift', 3.19, NULL, '157', 5000.00, NULL, NULL),
+-- (158, 'gift', 3.19, NULL, '158', 5000.00, NULL, NULL),
+-- (159, 'gift', 3.19, NULL, '159', 5000.00, NULL, NULL),
+-- (160, 'gift', 3.19, NULL, '160', 5000.00, NULL, NULL),
+-- (161, 'gift', 3.19, NULL, '161', 5000.00, NULL, NULL),
+-- (162, 'gift', 3.19, NULL, '162', 5000.00, NULL, NULL),
+-- (163, 'gift', 3.19, NULL, '163', 5000.00, NULL, NULL),
+-- (164, 'gift', 3.19, NULL, '164', 5000.00, NULL, NULL),
+-- (165, 'gift', 3.19, NULL, '165', 5000.00, NULL, NULL),
+-- (166, 'gift', 3.19, NULL, '166', 5000.00, NULL, NULL),
+-- (167, 'gift', 3.19, NULL, '167', 5000.00, NULL, NULL),
+-- (168, 'gift', 3.19, NULL, '168', 5000.00, NULL, NULL),
+-- (169, 'gift', 3.19, NULL, '169', 5000.00, NULL, NULL),
+-- (170, 'gift', 3.19, NULL, '170', 5000.00, NULL, NULL),
+-- (171, 'gift', 3.19, NULL, '171', 5000.00, NULL, NULL),
+-- (172, 'gift', 3.19, NULL, '172', 5000.00, NULL, NULL),
+-- (173, 'gift', 3.19, NULL, '173', 5000.00, NULL, NULL),
+-- (174, 'gift', 3.19, NULL, '174', 5000.00, NULL, NULL),
+-- (175, 'gift', 3.19, NULL, '175', 5000.00, NULL, NULL),
+-- (176, 'gift', 3.19, NULL, '176', 5000.00, NULL, NULL),
+-- (177, 'gift', 3.19, NULL, '177', 5000.00, NULL, NULL),
+-- (178, 'gift', 3.19, NULL, '178', 5000.00, NULL, NULL),
+-- (179, 'gift', 3.19, NULL, '179', 5000.00, NULL, NULL),
+-- (180, 'gift', 3.19, NULL, '180', 5000.00, NULL, NULL),
+-- (181, 'transfer', 32.65, NULL, '1', 40000.00, NULL, NULL),
+-- (182, 'transfer', 32.65, NULL, '2', 40000.00, NULL, NULL),
+-- (183, 'transfer', 41.71, NULL, '3', 60000.00, NULL, NULL),
+-- (184, 'transfer', 34.76, NULL, '4', 50000.00, NULL, NULL),
+-- (185, 'transfer', 34.76, NULL, '5', 50000.00, NULL, NULL),
+-- (186, 'transfer', 512.27, NULL, '6', 802634.46, NULL, NULL),
+-- (187, 'transfer', 99.34, NULL, '7', 149387.20, NULL, NULL);
+
+-- -- --------------------------------------------------------
+
+-- --
+-- -- Table structure for table `transfers`
+-- --
+
+-- CREATE TABLE `transfers` (
+--   `id` int NOT NULL,
+--   `crypto` varchar(50) DEFAULT NULL,
+--   `network` varchar(50) DEFAULT NULL,
+--   `estimate_asset` varchar(50) DEFAULT NULL,
+--   `amount_payable` decimal(11,2) DEFAULT NULL,
+--   `crypto_amount` decimal(13,8) DEFAULT NULL,
+--   `charges` decimal(13,8) DEFAULT NULL,
+--   `date` datetime DEFAULT NULL,
+--   `transfer_id` varchar(50) DEFAULT NULL,
+--   `status` varchar(50) DEFAULT NULL,
+--   `receiver_id` int DEFAULT NULL,
+--   `payer_id` int DEFAULT NULL,
+--   `current_rate` decimal(7,2) DEFAULT NULL,
+--   `merchant_rate` decimal(7,2) DEFAULT NULL,
+--   `profit_rate` decimal(7,2) DEFAULT NULL,
+--   `estimate_amount` decimal(13,8) DEFAULT NULL
+-- ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- --
+-- -- Dumping data for table `transfers`
+-- --
+
+-- INSERT INTO `transfers` (`id`, `crypto`, `network`, `estimate_asset`, `amount_payable`, `crypto_amount`, `charges`, `date`, `transfer_id`, `status`, `receiver_id`, `payer_id`, `current_rate`, `merchant_rate`, `profit_rate`, `estimate_amount`) VALUES
+-- (1, 'USDT', 'BEP20', 'Naira', 40000.00, 33.05800000, 0.40812000, '2024-04-25 10:27:00', '394849', 'Successful', 30, 5, 1225.12, 1245.00, 10.00, 40000.00000000),
+-- (2, 'USDT', 'BEP20', 'Naira', 40000.00, 33.05800000, 0.40812000, '2024-04-29 13:55:00', '493093', 'Successful', 26, 5, 1225.12, 1245.00, 10.00, 40000.00000000),
+-- (3, 'USDT', 'BEP20', 'Naira', 60000.00, 42.06100000, 0.34761000, '2024-06-05 09:46:00', '178121', 'Successful', 26, 5, 1438.40, 1460.00, 10.00, 60000.00000000),
+-- (4, 'USDT', 'BEP20', 'Naira', 50000.00, 35.10800000, 0.34761000, '2024-06-06 12:03:00', '249319', 'Successful', 54, 6, 1438.40, 1460.00, 10.00, 50000.00000000),
+-- (5, 'USDT', 'BEP20', 'Naira', 50000.00, 35.10800000, 0.34761000, '2024-06-07 17:15:00', '760305', 'Successful', 26, 5, 1438.40, 1460.00, 10.00, 50000.00000000),
+-- (6, 'BNB', 'BEP20', 'BNB', 802634.46, 1.00124590, 0.00125000, '2024-09-11 10:30:00', '747567', 'Successful', 55, 7, 1566.82, 1580.00, 15.00, 1.00124590),
+-- (7, 'USDT', 'TRC20', 'Dollar', 149387.20, 100.00000000, 0.66495000, '2025-07-11 13:27:00', '837365', 'Successful', 41, 9, 1503.87, 1536.00, 20.00, 100.00000000);
+
+-- -- --------------------------------------------------------
+
+-- --
+-- -- Table structure for table `wallets`
+-- --
+
+-- CREATE TABLE `wallets` (
+--   `id` int NOT NULL,
+--   `bitcoin` varchar(80) DEFAULT NULL,
+--   `bitcoin_private_key` varchar(255) DEFAULT NULL,
+--   `evm` varchar(80) DEFAULT NULL,
+--   `evm_private_key` varchar(255) DEFAULT NULL,
+--   `tron` varchar(80) DEFAULT NULL,
+--   `tron_private_key` varchar(255) DEFAULT NULL,
+--   `bitcoin_flag` tinyint(1) DEFAULT NULL,
+--   `ethereum_flag` tinyint(1) DEFAULT NULL,
+--   `binance_flag` tinyint(1) DEFAULT NULL,
+--   `tron_flag` tinyint(1) DEFAULT NULL,
+--   `erc20_flag` tinyint(1) DEFAULT NULL,
+--   `bep20_flag` tinyint(1) DEFAULT NULL,
+--   `trc20_flag` tinyint(1) DEFAULT NULL
+-- ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- --
+-- -- Dumping data for table `wallets`
+-- --
+
+-- INSERT INTO `wallets` (`id`, `bitcoin`, `bitcoin_private_key`, `evm`, `evm_private_key`, `tron`, `tron_private_key`, `bitcoin_flag`, `ethereum_flag`, `binance_flag`, `tron_flag`, `erc20_flag`, `bep20_flag`, `trc20_flag`) VALUES
+-- (1, '15Ly6cXX1L9Lx4YdF2mz4w73YhniuGmNCT', 'U2FsdGVkX1/VqKokm4rLRAfmJ/hvEFY0GOrqUekjCBzcgAb169HSZDFPuAsX+QbHnyzSN6eXLlB/pnMfChtQulRRIjNY3bo0KjHN7NwQ7EU=', '0xf05065c784cfb6e919d74e85bf7596ef1b4a01c1', 'U2FsdGVkX183gNTuFWup5PkFRD9D8v0YEdTRfbU58f8dLNCrHfqojxFxn5M0d+W8frodlrt0fmRLXUJGSNVefHGP2nW+0w477rP913PwHHUcfzLaXBRtM8b8ojc1AuLL', 'TGTPw1nL4RFERsaMBNJZ2ZrtBh88jkU2Ps', 'U2FsdGVkX1+EA0rOUSERPfrEdW8TZBT4kHhyXyhjpeTymyKiBZNCcEh2i3yQhQpGFe+BCkkFb6ryn7OKbG4EVj5DRj/X3WhrZvGdJN7wSrJCKqnBdFD6o+kbDv6zauc6', 0, 0, 0, 0, 0, 0, 0),
+-- (2, '14FjZi9G3XJAtHjN55NAFjUUQGX6FgWBCQ', 'U2FsdGVkX1+QytxQ8D8zYdBMIRkCjp41V2stAB/91gBmUe46uAg1SfMvV3BlQHDqKM1bQjy2cT5tsHH9x48jP9odOjslGbTKRAkuiWAdxG4=', '0xdd739edfbf7a0635cf9864f54dd6f701688fe8ef', 'U2FsdGVkX18wQP4Emd48UdJamiV8ubzqMtPHYA4SQjkuF7S35ANW23H1rPH42/78+Ts0o8BHK0j0pk9bpT/oaJ5D25KDTvAt3jRgI1vLsS5qCCEEU9ExDkJ8/cA1f+lo', 'TATwTAZCMuvfag3RuK543P8xTadsHDxbXZ', 'U2FsdGVkX1885sJG4n8CAedCAVAjpJ5hP1Mh7Mj3z19OfJoswd7fAIN1NhwUhR93vz1OrCL/Dqxnlj01IQaZb/MUPMRJ/mgi+ZCOlJ2YDre63cRQKFIZcAaDVetPCSAQ', 0, 0, 0, 0, 0, 0, 0),
+-- (3, '1NUfSYgRPvjbVhbiuovKv3GELd1DxctfJB', 'U2FsdGVkX18+1MUpyeB8L6wwrhL+I/LJ17kpdY6ALbOKSrcSHomcpuE+MFWpt+XhaZxBKtJylwghwNIRAi+Hh8miRGc+T/Pb4f9sNu3I5NY=', '0x1142de65e6e2556ea5b840f7c56820111a31374a', 'U2FsdGVkX1/rdaNbWE6uut9GGkPVKHnQuSLdMNuA4JNHmgiuwqZ4sdl4+axtss0OCSGZHmhwqwwH8pwoGAZf0/MygGq7iRXI2NltUbfgrjPqVBE7zWWepATb5KkaO+Gx', 'TYrNjLJzXDNRBeJMQ26qvR6mUjRAGyyo7L', 'U2FsdGVkX18gzO61pWoO23jyrJdKtTCjjhVa1p7EeXjTsPNpONrI4gSxhHnobkmLEb3SDDemYh0MXBcIZ29SK6VQNZjrLFEzrqTSu9KZUh7r18+AL6smh0ec0PdJCbxZ', 0, 0, 0, 0, 0, 0, 0),
+-- (4, '1UNcsXuKSXsnzxYVGTAWyU8E3Qd491Aig', 'U2FsdGVkX1/jZKr7U8yHSZKvk8sXGncXnvyUBZGhNKlJeBB6jcw7WgQJSlL6PnrGqNdvKQE+Br2eiVoCrJfEdEgUbdD5WFTzKxA9SS8afaU=', '0xa7e7bcb88c36532a33d28967f7d4b074efdccdec', 'U2FsdGVkX1/nkNZLXkwpzyUZ4Qb3ruq+xDyN5UN3dRidGyFcTAGAuQIpSe/VnhAOcY3Z+8iC7BZWDI5V1PRmkblMzpTGNuOelZ9LXPRjOpRppKvnO3HbCBIxssTx8NGW', 'TNRpNoZshkbz7TxuLbF3EBYGNHh92wqVXk', 'U2FsdGVkX1/V+SnIlGOA+BGNSI9GvUek7QufwUZNLGk3GXYmYkO0zwQT08S11Wd8G2Gff/T+H0YgqX07uQUErBX6eCxk/IwOB8ytq6L66S1HslVH4BwW8b5YoISD1/zg', 0, 0, 0, 0, 0, 0, 0),
+-- (5, '13R2QJn3NfXU7hqTvsh9t9wMD17y527sML', 'U2FsdGVkX18vM4iERoAoQ4eq+KyRPzbwqmFwCirSeN7msijt/h/JDWtIMfrlOEI5F6VTnMRvjlBCjPFpQB1Q/pSHIjw1pTc/2X5/G9KN9GQ=', '0xc59b3060bfb4f258d614e3ba9865581167bd2045', 'U2FsdGVkX1/2SL6wFr6GF7lzxAAKt7c9AcHPTmdcD9gg5ZFytrX1/qv1er1iQ4QmEk53ZDGBZWj/akLSI95RPq5wDTKcoG4wAOEnclfHVFK3fIBOwBbH9WP+0OdyfPE0', 'TCyB6crr1TFCNboJywyu3MwwmyzzKTGDZs', 'U2FsdGVkX1+vgPr1K/aLuNTUXjqLTwmFlQ8mTNn4Jhb9NDuKVKJ/6BBpF8iADjBhLytu6WkokphDeSSXH3Pe2g4AMoq4Ayu7kFsMUIfuuEKi+cgaElEdcATHokU7DQQT', 0, 0, 0, 0, 0, 0, 0),
+-- (6, '14iomZgAr8ZYhkJMeZfRUjk4o88FYg7qch', 'U2FsdGVkX1/br1kXOcOY6+3STqUNlKdIuJ/c/66oEOLh2rDGua+4jULzA6vm9iOHBbcY+e2irSz+eAZB57lZfsNRWiaqDLxtcxs5KV3m2e0=', '0xfc63abed0c8898e262568f0cebb2cb35143d7aa6', 'U2FsdGVkX18mKmrhIdVckoMAsttGQ2dLnOgMTtKMwgoSu27hlaCctRXwhfMrF/OhSN9xbV76/X7A14W2Kf59Mtyg6tGrUl0dz0ECpu3JXwRlW5pXhge3Htp1K4SBhoL8', 'TCZ46bEf419jxhZtybpPdUFTmTrUqZXoUj', 'U2FsdGVkX1+AxmGZAU1SF6yF7WhD/Z+4uYoChFkE8JcUN+MWY+/VDy3W7BouZVxXqG+Zx5OBwTpatE/ZVFBlmOe2ePrnc+nUfHo10Dt80UWm5OzWjQghjvSOzypng1MV', 0, 0, 0, 0, 0, 0, 0),
+-- (7, '1M3fNFK5sdikHJWsW1GQxMjw8wGfLYKMQq', 'U2FsdGVkX19Jf2sjrlZIIommpgEYfKWZyg0ymt/jCtvMoXDYk70QuOTDt/f7rRaiVav069F5IzYXm0JbdKts9rRzDhq2wEh8y8eDjdkCPfI=', '0xb10def6db2ecf4f03840c0297530dae603d2f1d2', 'U2FsdGVkX19wWneXHwZYJt61Ctrg4sG31rhS0H03aKaPprLu+jhJQSwe2NC0q9wDV536UF8OXfG28wVhMn9iF7P2ulM6XMX+Xk0YiNZxPY2iZfZLaJX1FV3hBiMaaEUh', 'TJGmZ5CTXmTYd3x6gM8G5Fq4xfTH6qK9ew', 'U2FsdGVkX188hcXWR9UlNUw5AE9WX4DRL4ys8m9rzxwNgmnjtBshp0h1zIVGixsS4M9irKPNEjCjYEWcoXFT1nI6eeDA9jMkkIyFQeZdp8wLCOI4oiM86wxJ5LWYLBb6', 0, 0, 0, 0, 0, 0, 0),
+-- (8, '1GutYBBy9YstdgWCoRVcuDrcSmvdymVHkm', 'U2FsdGVkX19pHXaySjnfORVnXFsQzHeNqPcfYbsxoqnkaAcOkRwKo7D/6gBoc5paZNUYTpDvVLAgKgqS04p0/6oVfSa5QBy0RKRsVQI6fIE=', '0xc816b6fa616b1d36e8715835f1dba1d1c293db65', 'U2FsdGVkX19yccjdEtl6lWHWn+06F4OguOoSjasVt9NUJVxMPoMfQWV+eha+aKCQtXVekdNoEKhUMB0LjEcgvg7KITqOPcKg54cS6pfbbMd5YhFbmMkUtoTP9X4WwgfV', 'TXrXLBNhw1FW2ib9T8KB1g6y1vX91eXuK1', 'U2FsdGVkX19pR/rrzNRo/6h2p5Vdc1Y0YXJg+62mAr1u2gSlY/wn8Lp0XWIumjZE2ODt/aJcKiliCP2yUqCLjFT59g/j/BQ5KtsSyVSxnXx7iVl+vnE+4KkuBfsC4kUb', 0, 0, 0, 0, 0, 0, 0),
+-- (9, '1FwwLV6VRiGB1CErTzVhZ7Y8448yvzPM7n', 'U2FsdGVkX18YYxxMnqLihv1X4oktw11yFVQSZLkShHMbYkIPqy0Loc403G82vm/pynTN2oEXtg9kxlzaqh2ZXIq7B+cPxByh8Pa8kLX2tec=', '0xe099df72b39c6ad7fa76ccbd8766b9c0230e2dbb', 'U2FsdGVkX1+x0AkvklI1GlbVaJpYwwpV+JgoG/iorUONaLNwZYKjb0gF3hjZP12QPrf5Dl59K5aLNNQur4jNdlKV4eH5a+oAWopAH9P+qk7+gL/SAHQlJB4mUkbXYWEu', 'TNoeARuuhf4161XXiifRp7vvd5t4DJazAt', 'U2FsdGVkX1/z1F1qSXSO2fYJmrt+M2Dz3U/vQbBkT17ttixwATQ9iTI14WYo04ajwgfEEpfMNBKyiz4vXfjuoLMpo7aEuTocasMS7jYhVuNsqmIYQLsP7pbDzG4kvrTG', 0, 0, 0, 0, 0, 0, 0),
+-- (10, '1BpfhmLJLDtiVeNTLDSwLzcr1jPBigvZvb', 'U2FsdGVkX19TVbcIASbeFdw+8PDAxo6AM6dJwVu3ly+/WFSxLVAdas2+dBbLSR92KhVG0Eb7iNsuoEdaTfn33n1nlbKc8+NqCyHwegBOkns=', '0x909eb8959bded78d8eb6f31afb807ed732f310e4', 'U2FsdGVkX18w4MCuU7UH5ewy0t9gf37Kylxb8ykgeTtN16WKkJzBg+9olj+LEgW4MXuPmhfY6Qldej0uBIdQvnCT/CIr2MNTtqCkvi+vq8EkPUHPHOLsC+A60r0s7aL6', 'TV9S4uBKCu1GHS9WjAeWkJbSD5zuxXRV7R', 'U2FsdGVkX1/PQ7irNjRnIWeGn5nOKryTqbG+0jWU0XGQGoTVyr6/dj39SxtKZEThRLNm3b9D6PN/vjZCVXSnjdgWHDTmPpkvE/tUTOCxg+vzQKMOCMeNQ1/QpxmUFsY3', 0, 0, 0, 0, 0, 0, 0);
+
+-- --
+-- -- Indexes for dumped tables
+-- --
+
+-- --
+-- -- Indexes for table `banks`
+-- --
+-- ALTER TABLE `banks`
+--   ADD PRIMARY KEY (`id`);
+
+-- --
+-- -- Indexes for table `beneficiaries`
+-- --
+-- ALTER TABLE `beneficiaries`
+--   ADD PRIMARY KEY (`id`),
+--   ADD KEY `idx_beneficiary_payer_id` (`payer_id`),
+--   ADD KEY `idx_beneficiary_receiver_id` (`receiver_id`);
+
+-- --
+-- -- Indexes for table `complaints`
+-- --
+-- ALTER TABLE `complaints`
+--   ADD PRIMARY KEY (`id`),
+--   ADD KEY `complain_id` (`complain_id`);
+
+-- --
+-- -- Indexes for table `gifts`
+-- --
+-- ALTER TABLE `gifts`
+--   ADD PRIMARY KEY (`id`),
+--   ADD KEY `idx_gift_payer_id` (`payer_id`),
+--   ADD KEY `idx_gift_receiver_id` (`receiver_id`);
+
+-- --
+-- -- Indexes for table `merchants`
+-- --
+-- ALTER TABLE `merchants`
+--   ADD PRIMARY KEY (`id`);
+
+-- --
+-- -- Indexes for table `notifications`
+-- --
+-- ALTER TABLE `notifications`
+--   ADD PRIMARY KEY (`id`),
+--   ADD KEY `idx_notifications_summary_id` (`summary_id`);
+
+-- --
+-- -- Indexes for table `payers`
+-- --
+-- ALTER TABLE `payers`
+--   ADD PRIMARY KEY (`id`);
+
+-- --
+-- -- Indexes for table `rates`
+-- --
+-- ALTER TABLE `rates`
+--   ADD PRIMARY KEY (`id`);
+
+-- --
+-- -- Indexes for table `receivers`
+-- --
+-- ALTER TABLE `receivers`
+--   ADD PRIMARY KEY (`id`);
+
+-- --
+-- -- Indexes for table `referrals`
+-- --
+-- ALTER TABLE `referrals`
+--   ADD PRIMARY KEY (`id`);
+
+-- --
+-- -- Indexes for table `reported`
+-- --
+-- ALTER TABLE `reported`
+--   ADD PRIMARY KEY (`id`),
+--   ADD KEY `idx_reported_reporter_id` (`reporter_id`);
+
+-- --
+-- -- Indexes for table `reporters`
+-- --
+-- ALTER TABLE `reporters`
+--   ADD PRIMARY KEY (`id`);
+
+-- --
+-- -- Indexes for table `requests`
+-- --
+-- ALTER TABLE `requests`
+--   ADD PRIMARY KEY (`id`),
+--   ADD KEY `idx_request_payer_id` (`payer_id`),
+--   ADD KEY `idx_request_receiver_id` (`receiver_id`);
+
+-- --
+-- -- Indexes for table `summaries`
+-- --
+-- ALTER TABLE `summaries`
+--   ADD PRIMARY KEY (`id`),
+--   ADD KEY `idx_merchant_id` (`merchant_id`);
+
+-- --
+-- -- Indexes for table `supports`
+-- --
+-- ALTER TABLE `supports`
+--   ADD PRIMARY KEY (`id`),
+--   ADD UNIQUE KEY `support_id_UNIQUE` (`support_id`),
+--   ADD UNIQUE KEY `email_UNIQUE` (`email`);
+
+-- --
+-- -- Indexes for table `transfers`
+-- --
+-- ALTER TABLE `transfers`
+--   ADD PRIMARY KEY (`id`),
+--   ADD KEY `idx_transfer_payer_id` (`payer_id`),
+--   ADD KEY `idx_transfer_receiver_id` (`receiver_id`);
+
+-- --
+-- -- Indexes for table `wallets`
+-- --
+-- ALTER TABLE `wallets`
+--   ADD PRIMARY KEY (`id`);
+
+-- --
+-- -- AUTO_INCREMENT for dumped tables
+-- --
+
+-- --
+-- -- AUTO_INCREMENT for table `banks`
+-- --
+-- ALTER TABLE `banks`
+--   MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=841;
+
+-- --
+-- -- AUTO_INCREMENT for table `beneficiaries`
+-- --
+-- ALTER TABLE `beneficiaries`
+--   MODIFY `id` int NOT NULL AUTO_INCREMENT;
+
+-- --
+-- -- AUTO_INCREMENT for table `complaints`
+-- --
+-- ALTER TABLE `complaints`
+--   MODIFY `id` int NOT NULL AUTO_INCREMENT;
+
+-- --
+-- -- AUTO_INCREMENT for table `gifts`
+-- --
+-- ALTER TABLE `gifts`
+--   MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=181;
+
+-- --
+-- -- AUTO_INCREMENT for table `merchants`
+-- --
+-- ALTER TABLE `merchants`
+--   MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+-- --
+-- -- AUTO_INCREMENT for table `notifications`
+-- --
+-- ALTER TABLE `notifications`
+--   MODIFY `id` int NOT NULL AUTO_INCREMENT;
+
+-- --
+-- -- AUTO_INCREMENT for table `payers`
+-- --
+-- ALTER TABLE `payers`
+--   MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+-- --
+-- -- AUTO_INCREMENT for table `rates`
+-- --
+-- ALTER TABLE `rates`
+--   MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+-- --
+-- -- AUTO_INCREMENT for table `receivers`
+-- --
+-- ALTER TABLE `receivers`
+--   MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
+
+-- --
+-- -- AUTO_INCREMENT for table `referrals`
+-- --
+-- ALTER TABLE `referrals`
+--   MODIFY `id` int NOT NULL AUTO_INCREMENT;
+
+-- --
+-- -- AUTO_INCREMENT for table `reported`
+-- --
+-- ALTER TABLE `reported`
+--   MODIFY `id` int NOT NULL AUTO_INCREMENT;
+
+-- --
+-- -- AUTO_INCREMENT for table `reporters`
+-- --
+-- ALTER TABLE `reporters`
+--   MODIFY `id` int NOT NULL AUTO_INCREMENT;
+
+-- --
+-- -- AUTO_INCREMENT for table `requests`
+-- --
+-- ALTER TABLE `requests`
+--   MODIFY `id` int NOT NULL AUTO_INCREMENT;
+
+-- --
+-- -- AUTO_INCREMENT for table `summaries`
+-- --
+-- ALTER TABLE `summaries`
+--   MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=188;
+
+-- --
+-- -- AUTO_INCREMENT for table `supports`
+-- --
+-- ALTER TABLE `supports`
+--   MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+-- --
+-- -- AUTO_INCREMENT for table `transfers`
+-- --
+-- ALTER TABLE `transfers`
+--   MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+-- --
+-- -- AUTO_INCREMENT for table `wallets`
+-- --
+-- ALTER TABLE `wallets`
+--   MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+-- --
+-- -- Constraints for dumped tables
+-- --
+
+-- --
+-- -- Constraints for table `beneficiaries`
+-- --
+-- ALTER TABLE `beneficiaries`
+--   ADD CONSTRAINT `beneficiary_ibfk_1` FOREIGN KEY (`payer_id`) REFERENCES `payers` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+--   ADD CONSTRAINT `beneficiary_ibfk_2` FOREIGN KEY (`receiver_id`) REFERENCES `receivers` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- --
+-- -- Constraints for table `complaints`
+-- --
+-- ALTER TABLE `complaints`
+--   ADD CONSTRAINT `complaints_ibfk_1` FOREIGN KEY (`complain_id`) REFERENCES `payers` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- --
+-- -- Constraints for table `gifts`
+-- --
+-- ALTER TABLE `gifts`
+--   ADD CONSTRAINT `gift_ibfk_1` FOREIGN KEY (`payer_id`) REFERENCES `payers` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+--   ADD CONSTRAINT `gift_ibfk_2` FOREIGN KEY (`receiver_id`) REFERENCES `receivers` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- --
+-- -- Constraints for table `notifications`
+-- --
+-- ALTER TABLE `notifications`
+--   ADD CONSTRAINT `notifications_ibfk_1` FOREIGN KEY (`summary_id`) REFERENCES `summaries` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- --
+-- -- Constraints for table `reported`
+-- --
+-- ALTER TABLE `reported`
+--   ADD CONSTRAINT `reported_ibfk_1` FOREIGN KEY (`reporter_id`) REFERENCES `reporters` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- --
+-- -- Constraints for table `requests`
+-- --
+-- ALTER TABLE `requests`
+--   ADD CONSTRAINT `request_ibfk_1` FOREIGN KEY (`payer_id`) REFERENCES `payers` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+--   ADD CONSTRAINT `request_ibfk_2` FOREIGN KEY (`receiver_id`) REFERENCES `receivers` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- --
+-- -- Constraints for table `summaries`
+-- --
+-- ALTER TABLE `summaries`
+--   ADD CONSTRAINT `summary_ibfk_1` FOREIGN KEY (`merchant_id`) REFERENCES `merchants` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- --
+-- -- Constraints for table `transfers`
+-- --
+-- ALTER TABLE `transfers`
+--   ADD CONSTRAINT `transfer_ibfk_1` FOREIGN KEY (`receiver_id`) REFERENCES `receivers` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+--   ADD CONSTRAINT `transfer_ibfk_2` FOREIGN KEY (`payer_id`) REFERENCES `payers` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+-- COMMIT;
+
+-- /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+-- /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+-- /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

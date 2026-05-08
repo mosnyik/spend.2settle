@@ -1,0 +1,2 @@
+[   21548ms] [WARNING] Image with src "/simple_logo.png" has legacy prop "objectFit". Did you forget to run the codemod?
+Read more: https://nextjs.org/docs/messages/next-image-upgrade-to-13 @ webpack-internal:///./node_modules/.pnpm/@sentry+core@9.2.0/node_modules/@sentry/core/build/esm/utils-hoist/instrument/console.js:43
