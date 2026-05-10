@@ -92,26 +92,28 @@ export const handleEstimateAsset = async (chatInput: string) => {
         ticker,
       });
     }
-  } else if (chatInput === "3") {
-    if (walletIsConnected && walletType !== "EVM") {
-      addMessages([
-        {
-          type: "incoming",
-          content: `BNB is only supported when BNB/ETH wallet is connected. \n Please select the asset of the wallet connected`,
-          timestamp: new Date(),
-        },
-      ]);
-      return;
-    }
-    if (paymentMode.toLowerCase() === "payrequest") {
-      displayEnterPhone();
-    } else {
-      displayHowToEstimation({
-        crypto,
-        ticker,
-      });
-    }
-  } else if (chatInput === "4") {
+  }
+  // else if (chatInput === "3") {
+  //   if (walletIsConnected && walletType !== "EVM") {
+  //     addMessages([
+  //       {
+  //         type: "incoming",
+  //         content: `BNB is only supported when BNB/ETH wallet is connected. \n Please select the asset of the wallet connected`,
+  //         timestamp: new Date(),
+  //       },
+  //     ]);
+  //     return;
+  //   }
+  //   if (paymentMode.toLowerCase() === "payrequest") {
+  //     displayEnterPhone();
+  //   } else {
+  //     displayHowToEstimation({
+  //       crypto,
+  //       ticker,
+  //     });
+  //   }
+  // }
+  else if (chatInput === "3") {
     if (walletIsConnected && walletType !== "TRX") {
       addMessages([
         {
@@ -130,7 +132,7 @@ export const handleEstimateAsset = async (chatInput: string) => {
         ticker,
       });
     }
-  } else if (chatInput === "5") {
+  } else if (chatInput === "4") {
     if (walletIsConnected && walletType !== "EVM" && walletType !== "TRX") {
       addMessages([
         {
@@ -150,8 +152,9 @@ export const handleEstimateAsset = async (chatInput: string) => {
             <br />
             1. ERC20 <br />
             2. TRC20 <br />
-            3. BEP20
-            <br /> <br />
+            {/* 3. BEP20
+            <br /> */}
+            <br />
             0. Go back <br />
             00. Exit
           </span>

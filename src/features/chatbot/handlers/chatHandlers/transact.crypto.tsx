@@ -74,28 +74,30 @@ export const handleTransactCrypto = async (chatInput: string) => {
 
     isRequest ? next({ stepId: "enterPhone" }) : next({ stepId: "payOptions" });
     isRequest ? displayEnterPhone() : displayHowToEstimation({ crypto, ticker });
-  } else if (chatInput === "3") {
-    if (walletIsConnected && walletType !== "EVM") {
-      addMessages([
-        {
-          type: "incoming",
-          content: `BNB is only supported when BNB/ETH wallet is connected. \n Please select the asset of the wallet connected`,
-          timestamp: new Date(),
-        },
-      ]);
-      return;
-    }
+  }
+  // else if (chatInput === "3") {
+  //   if (walletIsConnected && walletType !== "EVM") {
+  //     addMessages([
+  //       {
+  //         type: "incoming",
+  //         content: `BNB is only supported when BNB/ETH wallet is connected. \n Please select the asset of the wallet connected`,
+  //         timestamp: new Date(),
+  //       },
+  //     ]);
+  //     return;
+  //   }
 
-    setCrypto("BNB");
-    setTicker("BNBUSDT");
-    setNetwork("BNB");
+  //   setCrypto("BNB");
+  //   setTicker("BNBUSDT");
+  //   setNetwork("BNB");
 
-    const crypto = usePaymentStore.getState().crypto;
-    const ticker = usePaymentStore.getState().ticker;
+  //   const crypto = usePaymentStore.getState().crypto;
+  //   const ticker = usePaymentStore.getState().ticker;
 
-    isRequest ? displayEnterPhone() : displayHowToEstimation({ crypto, ticker });
-    isRequest ? next({ stepId: "enterPhone" }) : next({ stepId: "payOptions" });
-  } else if (chatInput === "4") {
+  //   isRequest ? displayEnterPhone() : displayHowToEstimation({ crypto, ticker });
+  //   isRequest ? next({ stepId: "enterPhone" }) : next({ stepId: "payOptions" });
+  // }
+  else if (chatInput === "3") {
     if (walletIsConnected && walletType !== "TRX") {
       addMessages([
         {
@@ -116,7 +118,7 @@ export const handleTransactCrypto = async (chatInput: string) => {
 
     isRequest ? displayEnterPhone() : displayHowToEstimation({ crypto, ticker });
     isRequest ? next({ stepId: "enterPhone" }) : next({ stepId: "payOptions" });
-  } else if (chatInput === "5") {
+  } else if (chatInput === "4") {
     if (walletIsConnected && walletType !== "EVM" && walletType !== "TRX") {
       addMessages([
         {

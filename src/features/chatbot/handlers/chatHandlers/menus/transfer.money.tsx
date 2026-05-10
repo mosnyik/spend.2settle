@@ -15,11 +15,11 @@ export const displayTransferMoney = () => {
           <br />
           2. Ethereum (ETH)
           <br />
-          3. BINANCE (BNB)
+          {/* 3. BINANCE (BNB)
+          <br /> */}
+          3. TRON (TRX)
           <br />
-          4. TRON (TRX)
-          <br />
-          5. USDT
+          4. USDT
           <br />
           0. Go back
           <br />

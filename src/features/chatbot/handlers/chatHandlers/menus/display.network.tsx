@@ -15,8 +15,9 @@ export const displayNetwork = () => {
           <br />
           1. ERC20 <br />
           2. TRC20 <br />
-          3. BEP20
-          <br /> <br />
+          {/* 3. BEP20
+          <br /> */}
+          <br />
           0. Go back <br />
           00. Exit
         </span>
