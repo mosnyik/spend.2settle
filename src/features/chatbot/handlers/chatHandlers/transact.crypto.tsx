@@ -135,7 +135,7 @@ export const handleTransactCrypto = async (chatInput: string) => {
     addMessages([
       {
         type: "incoming",
-        content: "Invalid choice. Say 'Hi' or 'Hello' to start over",
+        content: "Invalid choice. Say 'Hi' or 'Hello' to start over!",
         timestamp: new Date(),
       },
     ]);
