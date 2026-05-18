@@ -3,29 +3,45 @@ import api from "../api-client";
 
 const engineUrl = process.env.NEXT_PUBLIC_SETTLE_API_URL;
 
-// FETCH ALL RATES FROM PAYMENT ENGINE IN ONE CALL
-const fetchAllRatesFromEngine = async (): Promise<{
+export interface EngineRateDetails {
   rateNumeric: number;
   merchantRate: number;
   profitRate: number;
-}> => {
+  updatedAt: string | null;
+}
+
+// FETCH ALL RATES FROM PAYMENT ENGINE IN ONE CALL
+export const fetchAllRatesFromEngine = async (): Promise<EngineRateDetails> => {
   const response = await axios.get<{
     rate: string;
     rateNumeric: number;
     merchantRate: number;
     profitRate: number;
+    updatedAt?: string | null;
   }>(`${engineUrl}/rate/all`);
+
   return {
     rateNumeric: response.data.rateNumeric,
     merchantRate: response.data.merchantRate,
     profitRate: response.data.profitRate,
+    updatedAt: response.data.updatedAt ?? null,
   };
+};
+
+export const fetchRateDetails = async (): Promise<EngineRateDetails> => {
+  const details = await fetchAllRatesFromEngine();
+
+  if (isNaN(details.rateNumeric)) {
+    throw new Error("Invalid rate received");
+  }
+
+  return details;
 };
 
 // FETCH CURRENT EXCHANGE RATE FROM PAYMENT ENGINE
 export const fetchRate = async (): Promise<number> => {
   try {
-    const { rateNumeric } = await fetchAllRatesFromEngine();
+    const { rateNumeric } = await fetchRateDetails();
 
     if (isNaN(rateNumeric)) {
       throw new Error("Invalid rate received");

@@ -3,7 +3,7 @@
 import {
   fetchMerchantRate,
   fetchProfitRate,
-  fetchRate,
+  fetchRateDetails,
   fetchTotalVolume,
 } from "@/services/rate/rates.service";
 import { useQuery } from "@tanstack/react-query";
@@ -21,17 +21,17 @@ export function RateBootstrapper() {
     usePaymentStore();
 
   // --- RATE ---
-  const shouldFetch = !rate || Date.now() - lastRateFetchedAt > 3 * 60 * 1000;
+  const shouldFetch = !rate || Date.now() - lastRateFetchedAt > 15 * 60 * 1000;
 
   const { data: rateData } = useQuery({
     queryKey: ["rate"],
-    queryFn: fetchRate,
+    queryFn: fetchRateDetails,
     enabled: shouldFetch,
   });
 
   useEffect(() => {
-    if (rateData) {
-      setRate(rateData.toString());
+    if (rateData?.rateNumeric) {
+      setRate(rateData.rateNumeric.toString());
     }
   }, [rateData, setRate]);
 

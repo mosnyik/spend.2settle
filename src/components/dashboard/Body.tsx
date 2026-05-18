@@ -14,7 +14,6 @@ import useTotalVolume from "@/hooks/dashboard/useTotalVolume";
 import Maintenance from "./Maintenance";
 import DisplayTransactions from "./DisplayTransactions";
 import { usePaymentStore } from "stores/paymentStore";
-import { client } from "@/pages/_app";
 
 export const useMediaQuery = (query: string) => {
   const [matches, setMatches] = useState(false);
@@ -32,7 +31,7 @@ export const useMediaQuery = (query: string) => {
   return matches;
 };
 
-const formatRateUpdatedAt = (timestamp: number) => {
+const formatRateUpdatedAt = (timestamp: number | string | null | undefined) => {
   if (!timestamp) return null;
 
   return new Intl.DateTimeFormat("en-NG", {
@@ -47,7 +46,6 @@ const formatRateUpdatedAt = (timestamp: number) => {
 export default function Body() {
   const [isOpen, setIsOpen] = useState(false);
   const [isClient, setIsClient] = useState(false);
-  const lastRateFetchedAt = usePaymentStore((state) => state.lastRateFetchedAt);
   const isMobile = useMediaQuery("(max-width: 425px)");
   const isTab = useMediaQuery("(max-width: 768px)");
   const isDeskTop = useMediaQuery("(max-width: 1440px)");
@@ -57,10 +55,9 @@ export default function Body() {
   const [imageError, setImageError] = useState<string | null>(null);
 
   const {
-    data: rate,
+    data: rateDetails,
     isLoading: rateLoading,
     error: rateError,
-    dataUpdatedAt: rateDataUpdatedAt,
   } = useRate();
   const {
     data: tvt,
@@ -68,18 +65,16 @@ export default function Body() {
     error: tvtError,
   } = useTotalVolume();
   const [showMaintenance, setShowMaintenance] = useState(false);
-  const formattedRateUpdatedAt = formatRateUpdatedAt(
-    rateDataUpdatedAt || lastRateFetchedAt,
-  );
+  const rate = rateDetails?.rateNumeric;
+  const formattedRateUpdatedAt = formatRateUpdatedAt(rateDetails?.updatedAt);
 
   // set rate for global use
   useEffect(() => {
-    const rate = client.getQueryData<number>(["rate"]);
-    if (!rateLoading && !rateError && rate) {
-      usePaymentStore.getState().setRate(rate.toString());
+    if (!rateLoading && !rateError && rateDetails?.rateNumeric) {
+      usePaymentStore.getState().setRate(rateDetails.rateNumeric.toString());
       return;
     }
-  }, [rate, rateLoading, rateError]);
+  }, [rateDetails?.rateNumeric, rateLoading, rateError]);
 
   // set maintaince by setting showMaintenance = false
   useEffect(() => {

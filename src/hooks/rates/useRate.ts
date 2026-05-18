@@ -1,13 +1,16 @@
-import { fetchRate } from "@/services/rate/rates.service";
+import {
+  EngineRateDetails,
+  fetchRateDetails,
+} from "@/services/rate/rates.service";
 import { useQuery } from "@tanstack/react-query";
 
 const RATE_REFETCH_INTERVAL_MS = 15 * 60 * 1000;
 const RATE_REFETCH_JITTER_MS = 60 * 1000;
 
 const useRate = () => {
-  return useQuery<number, Error>({
+  return useQuery<EngineRateDetails, Error>({
     queryKey: ["rate"],
-    queryFn: fetchRate,
+    queryFn: fetchRateDetails,
 
     gcTime: 10 * 60 * 1000,
 
