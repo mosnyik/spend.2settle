@@ -21,6 +21,8 @@ export const fetchAllRatesFromEngine = async (): Promise<EngineRateDetails> => {
     update_at?: string | null;
   }>(`${engineUrl}/rate/all`);
 
+  console.log("Fetched rates from engine:", response.data);
+
   return {
     rateNumeric: response.data.rateNumeric,
     merchantRate: response.data.merchantRate,
@@ -55,12 +57,11 @@ export const fetchRate = async (): Promise<number> => {
   }
 };
 
-
 // FETCH CURRENT EXCHANGE RATE FROM DB
 export const fetchTotalVolume = async (): Promise<number> => {
   try {
     const response = await api.get<{ ytdVolume: string; dbVolume: string }>(
-      `/api/dashboard/fetchYTD`
+      `/api/dashboard/fetchYTD`,
     );
     const rawVolume = response.data.ytdVolume.replace(/[,$]/g, ""); // Remove commas
     const ytdVolume = parseFloat(rawVolume);
@@ -108,4 +109,3 @@ export const fetchProfitRate = async (): Promise<number> => {
     throw error;
   }
 };
-
