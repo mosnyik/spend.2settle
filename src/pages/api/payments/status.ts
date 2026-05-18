@@ -1,15 +1,20 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import connection from "@/lib/mysql";
-import { RowDataPacket } from "mysql2/promise";
+import { engineGet } from "@/lib/settle-client";
 
-interface PaymentStatusRow extends RowDataPacket {
+interface EnginePaymentStatus {
   reference: string;
   type: string;
   status: string;
-  tx_hash: string | null;
+  txHash?: string | null;
   confirmations: number | null;
-  expires_at: Date | null;
-  updated_at: Date;
+  expiresAt?: string | null;
+  updatedAt?: string | null;
+}
+
+interface EnginePaymentStatusResponse {
+  success?: boolean;
+  payment?: EnginePaymentStatus;
+  error?: string;
 }
 
 export default async function handler(
@@ -28,36 +33,30 @@ export default async function handler(
   }
 
   try {
-    const [rows] = await connection.query<PaymentStatusRow[]>(
-      `
-        SELECT reference, type, status, tx_hash, confirmations, expires_at, updated_at
-        FROM payment_sessions
-        WHERE reference = ?
-        LIMIT 1
-      `,
-      [reference],
+    const result = await engineGet<EnginePaymentStatusResponse>(
+      `/payments/${encodeURIComponent(reference.trim())}`,
     );
 
-    const row = rows[0];
-
-    if (!row) {
+    if (!result.payment) {
       return res.status(404).json({ ok: false, error: "Payment not found" });
     }
 
     return res.status(200).json({
       ok: true,
       payment: {
-        reference: row.reference,
-        type: row.type,
-        status: row.status,
-        txHash: row.tx_hash,
-        confirmations: row.confirmations,
-        expiresAt: row.expires_at ? row.expires_at.toISOString() : null,
-        updatedAt: row.updated_at.toISOString(),
+        reference: result.payment.reference,
+        type: result.payment.type,
+        status: result.payment.status,
+        txHash: result.payment.txHash ?? null,
+        confirmations: result.payment.confirmations ?? null,
+        expiresAt: result.payment.expiresAt ?? null,
+        updatedAt: result.payment.updatedAt ?? null,
       },
     });
-  } catch (error) {
-    console.error("Payment status fetch error:", error);
-    return res.status(500).json({ ok: false, error: "Failed to fetch payment status" });
+  } catch (error: any) {
+    console.error("Payment status fetch error:", error?.response?.data ?? error);
+    return res.status(error?.response?.status ?? 500).json(
+      error?.response?.data ?? { ok: false, error: "Failed to fetch payment status" },
+    );
   }
 }
