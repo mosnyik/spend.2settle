@@ -32,9 +32,22 @@ export const useMediaQuery = (query: string) => {
   return matches;
 };
 
+const formatRateUpdatedAt = (timestamp: number) => {
+  if (!timestamp) return null;
+
+  return new Intl.DateTimeFormat("en-NG", {
+    dateStyle: "medium",
+    timeStyle: "short",
+    hour12: true,
+  })
+    .format(new Date(timestamp))
+    .replace(/\b(am|pm)\b/i, (period) => period.toUpperCase());
+};
+
 export default function Body() {
   const [isOpen, setIsOpen] = useState(false);
   const [isClient, setIsClient] = useState(false);
+  const lastRateFetchedAt = usePaymentStore((state) => state.lastRateFetchedAt);
   const isMobile = useMediaQuery("(max-width: 425px)");
   const isTab = useMediaQuery("(max-width: 768px)");
   const isDeskTop = useMediaQuery("(max-width: 1440px)");
@@ -43,13 +56,21 @@ export default function Body() {
   const [referralCategory, setReferralCategory] = useState<string | null>(null);
   const [imageError, setImageError] = useState<string | null>(null);
 
-  const { data: rate, isLoading: rateLoading, error: rateError } = useRate();
+  const {
+    data: rate,
+    isLoading: rateLoading,
+    error: rateError,
+    dataUpdatedAt: rateDataUpdatedAt,
+  } = useRate();
   const {
     data: tvt,
     isLoading: TvtLoading,
     error: tvtError,
   } = useTotalVolume();
   const [showMaintenance, setShowMaintenance] = useState(false);
+  const formattedRateUpdatedAt = formatRateUpdatedAt(
+    rateDataUpdatedAt || lastRateFetchedAt,
+  );
 
   // set rate for global use
   useEffect(() => {
@@ -284,6 +305,13 @@ export default function Body() {
             </span>
           )}
         </div>
+
+        {!rateLoading && !rateError && formattedRateUpdatedAt && (
+          <p className="mb-3 text-center font-Poppins text-xs md:text-sm text-black/70">
+            Last updated:{" "}
+            <span className="font-bold">{formattedRateUpdatedAt}</span>
+          </p>
+        )}
 
         <div className="flex flex-col sm:flex-row justify-center mt-4 space-y-4 sm:space-y-0 sm:space-x-4 mb-5">
           <Button

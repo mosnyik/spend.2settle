@@ -55,8 +55,16 @@ export default async function handler(
     });
   } catch (error: any) {
     console.error("Payment status fetch error:", error?.response?.data ?? error);
+    const responseData = error?.response?.data;
+    const errorMessage =
+      responseData?.error ?? responseData?.message ?? "Failed to fetch payment status";
+
     return res.status(error?.response?.status ?? 500).json(
-      error?.response?.data ?? { ok: false, error: "Failed to fetch payment status" },
+      {
+        ...(responseData && typeof responseData === "object" ? responseData : {}),
+        ok: false,
+        error: errorMessage,
+      },
     );
   }
 }
