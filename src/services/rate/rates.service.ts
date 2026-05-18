@@ -21,8 +21,6 @@ export const fetchAllRatesFromEngine = async (): Promise<EngineRateDetails> => {
     update_at?: string | null;
   }>(`${engineUrl}/rate/all`);
 
-  console.log("Fetched rates from engine:", response.data);
-
   return {
     rateNumeric: response.data.rateNumeric,
     merchantRate: response.data.merchantRate,
