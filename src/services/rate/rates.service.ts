@@ -18,13 +18,14 @@ export const fetchAllRatesFromEngine = async (): Promise<EngineRateDetails> => {
     merchantRate: number;
     profitRate: number;
     updatedAt?: string | null;
+    update_at?: string | null;
   }>(`${engineUrl}/rate/all`);
 
   return {
     rateNumeric: response.data.rateNumeric,
     merchantRate: response.data.merchantRate,
     profitRate: response.data.profitRate,
-    updatedAt: response.data.updatedAt ?? null,
+    updatedAt: response.data.updatedAt ?? response.data.update_at ?? null,
   };
 };
 
