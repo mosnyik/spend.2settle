@@ -7,7 +7,7 @@ import {
   navigateAfterCharge,
   parsePaymentInput,
 } from "@/helpers/transaction/transaction_charge";
-import { getLimits } from "@/services/rate/getLimits";
+import { getLimits, getRequestLimits } from "@/services/rate/getLimits";
 import { getRate } from "@/services/rate/getRates";
 import useChatStore from "stores/chatStore";
 import { usePaymentStore } from "stores/paymentStore";
@@ -70,6 +70,35 @@ export const displayCharge = async (input: string) => {
       addMessages([{ type: "incoming", content: "Please enter a valid amount.", timestamp: new Date() }]);
       return;
     }
+
+    setLoading(true);
+    try {
+      const limits = await getRequestLimits();
+
+      if (amount < limits.min || amount > limits.max) {
+        addMessages([
+          {
+            type: "incoming",
+            content: `Invalid amount. Must be between ${limits.min} and ${limits.max} ${limits.unit}.`,
+            timestamp: new Date(),
+          },
+        ]);
+        return;
+      }
+    } catch (e) {
+      console.error("Error fetching request limits:", e);
+      addMessages([
+        {
+          type: "incoming",
+          content: "Unable to validate request amount. Please try again.",
+          timestamp: new Date(),
+        },
+      ]);
+      return;
+    } finally {
+      setLoading(false);
+    }
+
     setPaymentNairaEstimate(amount.toString());
     setPaymentAssetEstimate("0");
     navigateAfterCharge();

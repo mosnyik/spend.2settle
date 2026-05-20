@@ -6,6 +6,9 @@ export interface RateLimits {
   rate: number;
 }
 
+export const REQUEST_LIMITS_CRYPTO = "USDT";
+export const REQUEST_LIMITS_ESTIMATE_ASSET = "Naira";
+
 /**
  * Fetch min/max transaction limits from the payment engine via the local proxy.
  *
@@ -25,4 +28,8 @@ export async function getLimits(
   }
 
   return res.json() as Promise<RateLimits>;
+}
+
+export async function getRequestLimits(): Promise<RateLimits> {
+  return getLimits(REQUEST_LIMITS_CRYPTO, REQUEST_LIMITS_ESTIMATE_ASSET);
 }
