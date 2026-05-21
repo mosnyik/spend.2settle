@@ -62,6 +62,7 @@ const CONFIRMATION_TARGETS: Record<string, number> = {
 }
 
 const TERMINAL_STATUSES = ['confirmed', 'settled', 'expired', 'failed', 'settlement_reversed']
+const REQUEST_CREATED_STATUS = 'pending_payment'
 
 const STEPS = [
   { key: 'pending',    label: 'Awaiting Payment' },
@@ -77,6 +78,16 @@ const STATUS_TO_STEP: Record<string, number> = {
   confirmed: 2,
   settling: 3,
   settled: 4,
+}
+
+function isRequestWaitingForFulfillment(payment: Payment): boolean {
+  return (
+    payment.type === 'request' &&
+    !payment.depositAddress &&
+    (payment.status === REQUEST_CREATED_STATUS ||
+      payment.status === 'created' ||
+      payment.status === 'pending')
+  )
 }
 
 // ---------------------------------------------------------------------------
@@ -521,6 +532,7 @@ export default function PaymentPage() {
   useEffect(() => {
     if (!payment) return
     if (TERMINAL_STATUSES.includes(payment.status)) return
+    if (isRequestWaitingForFulfillment(payment)) return
     if (payment.status === 'pending' && countdown === 0) return
 
     const interval = setInterval(async () => {
@@ -535,6 +547,7 @@ export default function PaymentPage() {
   useEffect(() => {
     if (!payment?.expiresAt) return
     if (TERMINAL_STATUSES.includes(payment.status)) return
+    if (isRequestWaitingForFulfillment(payment)) return
 
     const tick = setInterval(() => {
       const remaining = secondsUntil(payment.expiresAt)

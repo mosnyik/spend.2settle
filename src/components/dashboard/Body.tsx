@@ -39,7 +39,7 @@ const formatRateUpdatedAt = (timestamp: number | string | null | undefined) => {
     timeStyle: "short",
     hour12: true,
     // IANA "Etc/GMT+1" is fixed UTC-1.
-    timeZone: "Etc/GMT+1",
+    timeZone: "Etc/GMT",
   })
     .format(new Date(timestamp))
     .replace(/\b(am|pm)\b/i, (period) => period.toUpperCase());

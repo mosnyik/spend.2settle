@@ -130,7 +130,7 @@ export async function processTransaction() {
       setTransactionId(payment.reference);
       setRequestId(payment.reference);
       setPaymentNairaEstimate(String(payment.fiatAmount ?? fiatAmount));
-      setActiveReference(payment.reference);
+      setActiveReference(null);
       // Requests have no deposit address — payer gets one when they fulfill
 
       displaySendPayment();
