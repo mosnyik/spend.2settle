@@ -126,6 +126,7 @@ export function commitChargeToStores(
     setPaymentNairaEstimate,
     setNairaCharge,
     setDollarCharge,
+    setAmountPayable,
   } = usePaymentStore.getState();
 
   const { updateTransaction } = useTransactionStore.getState();
@@ -151,20 +152,9 @@ export function commitChargeToStores(
       : amount * rate * context.assetPrice;
   }
 
-  // Apply charge based on user's selection
-  if (input.trim() === "1") {
-    // Charge deducted from Fiat (Naira) - asset stays same, naira decreases
-    paymentNairaEstimate -= charge.nairaCharge;
-  }
-  if (input.trim() === "2") {
-    // Charge added to crypto - asset increases, naira stays same
-    paymentAssetEstimate += charge.assetCharge;
-  }
-
-  console.log({ paymentAssetEstimate });
-  console.log({ paymentNairaEstimate });
-
-  // set estimations
+  // Keep the user-entered amount unchanged. The server applies the selected
+  // charge mode and returns the final payable amounts when the payment is created.
+  setAmountPayable(amount.toString());
   setPaymentAssetEstimate(paymentAssetEstimate.toString());
   setPaymentNairaEstimate(paymentNairaEstimate.toString());
 

@@ -12,15 +12,28 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import useChatStore from "stores/chatStore";
 import { useStatusStore } from "stores/statusStore";
 
-const TERMINAL_STATUSES = ["settled", "expired", "failed", "settlement_reversed"];
+const TERMINAL_STATUSES = [
+  "settled",
+  "expired",
+  "failed",
+  "settlement_reversed",
+];
 
 export const CopyableText: React.FC<{
   text: string;
   label: string;
   reference?: string;
   isWallet?: boolean;
+  paymentType?: string;
   lastAssignedTime?: Date;
-}> = ({ text, label, reference, isWallet = false, lastAssignedTime }) => {
+}> = ({
+  text,
+  label,
+  reference,
+  isWallet = false,
+  paymentType,
+  lastAssignedTime,
+}) => {
   const [isCopied, setIsCopied] = useState(false);
   const [isExpired, setIsExpired] = useState(false);
   const [timeLeft, setTimeLeft] = useState("");
@@ -34,6 +47,9 @@ export const CopyableText: React.FC<{
   );
   const patchStatus = useStatusStore((state) => state.patchStatus);
   const currentStatus = statusRecord?.status ?? "pending";
+  const isCreateGift =
+    paymentType?.toLowerCase() === "gift" ||
+    statusRecord?.type?.toLowerCase() === "gift";
   const effectiveAssignedTime =
     statusRecord?.expiresAt && isWallet
       ? new Date(statusRecord.expiresAt)
@@ -113,8 +129,13 @@ export const CopyableText: React.FC<{
 
   useEffect(() => {
     if (!isWallet || !reference) return;
+    if (isCreateGift) {
+      console.log("Gift transaction detected, skipping live status tracking for reference:", reference);
+      return
+    };
     if (TERMINAL_STATUSES.includes(currentStatus)) return;
-
+    
+    console.log("Setting up live status tracking for reference:", reference);
     let cancelled = false;
 
     const fetchStatus = async () => {
@@ -149,7 +170,7 @@ export const CopyableText: React.FC<{
       cancelled = true;
       clearInterval(interval);
     };
-  }, [isWallet, reference, patchStatus, currentStatus]);
+  }, [isWallet, reference, patchStatus, currentStatus, isCreateGift]);
 
   const getWalletStatusText = () => {
     switch (currentStatus) {

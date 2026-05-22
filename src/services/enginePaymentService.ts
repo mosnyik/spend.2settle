@@ -31,6 +31,8 @@ interface CreatePaymentInput {
   type: "transfer" | "gift" | "request";
   fiatAmount: number;
   fiatCurrency?: string;
+  estimateAmount?: number;
+  estimateAsset?: string;
   crypto?: string;
   network?: string;
   chargeFrom?: "fiat" | "crypto";
@@ -58,6 +60,8 @@ export async function createEnginePayment(input: CreatePaymentInput): Promise<En
 
   if (input.crypto) body.crypto = input.crypto;
   if (input.network) body.network = mapNetwork(input.network);
+  if (typeof input.estimateAmount === "number") body.estimateAmount = input.estimateAmount;
+  if (input.estimateAsset) body.estimateAsset = input.estimateAsset;
   if (input.chargeFrom) body.chargeFrom = input.chargeFrom;
   if (input.payer) body.payer = input.payer;
   if (input.receiver) body.receiver = input.receiver;

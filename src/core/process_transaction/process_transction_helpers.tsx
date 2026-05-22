@@ -33,6 +33,9 @@ export async function processTransaction() {
   }
 
   const fiatAmount = parseFloat(cleanCurrency(paymentStore.paymentNairaEstimate)) || 0;
+  const estimateAmount =
+    parseFloat(cleanCurrency(paymentStore.amountPayable)) || fiatAmount;
+  const estimateAsset = paymentStore.estimateAsset || "Naira";
   const payer = {
     chatId: user?.chatId?.toString() ?? "",
     phone: user?.phone ?? undefined,
@@ -63,6 +66,8 @@ export async function processTransaction() {
       const payment = await createEnginePayment({
         type: "transfer",
         fiatAmount,
+        estimateAmount,
+        estimateAsset,
         crypto: paymentStore.crypto,
         network: paymentStore.network,
         chargeFrom: paymentStore.chargeFrom,
@@ -94,6 +99,8 @@ export async function processTransaction() {
       const payment = await createEnginePayment({
         type: "gift",
         fiatAmount,
+        estimateAmount,
+        estimateAsset,
         crypto: paymentStore.crypto,
         network: paymentStore.network,
         chargeFrom: paymentStore.chargeFrom,
@@ -124,6 +131,8 @@ export async function processTransaction() {
       const payment = await createEnginePayment({
         type: "request",
         fiatAmount,
+        estimateAmount,
+        estimateAsset,
         receiver: { bankCode, accountNumber: acct_number },
       });
 

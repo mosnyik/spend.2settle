@@ -59,7 +59,14 @@ export const displayCharge = async (input: string) => {
   // ── Phase 1: user entered an amount ───────────────────────────────────────
   setPending(null); // clear any stale pending from a previous attempt
 
-  const { crypto, estimateAsset, setAssetPrice, setPaymentNairaEstimate, setPaymentAssetEstimate } = usePaymentStore.getState();
+  const {
+    crypto,
+    estimateAsset,
+    setAmountPayable,
+    setAssetPrice,
+    setPaymentNairaEstimate,
+    setPaymentAssetEstimate,
+  } = usePaymentStore.getState();
   const { currentStep } = useChatStore.getState();
   const isRequest = currentStep.transactionType?.toLowerCase() === "request";
 
@@ -99,6 +106,7 @@ export const displayCharge = async (input: string) => {
       setLoading(false);
     }
 
+    setAmountPayable(amount.toString());
     setPaymentNairaEstimate(amount.toString());
     setPaymentAssetEstimate("0");
     navigateAfterCharge();

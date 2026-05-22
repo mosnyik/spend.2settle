@@ -147,6 +147,13 @@ export const displaySendPayment = async () => {
             label: "Wallet Address",
             reference: transactionId,
             isWallet: true,
+            paymentType: isGift
+              ? "gift"
+              : isRequestPayment
+                ? "payrequest"
+                : isTransfer
+                  ? "transfer"
+                  : undefined,
             lastAssignedTime: lastAssignedTime,
           },
           persist: true,
