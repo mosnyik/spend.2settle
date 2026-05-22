@@ -12,12 +12,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import useChatStore from "stores/chatStore";
 import { useStatusStore } from "stores/statusStore";
 
-const TERMINAL_STATUSES = [
-  "settled",
-  "expired",
-  "failed",
-  "settlement_reversed",
-];
+const TERMINAL_STATUSES = ["settled", "failed", "settlement_reversed"];
 
 export const CopyableText: React.FC<{
   text: string;
@@ -42,6 +37,10 @@ export const CopyableText: React.FC<{
   const [dialogMessage, setDialogMessage] = useState("");
   const [shouldShowDialog, setShouldShowDialog] = useState(false);
   const buttonRef = useRef<HTMLButtonElement>(null);
+  const statusPollIntervalRef = useRef<ReturnType<typeof setInterval> | null>(
+    null,
+  );
+  const statusPollReferenceRef = useRef<string | null>(null);
   const statusRecord = useStatusStore((state) =>
     reference ? state.statusesByReference[reference] : undefined,
   );
@@ -50,10 +49,27 @@ export const CopyableText: React.FC<{
   const isCreateGift =
     paymentType?.toLowerCase() === "gift" ||
     statusRecord?.type?.toLowerCase() === "gift";
-  const effectiveAssignedTime =
+  const effectiveAssignedTimeMs =
     statusRecord?.expiresAt && isWallet
-      ? new Date(statusRecord.expiresAt)
-      : lastAssignedTime;
+      ? new Date(statusRecord.expiresAt).getTime()
+      : lastAssignedTime?.getTime();
+  const effectiveAssignedTime =
+    typeof effectiveAssignedTimeMs === "number"
+      ? new Date(effectiveAssignedTimeMs)
+      : undefined;
+  const hasWalletExpired = useCallback(() => {
+    return typeof effectiveAssignedTimeMs === "number"
+      ? effectiveAssignedTimeMs <= Date.now()
+      : false;
+  }, [effectiveAssignedTimeMs]);
+  const clearStatusPoll = useCallback(() => {
+    if (statusPollIntervalRef.current) {
+      clearInterval(statusPollIntervalRef.current);
+      statusPollIntervalRef.current = null;
+      statusPollReferenceRef.current = null;
+    }
+  }, []);
+
   useEffect(() => {
     if (isWallet && effectiveAssignedTime && currentStatus === "pending") {
       const timer = setInterval(() => {
@@ -99,7 +115,7 @@ export const CopyableText: React.FC<{
             setIsDialogOpen(true);
           }
         }
-      }, 1000);
+      }, 10000);
 
       return () => clearInterval(timer);
     }
@@ -114,7 +130,7 @@ export const CopyableText: React.FC<{
   useEffect(() => {
     if (!isWallet) return;
 
-    if (currentStatus === "expired") {
+    if (hasWalletExpired()) {
       setIsExpired(true);
       setTimeLeft("00:00");
       setIsDialogOpen(false);
@@ -125,20 +141,40 @@ export const CopyableText: React.FC<{
       setIsDialogOpen(false);
       setShouldShowDialog(false);
     }
-  }, [isWallet, currentStatus]);
+  }, [isWallet, currentStatus, hasWalletExpired]);
 
   useEffect(() => {
-    if (!isWallet || !reference) return;
-    if (isCreateGift) {
-      console.log("Gift transaction detected, skipping live status tracking for reference:", reference);
-      return
-    };
-    if (TERMINAL_STATUSES.includes(currentStatus)) return;
-    
-    console.log("Setting up live status tracking for reference:", reference);
+    if (
+      !isWallet ||
+      !reference ||
+      isCreateGift ||
+      hasWalletExpired() ||
+      TERMINAL_STATUSES.includes(currentStatus)
+    ) {
+      clearStatusPoll();
+      return;
+    }
+
+    if (
+      statusPollIntervalRef.current &&
+      statusPollReferenceRef.current === reference
+    ) {
+      return;
+    }
+
+    clearStatusPoll();
+
     let cancelled = false;
 
     const fetchStatus = async () => {
+      if (hasWalletExpired()) {
+        cancelled = true;
+        setIsExpired(true);
+        setTimeLeft("00:00");
+        clearStatusPoll();
+        return;
+      }
+
       try {
         const res = await fetch(
           `/api/payments/status?reference=${encodeURIComponent(reference)}`,
@@ -162,15 +198,24 @@ export const CopyableText: React.FC<{
 
     void fetchStatus();
 
-    const interval = setInterval(() => {
+    statusPollReferenceRef.current = reference;
+    statusPollIntervalRef.current = setInterval(() => {
       void fetchStatus();
-    }, 4000);
+    }, 10000);
 
     return () => {
       cancelled = true;
-      clearInterval(interval);
+      clearStatusPoll();
     };
-  }, [isWallet, reference, patchStatus, currentStatus, isCreateGift]);
+  }, [
+    isWallet,
+    reference,
+    patchStatus,
+    currentStatus,
+    isCreateGift,
+    hasWalletExpired,
+    clearStatusPoll,
+  ]);
 
   const getWalletStatusText = () => {
     switch (currentStatus) {
