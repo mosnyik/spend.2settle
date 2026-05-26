@@ -3,8 +3,8 @@
   "private": true,
   "version": "0.1.0",
   "scripts": {
-    "debug": "cross-env DEBUG='2settle:*' next dev",
-    "dev": "next dev",
+    "debug": "cross-env DEBUG='2settle:*' next dev -p 3000",
+    "dev": "next dev -p 3000",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
@@ -42,6 +42,7 @@
     "bitcoinjs-lib": "^6.1.7",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "cors": "^2.8.6",
     "cross-env": "^10.1.0",
     "crypto": "^1.0.1",
     "date-fns": "^3.6.0",

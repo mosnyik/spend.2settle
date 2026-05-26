@@ -3,6 +3,17 @@ import api from "../api-client";
 
 const engineUrl = process.env.NEXT_PUBLIC_SETTLE_API_URL;
 
+function parseRate(value: string | number): number {
+  const numericRate =
+    typeof value === "number" ? value : Number(value.replace(/,/g, ""));
+
+  if (isNaN(numericRate)) {
+    throw new Error("Invalid rate received");
+  }
+
+  return numericRate;
+}
+
 export interface EngineRateDetails {
   rateNumeric: number;
   merchantRate: number;
@@ -13,18 +24,18 @@ export interface EngineRateDetails {
 // FETCH ALL RATES FROM PAYMENT ENGINE IN ONE CALL
 export const fetchAllRatesFromEngine = async (): Promise<EngineRateDetails> => {
   const response = await axios.get<{
-    rate: string;
-    rateNumeric: number;
-    merchantRate: number;
-    profitRate: number;
+    rate: string | number;
+    rateNumeric: string | number;
+    merchantRate: string | number;
+    profitRate: string | number;
     updatedAt?: string | null;
     update_at?: string | null;
   }>(`${engineUrl}/rate/all`);
 
   return {
-    rateNumeric: response.data.rateNumeric,
-    merchantRate: response.data.merchantRate,
-    profitRate: response.data.profitRate,
+    rateNumeric: parseRate(response.data.rateNumeric ?? response.data.rate),
+    merchantRate: parseRate(response.data.merchantRate),
+    profitRate: parseRate(response.data.profitRate),
     updatedAt: response.data.updatedAt ?? response.data.update_at ?? null,
   };
 };
@@ -80,11 +91,6 @@ export const fetchTotalVolume = async (): Promise<number> => {
 export const fetchMerchantRate = async (): Promise<number> => {
   try {
     const { merchantRate } = await fetchAllRatesFromEngine();
-
-    if (isNaN(merchantRate)) {
-      throw new Error("Invalid rate received");
-    }
-
     return merchantRate;
   } catch (error) {
     console.error("Error fetching merchant rate:", error);
@@ -96,11 +102,6 @@ export const fetchMerchantRate = async (): Promise<number> => {
 export const fetchProfitRate = async (): Promise<number> => {
   try {
     const { profitRate } = await fetchAllRatesFromEngine();
-
-    if (isNaN(profitRate)) {
-      throw new Error("Invalid profit rate received");
-    }
-
     return profitRate;
   } catch (error) {
     console.error("Error fetching profit rate:", error);

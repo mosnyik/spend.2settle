@@ -136,31 +136,14 @@ export const createTransaction = async (user: any): Promise<any> => {
   try {
     // `${apiURL}/api/transaction/create_transaction`,
     console.log("Use transaction created successfully...................");
- const response = await axios.post(
-   "http://localhost:3000/v1/payments",
-   {
-     type: "transfer",
-     fiatAmount: 10000,
-     fiatCurrency: "NGN",
-     crypto: "USDT",
-     network: "trc20",
-     payer: {
-       chatId: "telegram_123456",
-     },
-     receiver: {
-       bankCode: "044",
-       accountNumber: "0123456789",
-       accountName: "John Doe",
-     },
+ const response = await axios.post("http://localhost:3001/v1/payments", user, {
+   headers: {
+     Authorization: "Bearer test-admin-secret-123",
+     "Content-Type": "application/json",
    },
-   {
-     headers: {
-       Authorization: "your-secure-admin-secret-here",
-       "Content-Type": "application/json",
-     },
-   },
- );
+ });
     console.log("Use transaction created successfully");
+    console.log("response..............", response);
     return response.data;
   } catch (error) {
     console.error("Error storing user data:", error);

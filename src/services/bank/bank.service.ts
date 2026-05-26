@@ -67,7 +67,10 @@ export const resolveBankAccount = async (
 
     const bank_details = await fetchBankDetails(bankCode, acc_no);
 
-    return bank_details ? bank_details[0].account_name : null;
+   return {
+     account_name: bank_details ? bank_details[0].account_name : null,
+     bankCode,
+   };
   } catch (error) {
     console.error(
       `Error fetching bank details for bank code ${bank_name} and account number ${acc_no}:`,

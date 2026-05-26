@@ -63,7 +63,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     const result = await enginePost("/payments", req.body);
     return res.status(201).json(result);
   } catch (error: any) {
-    console.error("Payment creation error:", error?.response?.data ?? error);
+    console.error(
+      "Payment creation error:",
+      JSON.stringify(error?.response?.data ?? error, null, 2),
+    );
     return res.status(error?.response?.status ?? 500).json(
       error?.response?.data ?? { error: "Failed to create payment" }
     );
