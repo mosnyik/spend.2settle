@@ -18,6 +18,10 @@ import { useSupportedAssets } from "@/hooks/wallet/useSupportedAssets";
 import { useFormWalletDebit } from "@/hooks/chatbot/useFormWalletDebit";
 import { WalletAssetNotice } from "@/components/chatbot/WalletAssetNotice";
 import {
+  PaymentMethodChoice,
+  type PaymentMethodChoiceValue,
+} from "@/components/chatbot/PaymentMethodChoice";
+import {
   getPhoneCountry,
   normalizeInternationalPhoneNumber,
   PHONE_COUNTRIES,
@@ -98,6 +102,30 @@ const getInitialState = (initialValues?: Partial<FormState>): FormState => {
   };
 };
 
+const formatSummaryAmount = (
+  amount: string,
+  estimation: string,
+  crypto: string,
+) => {
+  if (!amount) return "";
+
+  const numericAmount = Number(amount.replace(/,/g, ""));
+  if (!Number.isFinite(numericAmount)) return amount;
+
+  if (estimation === "naira" || estimation === "dollar") {
+    return new Intl.NumberFormat(estimation === "naira" ? "en-NG" : "en-US", {
+      style: "currency",
+      currency: estimation === "naira" ? "NGN" : "USD",
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
+    }).format(numericAmount);
+  }
+
+  return `${new Intl.NumberFormat("en-US", {
+    maximumFractionDigits: 18,
+  }).format(numericAmount)} ${crypto}`;
+};
+
 export default function TransferForm({
   initialValues,
   formId,
@@ -108,14 +136,20 @@ export default function TransferForm({
   const [error, setError] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [paymentMethod, setPaymentMethod] =
+    useState<PaymentMethodChoiceValue | null>(null);
   const { walletName, isAssetSupported, isUsdtNetworkSupported } =
     useSupportedAssets();
   const getWalletDebit = useFormWalletDebit();
-  // Only offer what the connected wallet can pay with (everything if none)
-  const cryptoOptions = CRYPTO_OPTIONS.filter((crypto) =>
-    isAssetSupported(crypto.value),
+  const restrictToConnectedWallet = paymentMethod === "wallet";
+  const cryptoOptions = CRYPTO_OPTIONS.filter(
+    (crypto) =>
+      !restrictToConnectedWallet || isAssetSupported(crypto.value),
   );
-  const usdtNetworks = USDT_NETWORKS.filter(isUsdtNetworkSupported);
+  const usdtNetworks = USDT_NETWORKS.filter(
+    (network) =>
+      !restrictToConnectedWallet || isUsdtNetworkSupported(network),
+  );
   const selectedPhoneCountry = getPhoneCountry(form.phoneCountry);
   const internationalPhoneNumber = normalizeInternationalPhoneNumber(
     form.phoneCountry,
@@ -129,13 +163,24 @@ export default function TransferForm({
         : "NGN";
 
   useEffect(() => {
-    if (
-      formId &&
-      window.localStorage.getItem(`completed-transfer-form:${formId}`) ===
-        "true"
-    ) {
-      setSubmitted(true);
+    if (!formId) return;
+
+    const storedSubmission = window.localStorage.getItem(
+      `completed-transfer-form:${formId}`,
+    );
+    if (!storedSubmission) return;
+
+    if (storedSubmission !== "true") {
+      try {
+        setForm(
+          getInitialState(JSON.parse(storedSubmission) as Partial<FormState>),
+        );
+      } catch {
+        // Keep the form's current values for legacy or malformed saved data.
+      }
     }
+
+    setSubmitted(true);
   }, [formId]);
 
   // Drop a preset (e.g. from the AI) or selection the wallet can't pay with,
@@ -143,11 +188,19 @@ export default function TransferForm({
   const supportedKey = `${cryptoOptions.map((c) => c.value)}|${usdtNetworks}`;
   useEffect(() => {
     setForm((current) => {
-      if (current.crypto && !isAssetSupported(current.crypto)) {
+      if (
+        restrictToConnectedWallet &&
+        current.crypto &&
+        !isAssetSupported(current.crypto)
+      ) {
         return { ...current, crypto: "", network: "" };
       }
       if (current.crypto !== "USDT") return current;
-      if (current.network && !isUsdtNetworkSupported(current.network)) {
+      if (
+        restrictToConnectedWallet &&
+        current.network &&
+        !isUsdtNetworkSupported(current.network)
+      ) {
         return { ...current, network: usdtNetworks.length === 1 ? usdtNetworks[0] : "" };
       }
       if (!current.network && usdtNetworks.length === 1) {
@@ -157,7 +210,7 @@ export default function TransferForm({
     });
     // supportedKey captures every input of the checks above
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [supportedKey, form.crypto, form.network]);
+  }, [supportedKey, form.crypto, form.network, restrictToConnectedWallet]);
 
   const update = <K extends keyof FormState>(field: K, value: FormState[K]) => {
     setForm((current) => ({ ...current, [field]: value }));
@@ -203,14 +256,25 @@ export default function TransferForm({
       return;
     }
 
+    const walletDebit =
+      paymentMethod === "wallet"
+        ? getWalletDebit(form.crypto, form.network)
+        : undefined;
+    if (paymentMethod === "wallet" && !walletDebit) {
+      setError(
+        "Connect a wallet that supports the selected crypto and network.",
+      );
+      return;
+    }
+
     setIsSubmitting(true);
-    // Debit the connected wallet directly when it can pay this asset
     const success = await handleTransferFormSubmission(
       {
         ...form,
         phoneNumber: internationalPhoneNumber,
       },
-      getWalletDebit(form.crypto, form.network),
+      walletDebit,
+      paymentMethod ?? undefined,
     );
     setIsSubmitting(false);
 
@@ -218,7 +282,10 @@ export default function TransferForm({
       if (formId) {
         window.localStorage.setItem(
           `completed-transfer-form:${formId}`,
-          "true",
+          JSON.stringify({
+            ...form,
+            phoneNumber: internationalPhoneNumber,
+          }),
         );
       }
       setSubmitted(true);
@@ -226,10 +293,62 @@ export default function TransferForm({
   };
 
   if (submitted) {
+    const transactionSummary = [
+      {
+        label: "Amount",
+        value: formatSummaryAmount(form.amount, form.estimation, form.crypto),
+      },
+      { label: "Crypto", value: form.crypto },
+      { label: "Network", value: form.network },
+      { label: "Recipient", value: form.accountName },
+      { label: "Bank", value: form.bankName },
+      { label: "Account number", value: form.accountNumber },
+      { label: "Phone number", value: internationalPhoneNumber },
+    ].filter(({ value }) => Boolean(value));
+
     return (
-      <div className="w-full rounded-xl border border-blue-200 bg-white px-4 py-3 text-xs text-gray-700">
-        Transfer details submitted.
+      <div className="w-full rounded-xl border border-blue-200 bg-white px-4 py-3 text-xs text-gray-700 shadow-sm">
+        <div className="flex items-center gap-2 border-b border-blue-100 pb-2.5">
+          <span
+            aria-hidden="true"
+            className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-blue-500 text-[11px] font-bold text-white"
+          >
+            ✓
+          </span>
+          <div>
+            <p className="font-semibold text-gray-900">
+              Transfer details submitted
+            </p>
+            <p className="mt-0.5 text-[10px] text-gray-500">
+              Transaction summary
+            </p>
+          </div>
+        </div>
+
+        <dl className="mt-2.5 divide-y divide-gray-100">
+          {transactionSummary.map(({ label, value }) => (
+            <div
+              key={label}
+              className="flex items-start justify-between gap-3 py-1.5 first:pt-0 last:pb-0"
+            >
+              <dt className="shrink-0 text-[11px] text-gray-500">{label}</dt>
+              <dd className="min-w-0 break-words text-right text-[11px] font-medium text-gray-800">
+                {value}
+              </dd>
+            </div>
+          ))}
+        </dl>
       </div>
+    );
+  }
+
+  if (!paymentMethod) {
+    return (
+      <PaymentMethodChoice
+        value={paymentMethod}
+        walletName={walletName}
+        onChange={setPaymentMethod}
+      />
     );
   }
 
@@ -238,10 +357,19 @@ export default function TransferForm({
       onSubmit={handleSubmit}
       className="grid w-full grid-cols-2 gap-x-2.5 gap-y-2.5 rounded-xl border border-gray-200 bg-white p-2.5 shadow-sm"
     >
-      <WalletAssetNotice
-        walletName={walletName}
-        hasOptions={cryptoOptions.length > 0}
-      />
+      <div className="col-span-2">
+        <PaymentMethodChoice
+          value={paymentMethod}
+          walletName={walletName}
+          onChange={setPaymentMethod}
+        />
+      </div>
+      {paymentMethod === "wallet" && (
+        <WalletAssetNotice
+          walletName={walletName}
+          hasOptions={cryptoOptions.length > 0}
+        />
+      )}
       <div className="relative min-w-0 pt-2">
         <Label
           htmlFor="chat-transfer-crypto"
