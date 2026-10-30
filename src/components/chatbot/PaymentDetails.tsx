@@ -11,6 +11,11 @@ import type { GiftPaymentTracking } from "@/services/gift-flow";
 import { cancelEnginePayment } from "@/services/enginePaymentService";
 import { useStatusStore } from "stores/statusStore";
 import { PrivacyConsentActionGate } from "./PrivacyConsentGate";
+import {
+  TransactionEndActions,
+  type RetryTransactionConfig,
+  type RetryableTransactionType,
+} from "./TransactionEndActions";
 
 export interface PaymentDetailItem {
   label: string;
@@ -32,10 +37,16 @@ interface PaymentDetailsProps {
   // Paid by direct wallet debit: show live payment status instead of a countdown
   statusOnly?: boolean;
   preferredPaymentMethod?: "wallet" | "copy";
+  retryTransaction?: RetryTransactionConfig;
 }
 
 const FIELD_LABEL_CLASS =
   "absolute left-2 top-0 z-10 bg-white px-1 text-[11px] font-medium leading-4 text-gray-700";
+
+const isRetryableTransactionType = (
+  value?: string,
+): value is RetryableTransactionType =>
+  value === "transfer" || value === "gift" || value === "request";
 
 function DetailField({
   label,
@@ -64,6 +75,7 @@ export default function PaymentDetails({
   giftPayment,
   statusOnly = false,
   preferredPaymentMethod,
+  retryTransaction,
 }: PaymentDetailsProps) {
   const [paymentMethod, setPaymentMethod] = useState<"wallet" | "copy" | null>(
     preferredPaymentMethod ?? null,
@@ -91,9 +103,32 @@ export default function PaymentDetails({
       ]
     : items;
   const nonWalletItems = visibleItems.filter((item) => !item.isWallet);
-  const reference = paymentReference ?? walletReference ?? walletItem?.reference;
+  const reference =
+    paymentReference ??
+    walletReference ??
+    walletItem?.reference ??
+    items.find((item) => item.reference)?.reference;
   const trackedStatus = useStatusStore((state) =>
     reference ? state.statusesByReference[reference]?.status : undefined,
+  );
+  const itemPaymentType = items.find((item) => item.paymentType)?.paymentType;
+  const rawPaymentType =
+    retryTransaction?.paymentType ??
+    walletItem?.paymentType ??
+    itemPaymentType;
+  const paymentType = isRetryableTransactionType(rawPaymentType)
+    ? rawPaymentType
+    : trackedGift
+      ? "gift"
+      : undefined;
+  const transactionEnded = Boolean(
+    cancelled ||
+      (trackedStatus &&
+        ["expired", "failed", "settled", "settlement_reversed"].includes(
+          trackedStatus,
+        )) ||
+      (paymentType === "gift" && trackedStatus === "confirmed") ||
+      (paymentType === "request" && !walletItem && !expiryTime),
   );
   const patchStatus = useStatusStore((state) => state.patchStatus);
   const canCancel = Boolean(
@@ -334,6 +369,14 @@ export default function PaymentDetails({
           </div>
         )}
         {trackedGift && <GiftCode payment={trackedGift} />}
+        {transactionEnded && (
+          <TransactionEndActions
+            retryTransaction={
+              retryTransaction ??
+              (paymentType ? { paymentType } : undefined)
+            }
+          />
+        )}
       </div>
     </section>
   );
