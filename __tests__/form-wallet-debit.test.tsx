@@ -41,8 +41,9 @@ describe("transfer form payment with a connected wallet", () => {
   it("debits the wallet to the deposit address and shows the debit, not the address", async () => {
     const debit = vi.fn().mockResolvedValue("0xtxhash");
     const walletDebit: WalletDebit = { network: "bnb", asset: "BNB", debit };
+    const formData = { amount: "20000", crypto: "BNB", network: "BSC" } as any;
 
-    await handleTransferFormSubmission({} as any, walletDebit);
+    await handleTransferFormSubmission(formData, walletDebit);
 
     expect(debit).toHaveBeenCalledWith(REPLY.payment);
     const props = lastMessage().intent.props;
@@ -53,6 +54,10 @@ describe("transfer form payment with a connected wallet", () => {
       { label: "Transaction ID", text: "2S-7WSKCG" },
     ]);
     expect(props).toMatchObject({ statusOnly: true, walletReference: "2S-7WSKCG" });
+    expect(props.retryTransaction).toEqual({
+      paymentType: "transfer",
+      initialValues: formData,
+    });
   });
 
   it("reports a failed debit without showing an address", async () => {
@@ -64,9 +69,15 @@ describe("transfer form payment with a connected wallet", () => {
 
     await handleTransferFormSubmission({} as any, walletDebit);
 
-    const message = lastMessage();
-    expect(message.intent).toBeUndefined();
-    expect(JSON.stringify(message.content.props.children)).toContain("User rejected the request");
+    const messages = useChatStore.getState().messages;
+    const failureMessage = messages.at(-2) as any;
+    const actionsMessage = messages.at(-1) as any;
+    expect(JSON.stringify(failureMessage.content.props.children)).toContain("User rejected the request");
+    expect(actionsMessage.intent).toMatchObject({
+      kind: "component",
+      name: "TransactionEndActions",
+      props: { retryTransaction: { paymentType: "transfer" } },
+    });
   });
 
   it("shows the deposit address and timer when no wallet can pay", async () => {
@@ -88,5 +99,6 @@ describe("transfer form payment with a connected wallet", () => {
     expect(props.preferredPaymentMethod).toBe("copy");
     expect(props.paymentReference).toBe("2S-7WSKCG");
     expect(props.cancelToken).toBe("cancel-token");
+    expect(props.retryTransaction).toMatchObject({ paymentType: "transfer" });
   });
 });

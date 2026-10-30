@@ -115,6 +115,7 @@ describe("payment details compatibility", () => {
     });
     expect(useStatusStore.getState().statusesByReference["2S-CANCEL"]?.status).toBe("expired");
     expect(screen.queryByTestId("timer")).toBeNull();
+    expect(screen.getByRole("button", { name: "Create new transaction" })).toBeTruthy();
   });
   it("keeps the transaction available when cancellation fails", async () => {
     cancelEnginePayment.mockRejectedValue(new Error("already processing"));
@@ -144,5 +145,53 @@ describe("payment details compatibility", () => {
     />);
 
     expect(screen.queryByRole("button", { name: "Cancel transaction" })).toBeNull();
+  });
+  it("offers retry and new transaction actions after a payment expires", () => {
+    useStatusStore.getState().upsertStatus({
+      reference: "2S-EXPIRED",
+      status: "expired",
+    });
+
+    render(<PaymentDetails
+      paymentReference="2S-EXPIRED"
+      retryTransaction={{
+        paymentType: "transfer",
+        initialValues: { amount: "5000", crypto: "TRX" },
+      }}
+    />);
+
+    expect(screen.getByRole("button", { name: "Retry transaction" })).toBeTruthy();
+    expect(screen.getByRole("button", { name: "Create new transaction" })).toBeTruthy();
+  });
+  it("offers next actions once a gift is confirmed", () => {
+    useStatusStore.getState().upsertStatus({
+      reference: "GP-CONFIRMED",
+      status: "confirmed",
+    });
+
+    render(<PaymentDetails
+      paymentReference="GP-CONFIRMED"
+      giftPayment={{
+        reference: "GP-CONFIRMED",
+        status: "pending",
+        giftId: null,
+      }}
+      retryTransaction={{ paymentType: "gift" }}
+    />);
+
+    expect(screen.getByRole("button", { name: "Retry transaction" })).toBeTruthy();
+    expect(screen.getByRole("button", { name: "Create new transaction" })).toBeTruthy();
+  });
+  it("offers next actions after a payment request is created", () => {
+    render(<PaymentDetails
+      paymentReference="2S-REQUEST"
+      retryTransaction={{
+        paymentType: "request",
+        initialValues: { amount: "3000" },
+      }}
+    />);
+
+    expect(screen.getByRole("button", { name: "Retry transaction" })).toBeTruthy();
+    expect(screen.getByRole("button", { name: "Create new transaction" })).toBeTruthy();
   });
 });

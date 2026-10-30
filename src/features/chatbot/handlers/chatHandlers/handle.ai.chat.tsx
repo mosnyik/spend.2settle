@@ -16,6 +16,7 @@ import {
   geminiAi,
 } from "@/services/ai/ai-services";
 import type { WalletDebit } from "@/hooks/chatbot/useFormWalletDebit";
+import type { RetryTransactionConfig } from "@/components/chatbot/TransactionEndActions";
 import useChatStore, { MessageType } from "stores/chatStore";
 
 type CopyableReplyItem = {
@@ -165,6 +166,7 @@ type PaymentMethodPreference = "wallet" | "copy";
 const buildAiReplyMessages = (
   reply: GemResponseType,
   preferredPaymentMethod?: PaymentMethodPreference,
+  retryTransaction?: RetryTransactionConfig,
 ): MessageType[] => {
   const copyableItems = mergeCopyableItems(
     reply.copyableItems,
@@ -199,6 +201,7 @@ const buildAiReplyMessages = (
           cancelToken: reply.payment?.cancelToken,
           giftPayment: reply.giftPayment,
           preferredPaymentMethod,
+          retryTransaction,
         },
         persist: true,
       },
@@ -216,9 +219,12 @@ const buildAiReplyMessages = (
 const addAiReplyToChat = (
   reply: GemResponseType,
   preferredPaymentMethod?: PaymentMethodPreference,
+  retryTransaction?: RetryTransactionConfig,
 ) => {
   const { addMessages } = useChatStore.getState();
-  addMessages(buildAiReplyMessages(reply, preferredPaymentMethod));
+  addMessages(
+    buildAiReplyMessages(reply, preferredPaymentMethod, retryTransaction),
+  );
 };
 
 // After a direct debit: what was debited, the tx hash and live settlement
@@ -227,6 +233,7 @@ const buildDebitedReplyMessages = (
   reply: GemResponseType,
   walletDebit: WalletDebit,
   txHash: string,
+  retryTransaction?: RetryTransactionConfig,
 ): MessageType[] => {
   const payment = reply.payment!;
   const isGift = Boolean(reply.giftPayment);
@@ -251,6 +258,7 @@ const buildDebitedReplyMessages = (
           walletReference: payment.reference,
           statusOnly: true,
           giftPayment: reply.giftPayment,
+          retryTransaction,
         },
         persist: true,
       },
@@ -267,24 +275,37 @@ const completeFormPayment = async (
   reply: GemResponseType,
   walletDebit?: WalletDebit,
   preferredPaymentMethod?: PaymentMethodPreference,
+  retryTransaction?: RetryTransactionConfig,
 ) => {
   const { addMessages } = useChatStore.getState();
   const payment = reply.payment;
 
   if (!walletDebit || !payment?.depositAddress || !payment.cryptoAmount) {
-    addAiReplyToChat(reply, preferredPaymentMethod);
+    addAiReplyToChat(reply, preferredPaymentMethod, retryTransaction);
     return;
   }
 
   try {
     const txHash = await walletDebit.debit(payment);
-    addMessages(buildDebitedReplyMessages(reply, walletDebit, txHash));
+    addMessages(
+      buildDebitedReplyMessages(reply, walletDebit, txHash, retryTransaction),
+    );
   } catch (error) {
     console.error("Error debiting connected wallet:", error);
     addMessages([
       {
         type: "incoming",
         content: debitFailureMessage(error, payment.reference),
+        timestamp: new Date(),
+      },
+      {
+        type: "incoming",
+        intent: {
+          kind: "component",
+          name: "TransactionEndActions",
+          props: { retryTransaction },
+          persist: true,
+        },
         timestamp: new Date(),
       },
     ]);
@@ -301,7 +322,10 @@ export const handleTransferFormSubmission = async (
 
   try {
     const reply = await submitTransferForm(formData, getOrCreateSessionId());
-    await completeFormPayment(reply, walletDebit, preferredPaymentMethod);
+    await completeFormPayment(reply, walletDebit, preferredPaymentMethod, {
+      paymentType: "transfer",
+      initialValues: formData,
+    });
     return true;
   } catch (error: any) {
     const message =
@@ -328,13 +352,19 @@ const submitChatWorkflow = async <T,>(
   fallbackMessage: string,
   walletDebit?: WalletDebit,
   preferredPaymentMethod?: PaymentMethodPreference,
+  retryTransaction?: RetryTransactionConfig,
 ) => {
   const { addMessages, setLoading } = useChatStore.getState();
   setLoading(true);
 
   try {
     const reply = await submitter(formData, getOrCreateSessionId());
-    await completeFormPayment(reply, walletDebit, preferredPaymentMethod);
+    await completeFormPayment(
+      reply,
+      walletDebit,
+      preferredPaymentMethod,
+      retryTransaction,
+    );
     return true;
   } catch (error: any) {
     const message =
@@ -366,6 +396,7 @@ export const handleGiftFormSubmission = (
     "Gift could not be created. Please try again.",
     walletDebit,
     preferredPaymentMethod,
+    { paymentType: "gift", initialValues: formData },
   );
 
 export const handleRequestPaymentFormSubmission = (
@@ -375,6 +406,9 @@ export const handleRequestPaymentFormSubmission = (
     formData,
     submitRequestPaymentForm,
     "Payment request could not be created. Please try again.",
+    undefined,
+    undefined,
+    { paymentType: "request", initialValues: formData },
   );
 
 export const handleClaimGiftFormSubmission = (formData: ClaimGiftFormData) =>
